@@ -1,0 +1,61 @@
+.column-autoload,
+.column-option_size {
+    width: 100px;
+}
+
+.horizontal-spacer {
+    display: inline-block;
+    width: 0.85em;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#prefix-setup-top {
+    margin-right: 6px;
+}
+
+/* Prefix filter items */
+#prefix-filter > li {
+    float: left;
+    padding: 3px 6px;
+    margin: 3px 4px;
+    background-color: #cecece;
+    border-radius: 4px;
+    color: #333;
+}
+
+#prefix-filter .remove {
+    cursor: pointer;
+    background-color: #ececec;
+    padding: 0 4px;
+    border-radius: 8px;
+    margin-left: 4px;
+    margin-right: 0;
+}
+
+#prefix-filter:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+/* Filter Dialog */
+#prefix-filter-dialog label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#prefix-filter-dialog input {
+    width: 100%;
+}
+
+#remove-all-filters-wrap {
+    margin: 1.5em 0 0;
+}
+
+.horizontal-spacer {
+    display: inline-block;
+    width: 0.85em;
+}

@@ -1,2 +1,3 @@
-# naran-option-editor
-Naran Option Editor
+# 나란 옵션 에디터
+
+워드프레스 옵션 테이블을 관리자에서 보고 편집할 수 있습니다.

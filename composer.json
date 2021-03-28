@@ -1,0 +1,15 @@
+{
+  "name": "naran/option-editor",
+  "description": "Edit option in the admin screen.",
+  "autoload": {
+    "classmap": [
+      "includes"
+    ],
+    "files": [
+      "includes/functions.php"
+    ]
+  },
+  "scripts": {
+    "daa": "@composer dump-autoload -a"
+  }
+}
