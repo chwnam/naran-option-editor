@@ -1,3 +1,11 @@
+1.0.1
+=====
+Mar. 28th, 2021.
+
+* Add uninstall script.
+* Bug fix.
+
+
 1.0.0
 =====
 2021년 03월 28일
