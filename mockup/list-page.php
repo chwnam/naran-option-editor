@@ -173,13 +173,20 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
 
         <ul id="prefix-filter">
             <li>
-                <input type="hidden" name="prefixes[]" value="foo_">
-                foo_
+                <input type="checkbox"
+                       id="noe-check-all-prefixes" value="yes">
+                <label for="noe-check-all-prefixes">모두 선택</label>
+            </li>
+            <li>
+                <input type="checkbox"
+                       id="noe-prefix-foo_" value="yes" checked>
+                <label for="noe-prefix-foo_">foo_</label>
                 <span class="remove">&times;</span>
             </li>
             <li>
-                <input type="hidden" name="prefixes[]" value="bar_">
-                bar_
+                <input type="checkbox"
+                       id="noe-prefix-bar_" value="yes" checked>
+                <label for="noe-prefix-bar_">bar_</label>
                 <span class="remove">&times;</span>
             </li>
         </ul>
