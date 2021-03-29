@@ -11,7 +11,7 @@ if ( ! class_exists( 'NOE_Admin_Menu' ) ) {
 	class NOE_Admin_Menu implements NOE_Admin_Module {
 		use NOE_Template_Impl;
 
-		private string $page_hook;
+		private string $page_hook = '';
 
 		private WP_Screen $screen;
 
