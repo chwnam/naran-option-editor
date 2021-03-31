@@ -31,6 +31,7 @@ if ( ! class_exists( 'NOE_Registerer_Admin_Script' ) ) {
 					'option-table.js',
 					[ 'jquery', 'jquery-ui-dialog', 'wp-util' ]
 				),
+				new NOE_Script( 'noe-prefix-inspector', 'prefix-inspector.js', [ 'jquery' ] ),
 			];
 		}
 	}

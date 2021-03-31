@@ -1,19 +1,17 @@
 <?php
 /**
- *
+ * includes/modules/class-noe-admin-option-editor.php
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-if ( ! class_exists( 'NOE_Admin_Menu' ) ) {
-	class NOE_Admin_Menu implements NOE_Admin_Module {
+if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
+	class NOE_Admin_Option_Editor implements NOE_Admin_Module {
 		use NOE_Template_Impl;
 
 		private string $page_hook = '';
-
-		private WP_Screen $screen;
 
 		private NOE_Options_List_Table $table;
 
@@ -27,14 +25,13 @@ if ( ! class_exists( 'NOE_Admin_Menu' ) ) {
 
 		public function current_screen( WP_Screen $screen ) {
 			if ( $this->page_hook === $screen->id ) {
-				$this->screen = $screen;
 
 				$this->handle_action();
 
 				if ( ! isset( $_GET['option_id'] ) ) {
 					$this->table = new NOE_Options_List_Table();
 
-					$this->screen->add_option(
+					$screen->add_option(
 						'per_page',
 						[
 							'default' => 20,

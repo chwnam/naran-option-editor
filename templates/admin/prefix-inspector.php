@@ -2,13 +2,17 @@
 /**
  * Prefix Inspector template
  *
+ * @var string                $page
  * @var string                $autoload
  * @var string                $orderby
  * @var string                $delimiter
+ * @var string                $core
  * @var int                   $min_count
  * @var array<string, string> $orders
  * @var array<string, string> $autoload_options
  * @var array<string, string> $delimiters
+ * @var array<string, string> $core_options
+ * @var array<stdClass>       $items
  */
 
 /**
@@ -20,40 +24,50 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-
 <div class="wrap">
     <h1 class="wp-heading-inline">Prefix Inspector</h1>
 
     <hr class="wp-header-end">
 
     <form id="prefix-inspector" method="get">
+        <input type="hidden" name="page" value="<?php echo esc_attr( $page ); ?>">
+
         <div class="tablenav top">
             <div class="alignleft actions">
                 <label for="delimiter" class="screen-reader-text">Delimiter</label>
-                <select id="delimiter" name="delimiter" autocomplete="off">
-		            <?php foreach( $delimiters as $value => $label ) : ?>
+                <select id="delimiter" name="delimiter">
+					<?php foreach ( $delimiters as $value => $label ) : ?>
+                        <option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $delimiter ); ?>>
+							<?php echo esc_html( $label ); ?>
+                        </option>
+					<?php endforeach; ?>
+                </select>
+
+                <label for="autoload" class="screen-reader-text">Filter by autoload</label>
+                <select id="autoload" name="autoload">
+					<?php foreach ( $autoload_options as $value => $label ) : ?>
                         <option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $autoload ); ?>>
+							<?php echo esc_html( $label ); ?>
+                        </option>
+					<?php endforeach; ?>
+                </select>
+
+                <label for="autoload" class="screen-reader-text">Filter by core options</label>
+                <select id="core" name="core">
+		            <?php foreach ( $core_options as $value => $label ) : ?>
+                        <option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $core ); ?>>
 				            <?php echo esc_html( $label ); ?>
                         </option>
 		            <?php endforeach; ?>
                 </select>
 
-                <label for="autoload" class="screen-reader-text">Filter by autoload</label>
-                <select id="autoload" name="autoload" autocomplete="off">
-                    <?php foreach( $autoload_options as $value => $label ) : ?>
-                        <option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $autoload ); ?>>
-                            <?php echo esc_html( $label ); ?>
-                        </option>
-                    <?php endforeach; ?>
-                </select>
-
                 <label for="orderby" class="screen-reader-text">Ordering</label>
-                <select id="orderby" name="orderby" autocomplete="off">
-	                <?php foreach( $orders as $value => $label ) : ?>
-                        <option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $autoload ); ?>>
-			                <?php echo esc_html( $label ); ?>
+                <select id="orderby" name="orderby">
+					<?php foreach ( $orders as $value => $label ) : ?>
+                        <option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $orderby ); ?>>
+							<?php echo esc_html( $label ); ?>
                         </option>
-	                <?php endforeach; ?>
+					<?php endforeach; ?>
                 </select>
             </div>
 
@@ -62,13 +76,14 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <input id="min_count"
                        name="min_count"
                        type="number"
-                       value="1"
+                       value="<?php echo absint( $min_count ); ?>"
                        min="1">
                 <input type="submit" class="button" value="Inspect">
             </div>
 
             <div class="tablenav-pages">
-                <span class="displaying-num">10 items</span>
+                <span class="displaying-num">
+                    <?php printf( _n( '%d item', '%d items', count( $items ) ), count( $items ) ); ?></span>
             </div>
             <br class="clear">
         </div>
@@ -85,30 +100,28 @@ if ( ! defined( 'ABSPATH' ) ) {
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <th class="column-prefix" scope="row">(공백)</th>
-                <td class="column-option-count">8</td>
-                <td class="column-option-size">1432</td>
-                <td class="column-action"></td>
-            </tr>
-            <tr>
-                <th class="column-prefix" scope="row">active_</th>
-                <td class="column-option-count">1</td>
-                <td class="column-option-size">1555</td>
-                <td class="column-action">
-                    <a href="#">필터 등록</a>
-                    <span class="message show">등록되었습니다.</span>
-                </td>
-            </tr>
-            <tr>
-                <th class="column-prefix" scope="row">admin_</th>
-                <td class="column-option-count">2</td>
-                <td class="column-option-size">14</td>
-                <td class="column-action">
-                    <a href="#">필터 등록</a>
-                    <span class="message">등록되었습니다.</span>
-                </td>
-            </tr>
+			<?php if ( ! empty( $items ) ) : ?>
+				<?php foreach ( $items as $item ) : ?>
+                    <tr>
+                        <th class="column-prefix" scope="row">
+							<?php echo esc_html( $item->prefix ?? '' ); ?>
+                        </th>
+                        <td class="column-option-count">
+							<?php echo intval( $item->cnt ?? '0' ); ?>
+                        </td>
+                        <td class="column-option-size">
+							<?php echo intval( $item->size ?? '0' ); ?>
+                        </td>
+                        <td class="column-action">
+
+                        </td>
+                    </tr>
+				<?php endforeach; ?>
+			<?php else: ?>
+                <tr>
+                    <td colspan="4">No results.</td>
+                </tr>
+			<?php endif; ?>
             </tbody>
         </table>
     </form>

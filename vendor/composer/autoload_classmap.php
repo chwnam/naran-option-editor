@@ -8,8 +8,9 @@ $baseDir = dirname($vendorDir);
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
     'NOE_Admin' => $baseDir . '/includes/modules/class-noe-admin.php',
-    'NOE_Admin_Menu' => $baseDir . '/includes/modules/class-noe-admin-menu.php',
     'NOE_Admin_Module' => $baseDir . '/includes/interface-noe-admin-module.php',
+    'NOE_Admin_Option_Editor' => $baseDir . '/includes/modules/class-noe-admin-option-editor.php',
+    'NOE_Admin_Prefix_Inspector' => $baseDir . '/includes/modules/class-noe-admin-prefix-inspector.php',
     'NOE_Ajax' => $baseDir . '/includes/modules/registrables/class-noe-ajax.php',
     'NOE_Container' => $baseDir . '/includes/class-noe-container.php',
     'NOE_Mockup' => $baseDir . '/includes/modules/class-noe-mockup.php',

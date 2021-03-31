@@ -13,8 +13,9 @@ class ComposerStaticInit894c8a53e25fd99ad167e02080f72659
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'NOE_Admin' => __DIR__ . '/../..' . '/includes/modules/class-noe-admin.php',
-        'NOE_Admin_Menu' => __DIR__ . '/../..' . '/includes/modules/class-noe-admin-menu.php',
         'NOE_Admin_Module' => __DIR__ . '/../..' . '/includes/interface-noe-admin-module.php',
+        'NOE_Admin_Option_Editor' => __DIR__ . '/../..' . '/includes/modules/class-noe-admin-option-editor.php',
+        'NOE_Admin_Prefix_Inspector' => __DIR__ . '/../..' . '/includes/modules/class-noe-admin-prefix-inspector.php',
         'NOE_Ajax' => __DIR__ . '/../..' . '/includes/modules/registrables/class-noe-ajax.php',
         'NOE_Container' => __DIR__ . '/../..' . '/includes/class-noe-container.php',
         'NOE_Mockup' => __DIR__ . '/../..' . '/includes/modules/class-noe-mockup.php',

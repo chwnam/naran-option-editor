@@ -1,3 +1,10 @@
+1.1.0
+=====
+Mar. 31st, 2021.
+
+* Prefix inspector added.
+
+
 1.0.1
 =====
 Mar. 28th, 2021.

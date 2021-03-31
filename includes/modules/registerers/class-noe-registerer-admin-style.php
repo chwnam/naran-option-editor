@@ -31,6 +31,7 @@ if ( ! class_exists( 'NOE_Registerer_Admin_Style' ) ) {
 					'option-table.css',
 					[ 'wp-jquery-ui-dialog' ]
 				),
+				new NOE_Style( 'noe-prefix-inspector', 'prefix-inspector.css' ),
 			];
 		}
 	}
