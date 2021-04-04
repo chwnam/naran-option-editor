@@ -2,7 +2,7 @@
 /**
  * Prefix filter area.
  *
- * @var array $pf
+ * @var array $prefix_filters
  */
 
 /**
@@ -12,28 +12,41 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+$all_checked = array_reduce(
+	$prefix_filters,
+	function ( $accum, $value ) { return $accum && $value; },
+	true
+);
+
 ?>
 
 <ul id="prefix-filter">
-	<?php if ( ! empty( $pf ) ) : ?>
-		<?php foreach ( $pf as $v ) : ?>
-            <li>
-                <input type="hidden"
-                       name="pf[]"
-                       value="<?php echo esc_attr( $v ); ?>">
-				<?php echo esc_html( $v ); ?>
-                <span class="remove">&times;</span>
-            </li>
-		<?php endforeach; ?>
-	<?php endif; ?>
+    <li id="noe-toggle-all-prefixes-wrap"
+        style="<?php echo count( $prefix_filters ) > 1 ? '' : 'display:none;' ?>">
+        <input type="checkbox" id="noe-toggle-all-prefixes" <?php checked( $all_checked ); ?>>
+        <label for="noe-toggle-all-prefixes">Toggle All</label>
+    </li>
+	<?php foreach ( $prefix_filters as $filter => $checked ) : ?>
+        <li>
+            <input type="checkbox"
+                   id="noe-prefix-<?php echo esc_attr( $filter ); ?>"
+                   name="pf[]"
+                   value="<?php echo esc_attr( $filter ); ?>" <?php checked( $checked ); ?>>
+            <label for="noe-prefix-<?php echo esc_attr( $filter ); ?>">
+				<?php echo esc_html( $filter ); ?>
+            </label>
+            <span class="remove">&times;</span>
+        </li>
+	<?php endforeach; ?>
 </ul>
 
 <script type="text/template" id="tmpl-filter-item">
     <li>
-        <input type="hidden"
+        <input type="checkbox"
+               id="noe-prefix-{{ data.prefix }}"
                name="pf[]"
-               value="{{ data.value }}">
-        {{ data.value }}
+               value="{{ data.prefix }}" checked="checked">
+        <label for="noe-prefix-{{ data.prefix }}">{{ data.prefix }}</label>
         <span class="remove">&times;</span>
     </li>
 </script>
@@ -48,6 +61,6 @@ if ( ! defined( 'ABSPATH' ) ) {
                value="">
     </p>
     <p id="remove-all-filters-wrap">
-        <a id="remove-all-filters" href="#">현재 모든 접두어 제거</a>
+        <a id="remove-all-filters" href="#"><?php esc_html_e( 'Remove all prefixes', 'noe' ); ?></a>
     </p>
 </div>

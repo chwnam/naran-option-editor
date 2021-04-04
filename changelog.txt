@@ -1,3 +1,13 @@
+1.2.0
+=====
+Apr. 04th, 2021.
+
+* Better prefix filter.
+  * Each prefix is saved (per user).
+  * An added prefix can be checked, or unchecked for filtering.
+* Misc. code fixes.
+
+
 1.1.0
 =====
 Mar. 31st, 2021.

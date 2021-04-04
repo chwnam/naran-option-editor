@@ -87,7 +87,7 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			if ( $pf ) {
 				$buf = [];
 				foreach ( $pf as $v ) {
-					$buf[] = "option_name LIKE '" .  str_replace( '_', '\_', esc_sql( $v ) ) . "%'";
+					$buf[] = "option_name LIKE '" . str_replace( '_', '\_', esc_sql( $v ) ) . "%'";
 				}
 				$where .= ' AND (' . implode( ' OR ', $buf ) . ')';
 				unset( $buf );
@@ -213,9 +213,16 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			parent::display_tablenav( $which );
 
 			if ( 'top' === $which ) {
+				$meta = noe_meta()->user_prefix_filters;
+
+				$prefix_filters = $meta->get_value( get_current_user_id() );
+				if ( ! is_array( $prefix_filters ) ) {
+					$prefix_filters = [];
+				}
+
 				$this->template(
 					'admin/prefix-filter.php',
-					[ 'pf' => array_filter( (array) ( $_GET['pf'] ?? [] ) ) ]
+					[ 'prefix_filters' => &$prefix_filters ]
 				);
 			}
 		}

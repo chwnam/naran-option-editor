@@ -25,7 +25,6 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 
 		public function current_screen( WP_Screen $screen ) {
 			if ( $this->page_hook === $screen->id ) {
-
 				$this->handle_action();
 
 				if ( ! isset( $_GET['option_id'] ) ) {
@@ -46,8 +45,9 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 						'noe-option-table',
 						'noeOptionTable',
 						[
-							'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-							'nonce'   => []
+							'ajaxUrl'                 => admin_url( 'admin-ajax.php' ),
+							'nonce'                   => wp_create_nonce( 'noe-option-table' ),
+							'textPrefixAlreadyExists' => 'The prefix is already added. Please choose another one.',
 						]
 					);
 					wp_enqueue_style( 'noe-option-table' );
@@ -327,6 +327,157 @@ PHP_EOL;
 				header( "Content-Length: " . strlen( $content ) );
 				echo $content;
 				exit;
+			}
+		}
+
+		/**
+		 * AJAX Callback: add prefix.
+		 */
+		public function add_prefix() {
+			check_ajax_referer( 'noe-option-table', 'nonce' );
+
+			$prefix = $_REQUEST['prefix'] ?? false;
+
+			if ( $prefix && current_user_can( 'administrator' ) ) {
+				$user_id        = get_current_user_id();
+				$meta_field     = noe_meta()->user_prefix_filters;
+				$prefix_filters = $meta_field->get_value( $user_id );
+
+				if ( ! isset( $prefix_filters[ $prefix ] ) ) {
+					$prefix_filters[ $prefix ] = true;
+					$meta_field->update( $user_id, $prefix_filters );
+				}
+
+				wp_send_json_success();
+			}
+		}
+
+		/**
+		 * AJAX Callback: remove prefix.
+		 */
+		public function remove_prefix() {
+			check_ajax_referer( 'noe-option-table', 'nonce' );
+
+			$prefix = $_REQUEST['prefix'] ?? false;
+
+			if ( $prefix && current_user_can( 'administrator' ) ) {
+				$user_id        = get_current_user_id();
+				$meta_field     = noe_meta()->user_prefix_filters;
+				$prefix_filters = $meta_field->get_value( $user_id );
+
+				if ( isset( $prefix_filters[ $prefix ] ) ) {
+					unset( $prefix_filters[ $prefix ] );
+					$meta_field->update( $user_id, $prefix_filters );
+				}
+
+				wp_send_json_success();
+			}
+		}
+
+		/**
+		 * AJAX Callback: clear all prefixes.
+		 */
+		public function clear_prefixes() {
+			check_ajax_referer( 'noe-option-table', 'nonce' );
+
+			if ( current_user_can( 'administrator' ) ) {
+				$user_id        = get_current_user_id();
+				$meta_field     = noe_meta()->user_prefix_filters;
+				$prefix_filters = $meta_field->get_value( $user_id );
+
+				if ( ! empty( $prefix_filters ) ) {
+					$meta_field->update( $user_id, [] );
+				}
+
+				wp_send_json_success();
+			}
+		}
+
+		/**
+		 * AJAX Callback: enable prefix.
+		 */
+		public function enable_prefix() {
+			check_ajax_referer( 'noe-option-table', 'nonce' );
+
+			$prefix = $_REQUEST['prefix'] ?? false;
+
+			if ( $prefix && current_user_can( 'administrator' ) ) {
+				$user_id        = get_current_user_id();
+				$meta_field     = noe_meta()->user_prefix_filters;
+				$prefix_filters = $meta_field->get_value( $user_id );
+
+				if ( isset( $prefix_filters[ $prefix ] ) && !$prefix_filters[ $prefix ] ) {
+					$prefix_filters[ $prefix ] = true;
+					$meta_field->update( $user_id, $prefix_filters );
+				}
+
+				wp_send_json_success();
+			}
+		}
+
+		/**
+		 * AJAX Callback: enable all prefixes.
+		 */
+		public function enable_all_prefixes() {
+			check_ajax_referer( 'noe-option-table', 'nonce' );
+
+			if ( current_user_can( 'administrator' ) ) {
+				$user_id        = get_current_user_id();
+				$meta_field     = noe_meta()->user_prefix_filters;
+				$prefix_filters = $meta_field->get_value( $user_id );
+
+				if ( is_array( $prefix_filters ) && ! empty( $prefix_filters ) ) {
+					foreach ( array_keys( $prefix_filters ) as $prefix ) {
+						$prefix_filters[ $prefix ] = true;
+					}
+					$meta_field->update( $user_id, $prefix_filters );
+				}
+
+				wp_send_json_success();
+			}
+		}
+
+		/**
+		 * AJAX Callback: disable prefix.
+		 */
+		public function disable_prefix() {
+			check_ajax_referer( 'noe-option-table', 'nonce' );
+
+			$prefix = $_REQUEST['prefix'] ?? false;
+
+			if ( $prefix && current_user_can( 'administrator' ) ) {
+				$user_id        = get_current_user_id();
+				$meta_field     = noe_meta()->user_prefix_filters;
+				$prefix_filters = $meta_field->get_value( $user_id );
+
+				if ( isset( $prefix_filters[ $prefix ] ) && $prefix_filters[ $prefix ] ) {
+					$prefix_filters[ $prefix ] = false;
+					$meta_field->update( $user_id, $prefix_filters );
+				}
+
+				wp_send_json_success();
+			}
+		}
+
+		/**
+		 * AJAX Callback: disable prefixes.
+		 */
+		public function disable_all_prefixes() {
+			check_ajax_referer( 'noe-option-table', 'nonce' );
+
+			if ( current_user_can( 'administrator' ) ) {
+				$user_id        = get_current_user_id();
+				$meta_field     = noe_meta()->user_prefix_filters;
+				$prefix_filters = $meta_field->get_value( $user_id );
+
+				if ( is_array( $prefix_filters ) && ! empty( $prefix_filters ) ) {
+					foreach ( array_keys( $prefix_filters ) as $prefix ) {
+						$prefix_filters[ $prefix ] = false;
+					}
+					$meta_field->update( $user_id, $prefix_filters );
+				}
+
+				wp_send_json_success();
 			}
 		}
 

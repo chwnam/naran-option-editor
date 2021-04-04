@@ -97,24 +97,6 @@ if ( ! class_exists( 'NOE_Admin_Module' ) ) {
 
 			global $wpdb;
 
-			/*
-			 * SELECT
-			 *  prefix,
-			 *  COUNT(prefix) AS cnt,
-			 *  SUM(size) AS size
-			 * FROM (
-			 *  SELECT
-			 *   LEFT(option_name, POSITION('_' in option_name)) AS prefix,
-			 *   LENGTH(option_value) AS size
-			 *  FROM `naran_options`
-			 *  WHERE autoload = 'yes'
-			 * ) AS s
-			 * WHERE
-			 *  LENGTH(prefix) > 1
-			 * GROUP BY prefix
-			 * HAVING cnt >= 1
-			 * ORDER BY size desc;
-			 */
 			$sub_query = "SELECT LEFT(option_name, POSITION('{$delimiter}' in option_name)) AS prefix, LENGTH(option_value) AS option_size FROM {$wpdb->options}";
 
 			if ( 'yes' === $autoload ) {
