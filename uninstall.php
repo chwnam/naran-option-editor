@@ -21,3 +21,13 @@ $user_meta_keys = [
 foreach ( $user_meta_keys as $meta_key ) {
 	$wpdb->delete( $wpdb->usermeta, [ 'meta_key' => $meta_key ], [ 'meta_key' => '%s' ] );
 }
+
+
+/* *******************************
+ * Drop custom tables
+ * *******************************/
+if ( ! function_exists( 'noe' ) ) {
+	require_once __DIR__ . '/index.php';
+}
+
+noe()->desc_table->uninstall();

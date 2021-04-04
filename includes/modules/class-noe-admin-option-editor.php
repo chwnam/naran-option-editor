@@ -84,6 +84,7 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 				$option_id    = $_POST['option_id'] ?? false;
 				$option_name  = sanitize_text_field( $_POST['option_name'] ?? '' );
 				$option_value = wp_unslash( $_POST['option_value'] ?? '' );
+				$description  = sanitize_text_field( $_POST['description'] ?? '' );
 				$autoload     = 'yes' === ( $_POST['autoload'] ?? 'no' );
 
 				if ( empty( $option_id ) || ( ! is_numeric( $option_id ) && 'new' !== $option_id ) ) {
@@ -112,6 +113,7 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 									$option_name
 								)
 							);
+							noe()->desc_table->update_description( $option_id, $description );
 							add_settings_error( 'noe', 'success', 'Option is successfully inserted.', 'success' );
 						}
 					} elseif ( is_numeric( $option_id ) ) {
@@ -139,9 +141,9 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 							$existing->autoload = filter_var( $existing->autoload, FILTER_VALIDATE_BOOLEAN );
 
 							if ( $existing->option_name === $option_name && $existing->autoload === $autoload ) {
-								$updated = update_option( $option_name, $option_value, $autoload );
+								update_option( $option_name, $option_value, $autoload );
 							} else {
-								$updated = $wpdb->update(
+								$wpdb->update(
 									$wpdb->options,
 									[
 										'option_name' => $option_name,
@@ -150,16 +152,8 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 									[ 'option_name' => $existing->option_name ]
 								);
 							}
-							if ( $updated ) {
-								add_settings_error( 'noe', 'success', 'Option is successfully updated.', 'success' );
-							} else {
-								add_settings_error(
-									'noe',
-									'success',
-									'Option is not updated. The value is the same.',
-									'info'
-								);
-							}
+							noe()->desc_table->update_description( $existing->option_id, $description );
+							add_settings_error( 'noe', 'success', 'Option is successfully updated.', 'success' );
 						}
 					}
 				}
@@ -186,6 +180,7 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 					[ 'option_id' => $option_id ],
 					[ 'option_id' => '%d' ]
 				);
+				noe()->desc_table->delete_description( $option_id );
 
 				$return_url = wp_unslash( $_GET['return_url'] ?? '' );
 				if ( empty( $return_url ) ) {
@@ -406,7 +401,7 @@ PHP_EOL;
 				$meta_field     = noe_meta()->user_prefix_filters;
 				$prefix_filters = $meta_field->get_value( $user_id );
 
-				if ( isset( $prefix_filters[ $prefix ] ) && !$prefix_filters[ $prefix ] ) {
+				if ( isset( $prefix_filters[ $prefix ] ) && ! $prefix_filters[ $prefix ] ) {
 					$prefix_filters[ $prefix ] = true;
 					$meta_field->update( $user_id, $prefix_filters );
 				}
@@ -529,6 +524,11 @@ PHP_EOL;
 				)
 			);
 
+			$description = noe()->desc_table->get_description( $option_id );
+			if ( $description ) {
+				$option->description = $description;
+			}
+
 			if ( $option ) {
 				$this->template( 'admin/edit-option.php', [ 'option' => $option ] );
 			}
@@ -574,6 +574,7 @@ PHP_EOL;
 							delete_option( $option_name );
 						}
 					}
+					noe()->desc_table->bulk_delete( $option_ids );
 				}
 			}
 		}

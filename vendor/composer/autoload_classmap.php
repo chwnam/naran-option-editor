@@ -13,6 +13,7 @@ return array(
     'NOE_Admin_Prefix_Inspector' => $baseDir . '/includes/modules/class-noe-admin-prefix-inspector.php',
     'NOE_Ajax' => $baseDir . '/includes/modules/registrables/class-noe-ajax.php',
     'NOE_Container' => $baseDir . '/includes/class-noe-container.php',
+    'NOE_Desc_Table' => $baseDir . '/includes/modules/class-noe-desc-table.php',
     'NOE_Meta' => $baseDir . '/includes/modules/registrables/class-noe-meta.php',
     'NOE_Mockup' => $baseDir . '/includes/modules/class-noe-mockup.php',
     'NOE_Module' => $baseDir . '/includes/interface-noe-module.php',

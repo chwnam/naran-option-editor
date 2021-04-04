@@ -75,6 +75,15 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
         $('#prefix-setup-top').on('click', function () {
             $('#prefix-filter-dialog').dialog('open');
         });
+
+        $('#restore-option-1').on('click', function () {
+            $('#sql-file-upload').trigger('click');
+        });
+
+        $('#sql-file-upload').on('change', function (e) {
+            alert('The file is uploaded.');
+            e.currentTarget.value = '';
+        });
     });
 </script>
 
@@ -146,6 +155,8 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
                 <input id="option-autoload-submit" class="button" type="submit" name="option_filter_submit" value="Filter">
                 <span class="horizontal-spacer"></span>
                 <input id="backup-option-1" class="button action" type="button" value="옵션 백업">
+                <input id="restore-option-1" class="button action" type="button" value="옵션 복원">
+                <input id="sql-file-upload" type="file" accept=".sql.gz,.sql" style="display: none;">
             </div>
             <div class="tablenav-pages"> <!-- one-page 추가하면 페이지네이션 출력되지 않음 -->
                 <span class="displaying-num">10개의 항목</span>

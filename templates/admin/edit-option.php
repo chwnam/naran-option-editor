@@ -46,7 +46,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                            id="option-name"
                            required="required"
                            value="<?php echo esc_attr( $option->option_name ?? '' ); ?>">
-                    <p class="description">반드시 입력해야 합니다.</p>
+                    <p class="description"><?php esc_html_e( 'Option name is required.', 'noe' ); ?></p>
                 </td>
             </tr>
             <tr>
@@ -61,28 +61,29 @@ if ( ! defined( 'ABSPATH' ) ) {
                           cols="40"
                           autocomplete="off"><?php echo esc_textarea( $option->option_value ?? '' ); ?></textarea>
                     <p class="description">
-                        옵션 길이: <span id="option-size"><?php
+						<?php esc_html_e( 'Option size', 'noe' ); ?>: <span id="option-size"><?php
 							echo intval( strlen( $option->option_value ?? '' ) ); ?></span>
                     </p>
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="option-desc">Description</label>
+                    <label for="option-desc"><?php esc_html_e( 'Description', 'noe' ); ?></label>
                 </th>
                 <td>
                 <textarea id="option-desc"
-                          name="option_desc"
+                          name="description"
                           class="large-text"
                           rows="3"
-                          cols="40"
-                          disabled="disabled"></textarea>
-                    <!-- <p class="description">이 옵션에 대한 설명을 작성할 수 있습니다.</p> -->
+                          cols="40"><?php echo esc_textarea( $option->description ?? '' ); ?></textarea>
+                    <p class="description">
+						<?php esc_html_e( 'Some description about this option.', 'noe' ); ?>
+                    </p>
                 </td>
             </tr>
             <tr>
                 <th scope="row">
-                    <label for="autoload">Autoload</label>
+                    <label for="autoload"><?php esc_html_e( 'Autoload', 'noe' ); ?></label>
                 </th>
                 <td>
                     <input type="checkbox"
@@ -90,15 +91,15 @@ if ( ! defined( 'ABSPATH' ) ) {
                            name="autoload"
                            value="yes"
 						<?php checked( 'yes', $option->autoload ?? 'yes' ); ?>>
-                    <label for="autoload">Autoload option.</label>
+                    <label for="autoload"><?php esc_html_e( 'Autoload this option.', 'noe' ); ?></label>
                 </td>
             </tr>
             </tbody>
         </table>
         <p class="submit">
-            <input type="submit" class="button button-primary" value="Save Option">
+            <input type="submit" class="button button-primary" value="<?php esc_attr_e( 'Save Option', 'noe' ); ?>">
             <a href="<?php echo esc_url( remove_query_arg( 'option_id' ) ); ?>"
-               class="button button-secondary">Back to List</a>
+               class="button button-secondary"><?php esc_html_e( 'Back to List', 'noe' ); ?></a>
 			<?php if ( $option ) : ?>
                 <a href="<?php echo esc_url(
 					noe_get_option_remove_url(
@@ -106,7 +107,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						remove_query_arg( 'option_id' )
 					)
 				); ?>"
-                   class="submitdelete">Remove this option</a>
+                   class="submitdelete"><?php esc_html_e( 'Remove this option.', 'noe' ); ?></a>
 			<?php endif; ?>
         </p>
         <input type="hidden" name="option_id" value="<?php echo esc_attr( $option->option_id ?? 'new' ); ?>">

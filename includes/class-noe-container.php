@@ -12,6 +12,7 @@ if ( ! class_exists( 'NOE_Container' ) ) {
 	 * Class NOE_Container
 	 *
 	 * @property-read NOE_Admin             $admin
+	 * @property-read NOE_Desc_Table        $desc_table
 	 * @property-read NOE_Registerer_Module $registerer
 	 */
 	final class NOE_Container {
@@ -31,10 +32,14 @@ if ( ! class_exists( 'NOE_Container' ) ) {
 			$this->load_modules(
 				[
 					'admin'      => NOE_Admin::class,
+					'desc_table' => function () { return new NOE_Desc_Table(); },
 					'registerer' => NOE_Registerer_Module::class,
 				]
 			);
 			$this->mockup();
+
+			register_activation_hook( NOE_MAIN, [ $this, 'activation' ] );
+			register_deactivation_hook( NOE_MAIN, [ $this, 'deactivation' ] );
 		}
 
 		public function __clone() {
@@ -47,6 +52,21 @@ if ( ! class_exists( 'NOE_Container' ) ) {
 
 		public function __sleep() {
 			throw new RuntimeException( __CLASS__ . ' cannot be serialized.' );
+		}
+
+		public function activation() {
+			$this->force_activate_dynamic_modules();
+			do_action( 'noe_activation' );
+		}
+
+		public function deactivation() {
+			$this->force_activate_dynamic_modules();
+			do_action( 'noe_deactivation' );
+		}
+
+		protected function force_activate_dynamic_modules() {
+			$noe = noe();
+			$noe->desc_table;
 		}
 
 		protected function mockup() {

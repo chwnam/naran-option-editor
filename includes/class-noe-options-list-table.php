@@ -65,9 +65,9 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 
 			$autoload = wp_unslash( $_GET['autoload'] ?? '' );
 			if ( 'yes' === $autoload ) {
-				$where .= ' AND autoload = \'yes\'';
+				$where .= ' AND o.autoload = \'yes\'';
 			} elseif ( 'no' === $autoload ) {
-				$where .= ' AND autoload = \'no\'';
+				$where .= ' AND o.autoload = \'no\'';
 			}
 
 			$o = wp_unslash( $_GET['o'] ?? '' );
@@ -75,19 +75,19 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 				$options_names = noe_get_core_option_names();
 				$placeholders  = implode( ', ', array_fill( 0, count( noe_get_core_option_names() ), '%s' ) );
 
-				$where .= $wpdb->prepare( " AND option_name IN ({$placeholders})", $options_names );
+				$where .= $wpdb->prepare( " AND o.option_name IN ({$placeholders})", $options_names );
 			} elseif ( 'custom' === $o ) {
 				$options_names = noe_get_core_option_names();
 				$placeholders  = implode( ', ', array_fill( 0, count( noe_get_core_option_names() ), '%s' ) );
 
-				$where .= $wpdb->prepare( " AND option_name NOT IN ({$placeholders})", $options_names );
+				$where .= $wpdb->prepare( " AND o.option_name NOT IN ({$placeholders})", $options_names );
 			}
 
 			$pf = array_filter( array_map( 'sanitize_key', array_unique( (array) ( $_GET['pf'] ?? [] ) ) ) );
 			if ( $pf ) {
 				$buf = [];
 				foreach ( $pf as $v ) {
-					$buf[] = "option_name LIKE '" . str_replace( '_', '\_', esc_sql( $v ) ) . "%'";
+					$buf[] = "o.option_name LIKE '" . str_replace( '_', '\_', esc_sql( $v ) ) . "%'";
 				}
 				$where .= ' AND (' . implode( ' OR ', $buf ) . ')';
 				unset( $buf );
@@ -96,7 +96,7 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			$s = wp_unslash( $_GET['s'] ?? '' );
 			if ( $s ) {
 				$where .= $wpdb->prepare(
-					" AND (option_name LIKE '%%%s%%' OR option_value LIKE '%%%s%%')",
+					" AND (o.option_name LIKE '%%%s%%' OR o.option_value LIKE '%%%s%%')",
 					$s,
 					$s
 				);
@@ -106,7 +106,7 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			$ob      = wp_unslash( $_GET['orderby'] ?? '' );
 			$order   = 'desc' === wp_unslash( $_GET['order'] ?? '' ) ? 'DESC' : 'ASC';
 			if ( 'option_name' === $ob ) {
-				$orderby = "ORDER BY option_name {$order}";
+				$orderby = "ORDER BY o.option_name {$order}";
 			} elseif ( 'option_size' === $ob ) {
 				$orderby = "ORDER BY option_size {$order}";
 			}
@@ -115,7 +115,13 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			$paged    = max( 1, intval( $_GET['paged'] ?? '0' ) );
 			$offset   = ( $paged - 1 ) * $per_page;
 
-			$query       = "SELECT SQL_CALC_FOUND_ROWS option_id, option_name, option_value, autoload, LENGTH(option_value) AS option_size  FROM {$wpdb->options} {$where} {$orderby} LIMIT {$offset}, {$per_page}";
+			$desc_table = NOE_Desc_Table::get_table();
+			$query      = "SELECT SQL_CALC_FOUND_ROWS"
+			              . " o.option_id, o.option_name, o.option_value, d.description, o.autoload, LENGTH(o.option_value) AS option_size"
+			              . " FROM {$wpdb->options} AS o "
+			              . " LEFT JOIN {$desc_table} AS d ON o.option_id = d.option_id"
+			              . " {$where} {$orderby} LIMIT {$offset}, {$per_page}";
+
 			$rows        = $wpdb->get_results( $query );
 			$total_items = intval( $wpdb->get_var( 'SELECT FOUND_ROWS()' ) );
 
@@ -173,7 +179,7 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 		}
 
 		protected function column_option_desc( $item ) {
-			echo ''; // TODO: implement option description
+			echo esc_html( $item->description ?? '' );
 		}
 
 		protected function column_option_size( $item ) {

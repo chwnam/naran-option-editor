@@ -27,15 +27,15 @@ if ( ! class_exists( 'NOE_Registerer_Admin_Post' ) ) {
 			return [
 				new NOE_Submit(
 					'noe_edit_option',
-					function () { noe()->admin->menu->edit_option(); }
+					function () { noe()->admin->option_editor->edit_option(); }
 				),
 				new NOE_Submit(
 					'noe_delete_option',
-					function () { noe()->admin->menu->delete_option(); }
+					function () { noe()->admin->option_editor->delete_option(); }
 				),
 				new NOE_Submit(
 					'noe_backup_options',
-					function () { noe()->admin->menu->backup_options(); }
+					function () { noe()->admin->option_editor->backup_options(); }
 				),
 			];
 		}
