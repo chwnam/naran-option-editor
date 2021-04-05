@@ -330,19 +330,9 @@ PHP_EOL;
 		 */
 		public function add_prefix() {
 			check_ajax_referer( 'noe-option-table', 'nonce' );
-
 			$prefix = $_REQUEST['prefix'] ?? false;
-
 			if ( $prefix && current_user_can( 'administrator' ) ) {
-				$user_id        = get_current_user_id();
-				$meta_field     = noe_meta()->user_prefix_filters;
-				$prefix_filters = $meta_field->get_value( $user_id );
-
-				if ( ! isset( $prefix_filters[ $prefix ] ) ) {
-					$prefix_filters[ $prefix ] = true;
-					$meta_field->update( $user_id, $prefix_filters );
-				}
-
+				noe()->prefix_filter->add_prefix( get_current_user_id(), $prefix );
 				wp_send_json_success();
 			}
 		}
@@ -352,19 +342,9 @@ PHP_EOL;
 		 */
 		public function remove_prefix() {
 			check_ajax_referer( 'noe-option-table', 'nonce' );
-
 			$prefix = $_REQUEST['prefix'] ?? false;
-
 			if ( $prefix && current_user_can( 'administrator' ) ) {
-				$user_id        = get_current_user_id();
-				$meta_field     = noe_meta()->user_prefix_filters;
-				$prefix_filters = $meta_field->get_value( $user_id );
-
-				if ( isset( $prefix_filters[ $prefix ] ) ) {
-					unset( $prefix_filters[ $prefix ] );
-					$meta_field->update( $user_id, $prefix_filters );
-				}
-
+				noe()->prefix_filter->remove_prefix( get_current_user_id(), $prefix );
 				wp_send_json_success();
 			}
 		}
@@ -374,16 +354,8 @@ PHP_EOL;
 		 */
 		public function clear_prefixes() {
 			check_ajax_referer( 'noe-option-table', 'nonce' );
-
 			if ( current_user_can( 'administrator' ) ) {
-				$user_id        = get_current_user_id();
-				$meta_field     = noe_meta()->user_prefix_filters;
-				$prefix_filters = $meta_field->get_value( $user_id );
-
-				if ( ! empty( $prefix_filters ) ) {
-					$meta_field->update( $user_id, [] );
-				}
-
+				noe()->prefix_filter->clear_prefixes( get_current_user_id() );
 				wp_send_json_success();
 			}
 		}
@@ -393,19 +365,9 @@ PHP_EOL;
 		 */
 		public function enable_prefix() {
 			check_ajax_referer( 'noe-option-table', 'nonce' );
-
 			$prefix = $_REQUEST['prefix'] ?? false;
-
 			if ( $prefix && current_user_can( 'administrator' ) ) {
-				$user_id        = get_current_user_id();
-				$meta_field     = noe_meta()->user_prefix_filters;
-				$prefix_filters = $meta_field->get_value( $user_id );
-
-				if ( isset( $prefix_filters[ $prefix ] ) && ! $prefix_filters[ $prefix ] ) {
-					$prefix_filters[ $prefix ] = true;
-					$meta_field->update( $user_id, $prefix_filters );
-				}
-
+				noe()->prefix_filter->set_prefix( get_current_user_id(), $prefix, true );
 				wp_send_json_success();
 			}
 		}
@@ -415,19 +377,8 @@ PHP_EOL;
 		 */
 		public function enable_all_prefixes() {
 			check_ajax_referer( 'noe-option-table', 'nonce' );
-
 			if ( current_user_can( 'administrator' ) ) {
-				$user_id        = get_current_user_id();
-				$meta_field     = noe_meta()->user_prefix_filters;
-				$prefix_filters = $meta_field->get_value( $user_id );
-
-				if ( is_array( $prefix_filters ) && ! empty( $prefix_filters ) ) {
-					foreach ( array_keys( $prefix_filters ) as $prefix ) {
-						$prefix_filters[ $prefix ] = true;
-					}
-					$meta_field->update( $user_id, $prefix_filters );
-				}
-
+				noe()->prefix_filter->set_all_prefixes( get_current_user_id(), true );
 				wp_send_json_success();
 			}
 		}
@@ -437,19 +388,9 @@ PHP_EOL;
 		 */
 		public function disable_prefix() {
 			check_ajax_referer( 'noe-option-table', 'nonce' );
-
 			$prefix = $_REQUEST['prefix'] ?? false;
-
 			if ( $prefix && current_user_can( 'administrator' ) ) {
-				$user_id        = get_current_user_id();
-				$meta_field     = noe_meta()->user_prefix_filters;
-				$prefix_filters = $meta_field->get_value( $user_id );
-
-				if ( isset( $prefix_filters[ $prefix ] ) && $prefix_filters[ $prefix ] ) {
-					$prefix_filters[ $prefix ] = false;
-					$meta_field->update( $user_id, $prefix_filters );
-				}
-
+				noe()->prefix_filter->set_prefix( get_current_user_id(), $prefix, false );
 				wp_send_json_success();
 			}
 		}
@@ -459,19 +400,8 @@ PHP_EOL;
 		 */
 		public function disable_all_prefixes() {
 			check_ajax_referer( 'noe-option-table', 'nonce' );
-
 			if ( current_user_can( 'administrator' ) ) {
-				$user_id        = get_current_user_id();
-				$meta_field     = noe_meta()->user_prefix_filters;
-				$prefix_filters = $meta_field->get_value( $user_id );
-
-				if ( is_array( $prefix_filters ) && ! empty( $prefix_filters ) ) {
-					foreach ( array_keys( $prefix_filters ) as $prefix ) {
-						$prefix_filters[ $prefix ] = false;
-					}
-					$meta_field->update( $user_id, $prefix_filters );
-				}
-
+				noe()->prefix_filter->set_all_prefixes( get_current_user_id(), false );
 				wp_send_json_success();
 			}
 		}

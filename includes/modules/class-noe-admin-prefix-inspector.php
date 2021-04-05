@@ -33,6 +33,15 @@ if ( ! class_exists( 'NOE_Admin_Module' ) ) {
 		public function current_screen( WP_Screen $screen ) {
 			if ( $this->page_hook === $screen->id ) {
 				wp_enqueue_script( 'noe-prefix-inspector' );
+				wp_localize_script(
+					'noe-prefix-inspector',
+					'noePrefixInspector',
+					[
+						'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+						'nonce'   => wp_create_nonce( 'noe-option-table' ),
+					]
+				);
+
 				wp_enqueue_style( 'noe-prefix-inspector' );
 			}
 		}
@@ -121,6 +130,11 @@ if ( ! class_exists( 'NOE_Admin_Module' ) ) {
 
 			$results = $wpdb->get_results( $query );
 
+			$prefix_filters = noe_meta()->user_prefix_filters->get_value( get_current_user_id() );
+			if ( ! is_array( $prefix_filters ) ) {
+				$prefix_filters = [];
+			}
+
 			$this->template(
 				'admin/prefix-inspector.php',
 				[
@@ -135,6 +149,7 @@ if ( ! class_exists( 'NOE_Admin_Module' ) ) {
 					'delimiters'       => &$default_delimiters,
 					'core_options'     => &$default_core_options,
 					'items'            => &$results,
+					'prefix_filters'   => &$prefix_filters,
 				]
 			);
 		}

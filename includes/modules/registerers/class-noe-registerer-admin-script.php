@@ -25,13 +25,21 @@ if ( ! class_exists( 'NOE_Registerer_Admin_Script' ) ) {
 
 		public function get_items(): array {
 			return [
-				new NOE_Script( 'noe-option-edit', 'option-edit.js', [ 'jquery' ] ),
+				new NOE_Script(
+					'noe-option-edit',
+					'option-edit.js',
+					[ 'jquery' ]
+				),
 				new NOE_Script(
 					'noe-option-table',
 					'option-table.js',
 					[ 'jquery', 'jquery-ui-dialog', 'wp-util' ]
 				),
-				new NOE_Script( 'noe-prefix-inspector', 'prefix-inspector.js', [ 'jquery' ] ),
+				new NOE_Script(
+					'noe-prefix-inspector',
+					'prefix-inspector.js',
+					[ 'jquery' ]
+				),
 			];
 		}
 	}

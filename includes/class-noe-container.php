@@ -13,6 +13,7 @@ if ( ! class_exists( 'NOE_Container' ) ) {
 	 *
 	 * @property-read NOE_Admin             $admin
 	 * @property-read NOE_Desc_Table        $desc_table
+	 * @property-read NOE_Prefix_Filter     $prefix_filter
 	 * @property-read NOE_Registerer_Module $registerer
 	 */
 	final class NOE_Container {
@@ -31,9 +32,10 @@ if ( ! class_exists( 'NOE_Container' ) ) {
 		private function __construct() {
 			$this->load_modules(
 				[
-					'admin'      => NOE_Admin::class,
-					'desc_table' => function () { return new NOE_Desc_Table(); },
-					'registerer' => NOE_Registerer_Module::class,
+					'admin'         => NOE_Admin::class,
+					'desc_table'    => function () { return new NOE_Desc_Table(); },
+					'prefix_filter' => function () { return new NOE_Prefix_Filter(); },
+					'registerer'    => NOE_Registerer_Module::class,
 				]
 			);
 			$this->mockup();

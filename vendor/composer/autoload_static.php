@@ -23,6 +23,7 @@ class ComposerStaticInit894c8a53e25fd99ad167e02080f72659
         'NOE_Mockup' => __DIR__ . '/../..' . '/includes/modules/class-noe-mockup.php',
         'NOE_Module' => __DIR__ . '/../..' . '/includes/interface-noe-module.php',
         'NOE_Options_List_Table' => __DIR__ . '/../..' . '/includes/class-noe-options-list-table.php',
+        'NOE_Prefix_Filter' => __DIR__ . '/../..' . '/includes/class-noe-prefix-filter.php',
         'NOE_Registerer' => __DIR__ . '/../..' . '/includes/interface-noe-registerer.php',
         'NOE_Registerer_Admin_Ajax' => __DIR__ . '/../..' . '/includes/modules/registerers/class-noe-registerer-admin-ajax.php',
         'NOE_Registerer_Admin_Post' => __DIR__ . '/../..' . '/includes/modules/registerers/class-noe-registerer-admin-post.php',

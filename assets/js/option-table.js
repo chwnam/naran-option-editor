@@ -124,7 +124,7 @@
         // Clear all prefixes.
         $('#remove-all-filters').on('click', function (e) {
             e.preventDefault();
-            if (!confirm('Are you sure you want to remove all prefixes?')) {
+            if (confirm('Are you sure you want to remove all prefixes?')) {
                 prefixManager.clear(function () {
                     theList.trigger('removeAllPrefixes');
                 });
@@ -172,7 +172,7 @@
             });
         }).on('removeAllPrefixes', function () {
             getPrefixWraps().remove();
-            toggleAllWrap.delay(500).fadeIn();
+            toggleAllWrap.delay(500).fadeOut();
         }).on('prefixAdded', function (e, prefix) {
             theList.append(tmpl({prefix: prefix}));
             if (countPrefixes() > 1) {

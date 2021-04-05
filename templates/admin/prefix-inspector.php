@@ -13,6 +13,7 @@
  * @var array<string, string> $delimiters
  * @var array<string, string> $core_options
  * @var array<stdClass>       $items
+ * @var array<string, bool>   $prefix_filters
  */
 
 /**
@@ -54,11 +55,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
                 <label for="autoload" class="screen-reader-text">Filter by core options</label>
                 <select id="core" name="core">
-		            <?php foreach ( $core_options as $value => $label ) : ?>
+					<?php foreach ( $core_options as $value => $label ) : ?>
                         <option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $core ); ?>>
-				            <?php echo esc_html( $label ); ?>
+							<?php echo esc_html( $label ); ?>
                         </option>
-		            <?php endforeach; ?>
+					<?php endforeach; ?>
                 </select>
 
                 <label for="orderby" class="screen-reader-text">Ordering</label>
@@ -113,7 +114,23 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<?php echo intval( $item->size ?? '0' ); ?>
                         </td>
                         <td class="column-action">
-
+                            <div class="add <?php echo isset( $prefix_filters[ $item->prefix ] ) ? 'hidden' : ''; ?>">
+                                <a href="#"
+                                   data-prefix="<?php echo esc_attr( $item->prefix ?? '' ); ?>">
+									<?php esc_html_e( 'Add to Filter List', 'noe' ); ?>
+                                </a>
+                                <span class="message"><?php
+									esc_html_e( 'Removed from the prefixes list.', 'noe' ); ?></span>
+                            </div>
+                            <div class="remove <?php echo isset( $prefix_filters[ $item->prefix ] ) ? '' : 'hidden'; ?>">
+                                <a href="#"
+                                   class="submitdelete"
+                                   data-prefix="<?php echo esc_attr( $item->prefix ?? '' ); ?>">
+									<?php esc_html_e( 'Remove from Filter List', 'noe' ); ?>
+                                </a>
+                                <span class="message"><?php
+									esc_html_e( 'Added to the prefixes list.', 'noe' ); ?></span>
+                            </div>
                         </td>
                     </tr>
 				<?php endforeach; ?>

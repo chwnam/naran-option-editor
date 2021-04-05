@@ -50,6 +50,14 @@
     content: "]"
 }
 
+.submitdelete, .submitdelete:hover {
+    color: #b32d2e;
+}
+
+.hidden {
+    display: none;
+}
+
 @media screen and (max-width: 782px) {
     .tablenav-pages {
         margin: 0 0 5px !important;

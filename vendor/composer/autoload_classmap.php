@@ -18,6 +18,7 @@ return array(
     'NOE_Mockup' => $baseDir . '/includes/modules/class-noe-mockup.php',
     'NOE_Module' => $baseDir . '/includes/interface-noe-module.php',
     'NOE_Options_List_Table' => $baseDir . '/includes/class-noe-options-list-table.php',
+    'NOE_Prefix_Filter' => $baseDir . '/includes/class-noe-prefix-filter.php',
     'NOE_Registerer' => $baseDir . '/includes/interface-noe-registerer.php',
     'NOE_Registerer_Admin_Ajax' => $baseDir . '/includes/modules/registerers/class-noe-registerer-admin-ajax.php',
     'NOE_Registerer_Admin_Post' => $baseDir . '/includes/modules/registerers/class-noe-registerer-admin-post.php',
