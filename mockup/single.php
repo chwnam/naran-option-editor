@@ -5,6 +5,13 @@ if ( ! defined( 'ABSPATH' ) || ! defined( 'NOE_MAIN' ) ) {
 }
 
 ?>
+<style>
+    .submitdelete,
+    .submitdelete:hover {
+        color: #b32d2e;
+        margin-left: 2em;
+    }
+</style>
 
 <div class="wrap">
     <h1 class="wp-heading-inline">NOE 옵션 수정</h1>
@@ -75,6 +82,8 @@ if ( ! defined( 'ABSPATH' ) || ! defined( 'NOE_MAIN' ) ) {
             <input type="submit" class="button button-primary" value="옵션 저장">
             <a href="<?php echo esc_url( remove_query_arg( 'noe' ) ); ?>"
                class="button button-secondary">목록으로</a>
+            <a href="#"
+               class="submitdelete">이 옵션 삭제</a>
         </p>
     </form>
 </div>

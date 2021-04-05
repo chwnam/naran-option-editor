@@ -59,6 +59,15 @@ if ( ! defined( 'ABSPATH' ) || ! defined( 'NOE_MAIN' ) ) {
         content: "]"
     }
 
+    .submitdelete,
+    .submitdelete:hover {
+        color: #b32d2e;
+    }
+
+    .hidden {
+        display: none;
+    }
+
     @media screen and (max-width: 782px) {
         .tablenav-pages {
             margin: 0 0 5px !important;
@@ -154,8 +163,14 @@ if ( ! defined( 'ABSPATH' ) || ! defined( 'NOE_MAIN' ) ) {
                 <td class="column-option-count">1</td>
                 <td class="column-option-size">1555</td>
                 <td class="column-action">
-                    <a href="#">필터 등록</a>
-                    <span class="message show">등록되었습니다.</span>
+                    <div class="add">
+                        <a href="#">필터 등록</a>
+                        <span class="message show">등록되었습니다.</span>
+                    </div>
+                    <div class="remove hidden">
+                        <a href="#" class="submitdelete">필터 해제</a>
+                        <span class="message show">해제되었습니다.</span>
+                    </div>
                 </td>
             </tr>
             <tr>
@@ -163,8 +178,14 @@ if ( ! defined( 'ABSPATH' ) || ! defined( 'NOE_MAIN' ) ) {
                 <td class="column-option-count">2</td>
                 <td class="column-option-size">14</td>
                 <td class="column-action">
-                    <a href="#">필터 등록</a>
-                    <span class="message">등록되었습니다.</span>
+                    <div class="add hidden">
+                        <a href="#">필터 등록</a>
+                        <span class="message show">등록되었습니다.</span>
+                    </div>
+                    <div class="remove">
+                        <a href="#" class="submitdelete">필터 해제</a>
+                        <span class="message show">해제되었습니다.</span>
+                    </div>
                 </td>
             </tr>
             </tbody>
