@@ -33,16 +33,22 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 		public function get_columns(): array {
 			return [
 				'cb'           => '<input type="checkbox">',
-				'option_name'  => 'Name',
-				'option_value' => 'Value',
-				'option_desc'  => 'Description',
-				'autoload'     => 'Autoload',
-				'option_size'  => 'Size',
+				'option_id'    => __( 'ID', 'noe' ),
+				'option_name'  => __( 'Name', 'noe' ),
+				'option_value' => __( 'Value', 'noe' ),
+				'option_desc'  => __( 'Description', 'noe' ),
+				'autoload'     => __( 'Autoload', 'noe' ),
+				'option_size'  => __( 'Size', 'noe' ),
 			];
+		}
+
+		protected function get_default_primary_column_name(): string {
+			return 'option_name';
 		}
 
 		protected function get_sortable_columns(): array {
 			return [
+				'option_id'   => 'option_id',
 				'option_name' => 'option_name',
 				'option_size' => [ 'option_size', true ],
 			];
@@ -59,7 +65,7 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			 * pf:       prefix filter keywords
 			 * s:        search keyword\
 			 * order:    asc, desc
-			 * orderby:  option_name, option_size
+			 * orderby:  option_id, option_name, option_size
 			 */
 			$where = 'WHERE 1=1';
 
@@ -103,12 +109,14 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			}
 
 			$orderby = '';
-			$ob      = wp_unslash( $_GET['orderby'] ?? '' );
+			$ob      = wp_unslash( $_GET['orderby'] ?? 'option_id' );
 			$order   = 'desc' === wp_unslash( $_GET['order'] ?? '' ) ? 'DESC' : 'ASC';
 			if ( 'option_name' === $ob ) {
 				$orderby = "ORDER BY o.option_name {$order}";
 			} elseif ( 'option_size' === $ob ) {
-				$orderby = "ORDER BY option_size {$order}";
+				$orderby = "ORDER BY o.option_size {$order}";
+			} elseif ( 'option_id' === $ob ) {
+				$orderby = "ORDER BY o.option_id {$order}";
 			}
 
 			$per_page = $this->get_items_per_page( 'noe_option_per_page' );
@@ -144,6 +152,10 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			);
 		}
 
+		protected function column_option_id( $item ) {
+			echo intval( $item->option_id );
+		}
+
 		protected function column_option_name( $item ) {
 			if ( strlen( $item->option_name ) > 30 ) {
 				$option_name = substr( $item->option_name, 0, 27 ) . ' [&hellip;]';
@@ -152,8 +164,7 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			}
 
 			printf(
-				'<strong>[#%d] <a href="%s" class="row-title" title="%s">%s</a></strong>',
-				intval( $item->option_id ),
+				'<strong><a href="%s" class="row-title" title="%s">%s</a></strong>',
 				esc_url( add_query_arg( 'option_id', $item->option_id ) ),
 				esc_attr( $item->option_name ),
 				esc_html( $option_name )

@@ -1,6 +1,13 @@
-.column-autoload,
+.column-option_id {
+    width: 5em;
+}
+
+.column-autoload {
+    width: 5em;
+}
+
 .column-option_size {
-    width: 100px;
+    width: 9em;
 }
 
 .horizontal-spacer {
