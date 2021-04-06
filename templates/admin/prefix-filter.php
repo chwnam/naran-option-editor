@@ -24,7 +24,7 @@ $all_checked = array_reduce(
     <li id="noe-toggle-all-prefixes-wrap"
         style="<?php echo count( $prefix_filters ) > 1 ? '' : 'display:none;' ?>">
         <input type="checkbox" id="noe-toggle-all-prefixes" <?php checked( $all_checked ); ?>>
-        <label for="noe-toggle-all-prefixes">Toggle All</label>
+        <label for="noe-toggle-all-prefixes"><?php esc_html_e( 'Toggle All', 'noe' ); ?></label>
     </li>
 	<?php foreach ( $prefix_filters as $filter => $checked ) : ?>
         <li>
@@ -55,7 +55,7 @@ $all_checked = array_reduce(
      title="Prefix Filter"
      style="display: none;">
     <p>
-        <label for="new-prefix">Prefix</label>
+        <label for="new-prefix"><?php esc_html_e( 'Prefix', 'noe' ); ?></label>
         <input type="text"
                id="new-prefix"
                value="">

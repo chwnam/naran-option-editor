@@ -1,0 +1,342 @@
+# Copyright (C) 2021 Changwoo
+# This file is distributed under the same license as the Naran Option Editor plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Naran Option Editor 1.5.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/noe\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2021-04-06T17:57:57+09:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.4.0\n"
+"X-Domain: noe\n"
+
+#. Plugin Name of the plugin
+msgid "Naran Option Editor"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/chwnam/naran-option-editor"
+msgstr ""
+
+#. Description of the plugin
+msgid "Edit option in the admin screen."
+msgstr ""
+
+#. Author of the plugin
+msgid "Changwoo"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://blog.changwoo.pe.kr"
+msgstr ""
+
+#: includes/class-noe-options-list-table.php:36
+msgid "ID"
+msgstr ""
+
+#: includes/class-noe-options-list-table.php:37
+msgid "Name"
+msgstr ""
+
+#: includes/class-noe-options-list-table.php:38
+msgid "Value"
+msgstr ""
+
+#: includes/class-noe-options-list-table.php:39
+#: templates/admin/edit-option.php:71
+msgid "Description"
+msgstr ""
+
+#: includes/class-noe-options-list-table.php:40
+#: templates/admin/edit-option.php:86
+msgid "Autoload"
+msgstr ""
+
+#: includes/class-noe-options-list-table.php:41
+#: templates/admin/prefix-inspector.php:109
+msgid "Size"
+msgstr ""
+
+#: includes/class-noe-options-list-table.php:176
+msgid "[Serialized]"
+msgstr ""
+
+#: includes/class-noe-options-list-table.php:189
+msgid "Yes"
+msgstr ""
+
+#: includes/class-noe-options-list-table.php:189
+msgid "No"
+msgstr ""
+
+#. translators: "option name"
+#: includes/class-noe-options-list-table.php:210
+msgid "Edit &#8220;%s&#8221;"
+msgstr ""
+
+#: includes/class-noe-options-list-table.php:211
+msgid "Edit"
+msgstr ""
+
+#. translators: "option name"
+#: includes/class-noe-options-list-table.php:217
+msgid "Remove &#8220;%s&#8221;"
+msgstr ""
+
+#: includes/class-noe-options-list-table.php:218
+msgid "Remove"
+msgstr ""
+
+#: includes/class-noe-options-list-table.php:227
+msgid "Delete Selected"
+msgstr ""
+
+#: includes/class-noe-options-list-table.php:298
+msgid "All"
+msgstr ""
+
+#: includes/class-noe-options-list-table.php:306
+msgid "Core Options"
+msgstr ""
+
+#: includes/class-noe-options-list-table.php:314
+msgid "Custom Options"
+msgstr ""
+
+#: includes/modules/class-noe-admin-option-editor.php:50
+msgid "The prefix is already added. Please choose another one."
+msgstr ""
+
+#: includes/modules/class-noe-admin-option-editor.php:67
+#: includes/modules/class-noe-admin-option-editor.php:68
+msgid "Option Editor"
+msgstr ""
+
+#: includes/modules/class-noe-admin-option-editor.php:94
+msgid "Error: empty option id"
+msgstr ""
+
+#. translators: option name
+#: includes/modules/class-noe-admin-option-editor.php:111
+msgid "Error: option name `%s` is already exists."
+msgstr ""
+
+#: includes/modules/class-noe-admin-option-editor.php:127
+msgid "Option is successfully added."
+msgstr ""
+
+#. translators: option name
+#: includes/modules/class-noe-admin-option-editor.php:145
+msgid "Error: option `%s` is already exists."
+msgstr ""
+
+#: includes/modules/class-noe-admin-option-editor.php:175
+msgid "Option is successfully updated."
+msgstr ""
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:25
+#: includes/modules/class-noe-admin-prefix-inspector.php:26
+#: templates/admin/prefix-inspector.php:29
+msgid "Prefix Inspector"
+msgstr ""
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:51
+msgid "Autoload: yes"
+msgstr ""
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:52
+msgid "Autoload: no"
+msgstr ""
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:53
+msgid "Autoload: all"
+msgstr ""
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:59
+msgid "Prefix Asc."
+msgstr ""
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:60
+msgid "Prefix Desc."
+msgstr ""
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:61
+msgid "Count Asc."
+msgstr ""
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:62
+msgid "Count Desc."
+msgstr ""
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:63
+msgid "Size Asc."
+msgstr ""
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:64
+msgid "Size Desc."
+msgstr ""
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:70
+msgid "Delimiter: _ (underscore)"
+msgstr ""
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:71
+msgid "Delimiter: - (hyphen)"
+msgstr ""
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:77
+msgid "Include Core Options"
+msgstr ""
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:78
+msgid "Exclude Core Options"
+msgstr ""
+
+#: includes/modules/registerers/class-noe-registerer-meta.php:45
+msgid "Each user's prefix filters list."
+msgstr ""
+
+#: templates/admin/edit-option.php:49
+msgid "Option name is required."
+msgstr ""
+
+#: templates/admin/edit-option.php:64
+msgid "Option size"
+msgstr ""
+
+#: templates/admin/edit-option.php:80
+msgid "Some description about this option."
+msgstr ""
+
+#: templates/admin/edit-option.php:94
+msgid "Autoload this option."
+msgstr ""
+
+#: templates/admin/edit-option.php:100
+msgid "Save Option"
+msgstr ""
+
+#: templates/admin/edit-option.php:102
+msgid "Back to List"
+msgstr ""
+
+#: templates/admin/edit-option.php:110
+msgid "Remove this option."
+msgstr ""
+
+#: templates/admin/extra-tablenav.php:23
+msgid "Prefix..."
+msgstr ""
+
+#: templates/admin/extra-tablenav.php:26
+#: templates/admin/extra-tablenav.php:30
+msgid "Filter by Autoload"
+msgstr ""
+
+#: templates/admin/extra-tablenav.php:33
+msgid "Autoload: Yes"
+msgstr ""
+
+#: templates/admin/extra-tablenav.php:36
+msgid "Autoload: No"
+msgstr ""
+
+#: templates/admin/extra-tablenav.php:42
+msgid "Filter"
+msgstr ""
+
+#: templates/admin/extra-tablenav.php:53
+msgid "Backup Options"
+msgstr ""
+
+#: templates/admin/list-table.php:22
+msgid "Options List"
+msgstr ""
+
+#: templates/admin/list-table.php:25
+msgid "Add New"
+msgstr ""
+
+#. translators: search keyword
+#: templates/admin/list-table.php:32
+msgid "Search results for: <strong>%s</strong>"
+msgstr ""
+
+#: templates/admin/list-table.php:44
+msgid "Search"
+msgstr ""
+
+#: templates/admin/prefix-filter.php:27
+msgid "Toggle All"
+msgstr ""
+
+#: templates/admin/prefix-filter.php:58
+#: templates/admin/prefix-inspector.php:107
+msgid "Prefix"
+msgstr ""
+
+#: templates/admin/prefix-filter.php:64
+msgid "Remove all prefixes"
+msgstr ""
+
+#: templates/admin/prefix-inspector.php:38
+msgid "Delimiter"
+msgstr ""
+
+#: templates/admin/prefix-inspector.php:48
+msgid "Filter by autoload"
+msgstr ""
+
+#: templates/admin/prefix-inspector.php:59
+msgid "Filter by core options"
+msgstr ""
+
+#: templates/admin/prefix-inspector.php:70
+msgid "Ordering"
+msgstr ""
+
+#: templates/admin/prefix-inspector.php:83
+msgid "Min. Count"
+msgstr ""
+
+#: templates/admin/prefix-inspector.php:90
+msgid "Inspect"
+msgstr ""
+
+#: templates/admin/prefix-inspector.php:95
+msgid "%d item"
+msgid_plural "%d items"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/admin/prefix-inspector.php:108
+msgid "Count"
+msgstr ""
+
+#: templates/admin/prefix-inspector.php:110
+msgid "Action"
+msgstr ""
+
+#: templates/admin/prefix-inspector.php:130
+msgid "Add to Filter List"
+msgstr ""
+
+#: templates/admin/prefix-inspector.php:133
+msgid "Removed from the prefixes list."
+msgstr ""
+
+#: templates/admin/prefix-inspector.php:139
+msgid "Remove from Filter List"
+msgstr ""
+
+#: templates/admin/prefix-inspector.php:142
+msgid "Added to the prefixes list."
+msgstr ""
+
+#: templates/admin/prefix-inspector.php:149
+msgid "No results."
+msgstr ""

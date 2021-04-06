@@ -19,16 +19,20 @@ if ( ! current_user_can( 'administrator' ) ) {
 ?>
 
 <div class="wrap">
-    <h1 class="wp-heading-inline">
-        Options List
-    </h1>
+    <h1 class="wp-heading-inline"><?php esc_html_e( 'Options List', 'noe' ); ?></h1>
 
     <a href="<?php echo esc_url( add_query_arg( 'option_id', 'new' ) ); ?>"
-       class="page-title-action">Add New</a>
+       class="page-title-action"><?php esc_html_e( 'Add New', 'noe' ); ?></a>
 
 	<?php if ( isset( $_GET['s'] ) && strlen( $_GET['s'] ) ) : ?>
         <span class="subtitle">
-            Search results for: <strong><?php echo esc_attr( $_GET['s'] ); ?></strong>
+            <?php
+            printf(
+            /* translators: search keyword */
+	            __( 'Search results for: <strong>%s</strong>', 'noe' ),
+	            esc_html( $_GET['s'] )
+            );
+            ?>
         </span>
 	<?php endif; ?>
 
@@ -37,7 +41,7 @@ if ( ! current_user_can( 'administrator' ) ) {
 	<?php $table->views(); ?>
 
     <form id="options-filter" method="get">
-		<?php $table->search_box( '옵션 검색하기', 'option' ); ?>
+		<?php $table->search_box( __( 'Search', 'noe' ), 'option' ); ?>
         <input type="hidden" name="page" value="noe">
         <input type="hidden" name="o" value="<?php echo esc_attr( $o ); ?>">
 

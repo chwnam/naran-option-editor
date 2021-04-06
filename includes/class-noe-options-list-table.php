@@ -173,7 +173,7 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 
 		protected function column_option_value( $item ) {
 			if ( is_serialized( $item->option_value ) ) {
-				echo '<span>[Serialized]</span> ';
+				echo '<span>' . esc_html__( '[Serialized]', 'noe' ) . '</span> ';
 			}
 
 			if ( mb_strlen( $item->option_value ) > 55 ) {
@@ -186,7 +186,7 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 		}
 
 		protected function column_autoload( $item ) {
-			echo $item->autoload === 'yes' ? 'Yes' : 'No';
+			echo $item->autoload === 'yes' ? __( 'Yes', 'noe' ) : __( 'No', 'noe' );
 		}
 
 		protected function column_option_desc( $item ) {
@@ -206,14 +206,16 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 				'edit'  => sprintf(
 					'<a href="%s" aria-label="%s">%s</a>',
 					esc_url( add_query_arg( 'option_id', $item->option_id ) ),
-					'Edit &#8220;' . esc_attr( $item->option_name ) . '&#8221;',
-					'Edit'
+					/* translators: "option name" */
+					sprintf( __( 'Edit &#8220;%s&#8221;', 'noe' ), esc_attr( $item->option_name ) ),
+					__( 'Edit', 'noe' )
 				),
 				'trash' => sprintf(
 					'<a href="%s" class="submitdelete" aria-label="%s">%s</a>',
 					esc_url( noe_get_option_remove_url( $item->option_id ) ),
-					'Remove &#8220;' . esc_attr( $item->option_name ) . '&#8221;',
-					'Remove'
+					/* translators: "option name" */
+					sprintf( __( 'Remove &#8220;%s&#8221;', 'noe' ), esc_attr( $item->option_name ) ),
+					__( 'Remove', 'noe' )
 				),
 			];
 
@@ -222,7 +224,7 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 
 		protected function get_bulk_actions(): array {
 			return [
-				'delete' => 'Delete Selected'
+				'delete' => __( 'Delete Selected', 'noe' ),
 			];
 		}
 
@@ -293,21 +295,24 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			);
 
 			$status_links['all'] = sprintf(
-				'<a class="%s" href="%s">All <span class="count">(%d)</span></a>',
+				'<a class="%s" href="%s">' . esc_html__( 'All', 'noe' )
+				. '<span class="count">(%d)</span></a>',
 				empty( $_GET['o'] ) ? 'current' : '',
 				esc_url( $list_url ),
 				$all
 			);
 
 			$status_links['core-options'] = sprintf(
-				'<a class="%s" href="%s">Core Options <span class="count">(%d)</span></a>',
+				'<a class="%s" href="%s">' . esc_html__( 'Core Options', 'noe' )
+				. '<span class="count">(%d)</span></a>',
 				'core' === ( $_GET['o'] ?? '' ) ? 'current' : '',
 				esc_url( add_query_arg( 'o', 'core', $list_url ) ),
 				$core_options
 			);
 
 			$status_links['custom-options'] = sprintf(
-				'<a class="%s" href="%s">Custom Options <span class="count">(%d)</span></a>',
+				'<a class="%s" href="%s">' . esc_html__( 'Custom Options', 'noe' )
+				. '<span class="count">(%d)</span></a>',
 				'custom' === ( $_GET['o'] ?? '' ) ? 'current' : '',
 				esc_url( add_query_arg( 'o', 'custom', $list_url ) ),
 				$all - $core_options

@@ -1,0 +1,342 @@
+# Copyright (C) 2021 Changwoo
+# This file is distributed under the same license as the Naran Option Editor plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Naran Option Editor 1.5.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/noe\n"
+"POT-Creation-Date: 2021-04-06T17:57:57+09:00\n"
+"PO-Revision-Date: 2021-04-06 18:00+0900\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ko_KR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"X-Domain: noe\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. Plugin Name of the plugin
+msgid "Naran Option Editor"
+msgstr "나란 옵션 편집기"
+
+#. Plugin URI of the plugin
+msgid "https://github.com/chwnam/naran-option-editor"
+msgstr "https://github.com/chwnam/naran-option-editor"
+
+#. Description of the plugin
+msgid "Edit option in the admin screen."
+msgstr "관리자 화면에서 옵션을 편집하세요."
+
+#. Author of the plugin
+msgid "Changwoo"
+msgstr "창우"
+
+#. Author URI of the plugin
+msgid "https://blog.changwoo.pe.kr"
+msgstr "https://blog.changwoo.pe.kr"
+
+#: includes/class-noe-options-list-table.php:36
+msgid "ID"
+msgstr "ID"
+
+#: includes/class-noe-options-list-table.php:37
+msgid "Name"
+msgstr "이름"
+
+#: includes/class-noe-options-list-table.php:38
+msgid "Value"
+msgstr "값"
+
+#: includes/class-noe-options-list-table.php:39
+#: templates/admin/edit-option.php:71
+msgid "Description"
+msgstr "설명"
+
+#: includes/class-noe-options-list-table.php:40
+#: templates/admin/edit-option.php:86
+msgid "Autoload"
+msgstr "자동로드"
+
+#: includes/class-noe-options-list-table.php:41
+#: templates/admin/prefix-inspector.php:109
+msgid "Size"
+msgstr "크기"
+
+#: includes/class-noe-options-list-table.php:176
+msgid "[Serialized]"
+msgstr "[직렬화됨]"
+
+#: includes/class-noe-options-list-table.php:189
+msgid "Yes"
+msgstr "예"
+
+#: includes/class-noe-options-list-table.php:189
+msgid "No"
+msgstr "아니오"
+
+#. translators: "option name"
+#: includes/class-noe-options-list-table.php:210
+msgid "Edit &#8220;%s&#8221;"
+msgstr "&#8220;%s&#8221; 편집"
+
+#: includes/class-noe-options-list-table.php:211
+msgid "Edit"
+msgstr "편집"
+
+#. translators: "option name"
+#: includes/class-noe-options-list-table.php:217
+msgid "Remove &#8220;%s&#8221;"
+msgstr "&#8220;%s&#8221; 제거"
+
+#: includes/class-noe-options-list-table.php:218
+msgid "Remove"
+msgstr "제거"
+
+#: includes/class-noe-options-list-table.php:227
+msgid "Delete Selected"
+msgstr "선택한 항목 삭제"
+
+#: includes/class-noe-options-list-table.php:298
+msgid "All"
+msgstr "전부"
+
+#: includes/class-noe-options-list-table.php:306
+msgid "Core Options"
+msgstr "코어 옵션"
+
+#: includes/class-noe-options-list-table.php:314
+msgid "Custom Options"
+msgstr "커스텀 옵션"
+
+#: includes/modules/class-noe-admin-option-editor.php:50
+msgid "The prefix is already added. Please choose another one."
+msgstr "접두어가 이미 추가되어 있습니다. 다른 접두어를 선택하세요."
+
+#: includes/modules/class-noe-admin-option-editor.php:67
+#: includes/modules/class-noe-admin-option-editor.php:68
+msgid "Option Editor"
+msgstr "옵션 편집기"
+
+#: includes/modules/class-noe-admin-option-editor.php:94
+msgid "Error: empty option id"
+msgstr "에러: option_id 가 없음"
+
+#. translators: option name
+#: includes/modules/class-noe-admin-option-editor.php:111
+msgid "Error: option name `%s` is already exists."
+msgstr "에러: 옵션 이름 '%s'가 이미 존재함."
+
+#: includes/modules/class-noe-admin-option-editor.php:127
+msgid "Option is successfully added."
+msgstr "옵션이 성공적으로 추가되었습니다."
+
+#. translators: option name
+#: includes/modules/class-noe-admin-option-editor.php:145
+msgid "Error: option `%s` is already exists."
+msgstr "에러: 옵션 '%s' 항목은 이미 존재합니다."
+
+#: includes/modules/class-noe-admin-option-editor.php:175
+msgid "Option is successfully updated."
+msgstr "옵션이 성공적으로 갱신되었습니다."
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:25
+#: includes/modules/class-noe-admin-prefix-inspector.php:26
+#: templates/admin/prefix-inspector.php:29
+msgid "Prefix Inspector"
+msgstr "옵션 접두어 분석기"
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:51
+msgid "Autoload: yes"
+msgstr "자동로드: 예"
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:52
+msgid "Autoload: no"
+msgstr "자동로드: 아니오"
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:53
+msgid "Autoload: all"
+msgstr "자동로드: 모두"
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:59
+msgid "Prefix Asc."
+msgstr "접두어 오름차순"
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:60
+msgid "Prefix Desc."
+msgstr "접두어 내림차순"
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:61
+msgid "Count Asc."
+msgstr "갯수 오름차순"
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:62
+msgid "Count Desc."
+msgstr "갯수 내림차순"
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:63
+msgid "Size Asc."
+msgstr "크기 오름차순"
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:64
+msgid "Size Desc."
+msgstr "크기 내림차순"
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:70
+msgid "Delimiter: _ (underscore)"
+msgstr "구분자: _ (밑줄)"
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:71
+msgid "Delimiter: - (hyphen)"
+msgstr "구분자: - (하이픈)"
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:77
+msgid "Include Core Options"
+msgstr "코어 옵션 포함"
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:78
+msgid "Exclude Core Options"
+msgstr "코어 옵션 제외"
+
+#: includes/modules/registerers/class-noe-registerer-meta.php:45
+msgid "Each user's prefix filters list."
+msgstr "각 사용자의 접두어 필터 목록."
+
+#: templates/admin/edit-option.php:49
+msgid "Option name is required."
+msgstr "옵션 이름은 필수입니다."
+
+#: templates/admin/edit-option.php:64
+msgid "Option size"
+msgstr "옵션 사이즈"
+
+#: templates/admin/edit-option.php:80
+msgid "Some description about this option."
+msgstr "이 옵션에 대한 설명란."
+
+#: templates/admin/edit-option.php:94
+msgid "Autoload this option."
+msgstr "이 옵션은 자동로드 됩니다."
+
+#: templates/admin/edit-option.php:100
+msgid "Save Option"
+msgstr "옵션 저장"
+
+#: templates/admin/edit-option.php:102
+msgid "Back to List"
+msgstr "목록으로"
+
+#: templates/admin/edit-option.php:110
+msgid "Remove this option."
+msgstr "이 옵션 삭제."
+
+#: templates/admin/extra-tablenav.php:23
+msgid "Prefix..."
+msgstr "접두어..."
+
+#: templates/admin/extra-tablenav.php:26 templates/admin/extra-tablenav.php:30
+msgid "Filter by Autoload"
+msgstr "자동로드로 필터"
+
+#: templates/admin/extra-tablenav.php:33
+msgid "Autoload: Yes"
+msgstr "자동로드: 예"
+
+#: templates/admin/extra-tablenav.php:36
+msgid "Autoload: No"
+msgstr "자동로드: 아니오"
+
+#: templates/admin/extra-tablenav.php:42
+msgid "Filter"
+msgstr "필터"
+
+#: templates/admin/extra-tablenav.php:53
+msgid "Backup Options"
+msgstr "옵션을 백업"
+
+#: templates/admin/list-table.php:22
+msgid "Options List"
+msgstr "옵션 목록"
+
+#: templates/admin/list-table.php:25
+msgid "Add New"
+msgstr "새로 추가"
+
+#. translators: search keyword
+#: templates/admin/list-table.php:32
+msgid "Search results for: <strong>%s</strong>"
+msgstr "다음 검색 결과: <strong>%s</strong>"
+
+#: templates/admin/list-table.php:44
+msgid "Search"
+msgstr "검색"
+
+#: templates/admin/prefix-filter.php:27
+msgid "Toggle All"
+msgstr "모두 토글"
+
+#: templates/admin/prefix-filter.php:58
+#: templates/admin/prefix-inspector.php:107
+msgid "Prefix"
+msgstr "접두어"
+
+#: templates/admin/prefix-filter.php:64
+msgid "Remove all prefixes"
+msgstr "모든 접두어 제거"
+
+#: templates/admin/prefix-inspector.php:38
+msgid "Delimiter"
+msgstr "구분자"
+
+#: templates/admin/prefix-inspector.php:48
+msgid "Filter by autoload"
+msgstr "자동로드로 필터"
+
+#: templates/admin/prefix-inspector.php:59
+msgid "Filter by core options"
+msgstr "코어 옵션으로 필터"
+
+#: templates/admin/prefix-inspector.php:70
+msgid "Ordering"
+msgstr "정렬 방법"
+
+#: templates/admin/prefix-inspector.php:83
+msgid "Min. Count"
+msgstr "죄소 갯수"
+
+#: templates/admin/prefix-inspector.php:90
+msgid "Inspect"
+msgstr "분석"
+
+#: templates/admin/prefix-inspector.php:95
+msgid "%d item"
+msgid_plural "%d items"
+msgstr[0] "%d개의 옵션"
+
+#: templates/admin/prefix-inspector.php:108
+msgid "Count"
+msgstr "갯수"
+
+#: templates/admin/prefix-inspector.php:110
+msgid "Action"
+msgstr "동작"
+
+#: templates/admin/prefix-inspector.php:130
+msgid "Add to Filter List"
+msgstr "필터 목록에 추가"
+
+#: templates/admin/prefix-inspector.php:133
+msgid "Removed from the prefixes list."
+msgstr "접두어 목록에서 제거됨."
+
+#: templates/admin/prefix-inspector.php:139
+msgid "Remove from Filter List"
+msgstr "접두어 목록에서 제거"
+
+#: templates/admin/prefix-inspector.php:142
+msgid "Added to the prefixes list."
+msgstr "접두어 목록에 추가됨."
+
+#: templates/admin/prefix-inspector.php:149
+msgid "No results."
+msgstr "결과 없음."

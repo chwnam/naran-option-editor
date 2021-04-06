@@ -1,3 +1,11 @@
+1.5.1
+=====
+Apr. 06th, 2021.
+
+* Text translation.
+* Korean translation added.
+
+
 1.5.0
 =====
 Apr. 06th, 2021.

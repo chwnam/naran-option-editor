@@ -42,7 +42,7 @@ if ( ! class_exists( 'NOE_Registerer_Meta' ) ) {
 					[
 						'object_subtype'    => 'user',
 						'type'              => 'array',
-						'description'       => __( "'Each user's prefix filters list.", 'noe' ),
+						'description'       => __( "Each user's prefix filters list.", 'noe' ),
 						'default'           => [],
 						'single'            => true,
 						'show_in_rest'      => false,

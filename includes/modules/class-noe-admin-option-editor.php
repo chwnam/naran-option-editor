@@ -47,7 +47,10 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 						[
 							'ajaxUrl'                 => admin_url( 'admin-ajax.php' ),
 							'nonce'                   => wp_create_nonce( 'noe-option-table' ),
-							'textPrefixAlreadyExists' => 'The prefix is already added. Please choose another one.',
+							'textPrefixAlreadyExists' => __(
+								'The prefix is already added. Please choose another one.',
+								'noe'
+							),
 						]
 					);
 					wp_enqueue_style( 'noe-option-table' );
@@ -61,8 +64,8 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 		public function add_admin_menu() {
 			$this->page_hook = add_submenu_page(
 				'tools.php',
-				'Option Editor',
-				'Option Editor',
+				__( 'Option Editor', 'noe' ),
+				__( 'Option Editor', 'noe' ),
 				'administrator',
 				'noe',
 				[ $this, 'output_admin_menu' ]
@@ -88,7 +91,7 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 				$autoload     = 'yes' === ( $_POST['autoload'] ?? 'no' );
 
 				if ( empty( $option_id ) || ( ! is_numeric( $option_id ) && 'new' !== $option_id ) ) {
-					add_settings_error( 'noe', 'error', 'Error: empty option id' );
+					add_settings_error( 'noe', 'error', __( 'Error: empty option id', 'noe' ) );
 				} else {
 					global $wpdb;
 
@@ -103,7 +106,11 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 							add_settings_error(
 								'noe',
 								'error',
-								sprintf( 'Error: option name `%s` is already exists.', $option_name )
+								sprintf(
+								/* translators: option name */
+									__( 'Error: option name `%s` is already exists.', 'noe' ),
+									$option_name
+								)
 							);
 						} else {
 							add_option( $option_name, $option_value, '', $autoload );
@@ -114,7 +121,12 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 								)
 							);
 							noe()->desc_table->update_description( $option_id, $description );
-							add_settings_error( 'noe', 'success', 'Option is successfully inserted.', 'success' );
+							add_settings_error(
+								'noe',
+								'success',
+								__( 'Option is successfully added.', 'noe' ),
+								'success'
+							);
 						}
 					} elseif ( is_numeric( $option_id ) ) {
 						$existing_id = $wpdb->get_var(
@@ -128,7 +140,11 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 							add_settings_error(
 								'noe',
 								'error',
-								sprintf( 'Error: option `%s` is already exists.', $option_name )
+								sprintf(
+								/* translators: option name */
+									__( 'Error: option `%s` is already exists.', 'noe' ),
+									$option_name
+								)
 							);
 						} else {
 							$existing = $wpdb->get_row(
@@ -153,7 +169,12 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 								);
 							}
 							noe()->desc_table->update_description( $existing->option_id, $description );
-							add_settings_error( 'noe', 'success', 'Option is successfully updated.', 'success' );
+							add_settings_error(
+								'noe',
+								'success',
+								__( 'Option is successfully updated.', 'noe' ),
+								'success'
+							);
 						}
 					}
 				}

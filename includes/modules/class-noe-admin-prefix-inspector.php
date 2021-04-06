@@ -22,8 +22,8 @@ if ( ! class_exists( 'NOE_Admin_Module' ) ) {
 		public function add_admin_menu() {
 			$this->page_hook = add_submenu_page(
 				'tools.php',
-				'Prefix Inspector',
-				'Prefix Inspector',
+				__( 'Prefix Inspector', 'noe' ),
+				__( 'Prefix Inspector', 'noe' ),
 				'administrator',
 				'noe-pi',
 				[ $this, 'output_admin_menu' ]
@@ -48,34 +48,34 @@ if ( ! class_exists( 'NOE_Admin_Module' ) ) {
 
 		public function output_admin_menu() {
 			$default_autoload_options = [
-				'yes' => 'Autoload: yes',
-				'no'  => 'Autoload: no',
-				'all' => 'Autoload: all',
+				'yes' => __( 'Autoload: yes', 'noe' ),
+				'no'  => __( 'Autoload: no', 'noe' ),
+				'all' => __( 'Autoload: all', 'noe' ),
 			];
 
 			$default_autoload = 'yes';
 
 			$default_orders = [
-				'prefix_asc'  => 'Prefix Asc.',
-				'prefix_desc' => 'Prefix Desc.',
-				'cnt_asc'     => 'Count Asc.',
-				'cnt_desc'    => 'Count Desc.',
-				'size_asc'    => 'Size Asc.',
-				'size_desc'   => 'Size Desc.',
+				'prefix_asc'  => __( 'Prefix Asc.', 'noe' ),
+				'prefix_desc' => __( 'Prefix Desc.', 'noe' ),
+				'cnt_asc'     => __( 'Count Asc.', 'noe' ),
+				'cnt_desc'    => __( 'Count Desc.', 'noe' ),
+				'size_asc'    => __( 'Size Asc.', 'noe' ),
+				'size_desc'   => __( 'Size Desc.', 'noe' ),
 			];
 
 			$default_orderby = 'cnt_desc';
 
 			$default_delimiters = [
-				'_' => 'Delimiter: _ (underscore)',
-				'-' => 'Delimiter: - (hyphen)',
+				'_' => __( 'Delimiter: _ (underscore)', 'noe' ),
+				'-' => __( 'Delimiter: - (hyphen)', 'noe' ),
 			];
 
 			$default_delimiter = '_';
 
 			$default_core_options = [
-				'include' => 'Include Core Options',
-				'exclude' => 'Exclude Core Options',
+				'include' => __( 'Include Core Options', 'noe' ),
+				'exclude' => __( 'Exclude Core Options', 'noe' ),
 			];
 
 			$default_core = 'exclude';

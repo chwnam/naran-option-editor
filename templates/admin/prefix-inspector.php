@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 
 <div class="wrap">
-    <h1 class="wp-heading-inline">Prefix Inspector</h1>
+    <h1 class="wp-heading-inline"><?php esc_html_e( 'Prefix Inspector', 'noe' ); ?></h1>
 
     <hr class="wp-header-end">
 
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
         <div class="tablenav top">
             <div class="alignleft actions">
-                <label for="delimiter" class="screen-reader-text">Delimiter</label>
+                <label for="delimiter" class="screen-reader-text"><?php esc_html_e( 'Delimiter', 'noe' ); ?></label>
                 <select id="delimiter" name="delimiter">
 					<?php foreach ( $delimiters as $value => $label ) : ?>
                         <option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $delimiter ); ?>>
@@ -44,7 +44,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php endforeach; ?>
                 </select>
 
-                <label for="autoload" class="screen-reader-text">Filter by autoload</label>
+                <label for="autoload" class="screen-reader-text">
+					<?php esc_html_e( 'Filter by autoload', 'noe' ); ?>
+                </label>
                 <select id="autoload" name="autoload">
 					<?php foreach ( $autoload_options as $value => $label ) : ?>
                         <option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $autoload ); ?>>
@@ -53,7 +55,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php endforeach; ?>
                 </select>
 
-                <label for="autoload" class="screen-reader-text">Filter by core options</label>
+                <label for="core" class="screen-reader-text">
+					<?php esc_html_e( 'Filter by core options', 'noe' ); ?>
+                </label>
                 <select id="core" name="core">
 					<?php foreach ( $core_options as $value => $label ) : ?>
                         <option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $core ); ?>>
@@ -62,7 +66,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<?php endforeach; ?>
                 </select>
 
-                <label for="orderby" class="screen-reader-text">Ordering</label>
+                <label for="orderby" class="screen-reader-text">
+					<?php esc_html_e( 'Ordering', 'noe' ); ?>
+                </label>
                 <select id="orderby" name="orderby">
 					<?php foreach ( $orders as $value => $label ) : ?>
                         <option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $orderby ); ?>>
@@ -73,31 +79,35 @@ if ( ! defined( 'ABSPATH' ) ) {
             </div>
 
             <div class="alignleft actions">
-                <label for="min_count">Min. Count</label>:
+                <label for="min_count">
+					<?php esc_html_e( 'Min. Count', 'noe' ); ?>
+                </label>:
                 <input id="min_count"
                        name="min_count"
                        type="number"
                        value="<?php echo absint( $min_count ); ?>"
                        min="1">
-                <input type="submit" class="button" value="Inspect">
+                <input type="submit" class="button" value="<?php esc_attr_e( 'Inspect', 'noe' ); ?>">
             </div>
 
             <div class="tablenav-pages">
                 <span class="displaying-num">
-                    <?php printf( _n( '%d item', '%d items', count( $items ) ), count( $items ) ); ?></span>
+                    <?php printf( _n( '%d item', '%d items', count( $items ), 'noe' ), count( $items ) ); ?></span>
             </div>
             <br class="clear">
         </div>
 
-        <h2 class="screen-reader-text">Prefixes list</h2>
+        <h2 class="screen-reader-text">
+			<?php esc_html( 'Prefixes list', 'noe' ); ?>
+        </h2>
         <table class="wp-list-table widefat striped table-view-list"
                id="inspection-table">
             <thead>
             <tr>
-                <th class="column-prefix">Prefix</th>
-                <th class="column-option-count">Count</th>
-                <th class="column-option-size">Size</th>
-                <th class="column-action">Action</th>
+                <th class="column-prefix"><?php esc_html_e( 'Prefix', 'noe' ); ?></th>
+                <th class="column-option-count"><?php esc_html_e( 'Count', 'noe' ); ?></th>
+                <th class="column-option-size"><?php esc_html_e( 'Size', 'noe' ); ?></th>
+                <th class="column-action"><?php esc_html_e( 'Action', 'noe' ); ?></th>
             </tr>
             </thead>
             <tbody>
@@ -136,7 +146,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php endforeach; ?>
 			<?php else: ?>
                 <tr>
-                    <td colspan="4">No results.</td>
+                    <td colspan="4"><?php esc_html_e( 'No results.', 'noe' ); ?></td>
                 </tr>
 			<?php endif; ?>
             </tbody>

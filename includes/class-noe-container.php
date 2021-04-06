@@ -42,6 +42,7 @@ if ( ! class_exists( 'NOE_Container' ) ) {
 
 			register_activation_hook( NOE_MAIN, [ $this, 'activation' ] );
 			register_deactivation_hook( NOE_MAIN, [ $this, 'deactivation' ] );
+			add_action( 'plugins_loaded', [ $this, 'load_textdomain' ] );
 		}
 
 		public function __clone() {
@@ -64,6 +65,10 @@ if ( ! class_exists( 'NOE_Container' ) ) {
 		public function deactivation() {
 			$this->force_activate_dynamic_modules();
 			do_action( 'noe_deactivation' );
+		}
+
+		public function load_textdomain() {
+			load_plugin_textdomain( 'noe', false, wp_basename( dirname( NOE_MAIN ) ) . '/languages' );
 		}
 
 		protected function force_activate_dynamic_modules() {
