@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: Naran Option Editor 1.5.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/noe\n"
 "POT-Creation-Date: 2021-04-06T17:57:57+09:00\n"
-"PO-Revision-Date: 2021-04-06 18:00+0900\n"
+"PO-Revision-Date: 2021-04-06 18:24+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -30,7 +30,7 @@ msgstr "관리자 화면에서 옵션을 편집하세요."
 
 #. Author of the plugin
 msgid "Changwoo"
-msgstr "창우"
+msgstr "changwoo"
 
 #. Author URI of the plugin
 msgid "https://blog.changwoo.pe.kr"

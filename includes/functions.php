@@ -154,7 +154,7 @@ if ( ! function_exists( 'noe_get_option_remove_url' ) ) {
 				'option_id'  => $option_id,
 				'_noe_nonce' => wp_create_nonce( 'noe_delete_option_' . $option_id ),
 				'action'     => 'noe_delete_option',
-				'return_url' => $return_url,
+				'return_url' => urlencode( $return_url ),
 			],
 			admin_url( 'admin-post.php' )
 		);

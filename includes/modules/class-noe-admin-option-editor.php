@@ -203,7 +203,10 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 				);
 				noe()->desc_table->delete_description( $option_id );
 
-				$return_url = wp_unslash( $_GET['return_url'] ?? '' );
+				$return_url = remove_query_arg(
+					['_wp_http_referer'],
+					wp_unslash( $_GET['return_url'] ?? '' )
+				);
 				if ( empty( $return_url ) ) {
 					$return_url = wp_get_referer();
 				}
