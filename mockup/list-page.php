@@ -55,6 +55,18 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
         display: inline-block;
         width: 0.85em;
     }
+
+    .column-option-id {
+        width: 5em;
+    }
+
+    .column-autoload {
+        width: 5em;
+    }
+
+    .column-option-size {
+        width: 9em;
+    }
 </style>
 
 <script>
@@ -152,7 +164,8 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
                     <option value="yes">Yes 만</option>
                     <option value="no">No 만</option>
                 </select>
-                <input id="option-autoload-submit" class="button" type="submit" name="option_filter_submit" value="Filter">
+                <input id="option-autoload-submit" class="button" type="submit" name="option_filter_submit"
+                       value="Filter">
                 <span class="horizontal-spacer"></span>
                 <input id="backup-option-1" class="button action" type="button" value="옵션 백업">
                 <input id="restore-option-1" class="button action" type="button" value="옵션 복원">
@@ -211,6 +224,13 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
                     <label class="screen-reader-text" for="cb-select-all-1">모두 선택하기</label>
                     <input id="cb-select-all-1" type="checkbox">
                 </td>
+                <th id="option-id"
+                    class="manage-column column-option-id sortable asc" scope="col">
+                    <a href="#">
+                        <span>ID</span>
+                        <span class="sorting-indicator"></span>
+                    </a>
+                </th>
                 <th id="option-name"
                     class="manage-column column-option-name column-primary sortable desc" scope="col">
                     <a href="#">
@@ -247,10 +267,13 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
                     </label>
                     <input id="cb-select-1" type="checkbox" name="option[]" value="1">
                 </th>
+                <td class="option-id column-option-id"
+                    data-colname="ID">
+                    1
+                </td>
                 <td class="option-name column-option-name column-primary"
                     data-colname="이름">
                     <strong>
-                        [#1]
                         <a class="row-title"
                            href="<?php echo esc_url( add_query_arg( 'noe', 'single' ) ); ?>"
                            aria-label="{option name} (편집하기)">
@@ -288,10 +311,13 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
                     </label>
                     <input id="cb-select-2" type="checkbox" name="option[]" value="2">
                 </th>
+                <td class="option-id column-option-id"
+                    data-colname="ID">
+                    2
+                </td>
                 <td class="option-name column-option-name column-primary"
                     data-colname="이름">
                     <strong>
-                        [#2]
                         <a class="row-title"
                            href="<?php echo esc_url( add_query_arg( 'noe', 'single' ) ); ?>"
                            aria-label="{option name} (편집하기)">
@@ -329,10 +355,13 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
                     </label>
                     <input id="cb-select-3" type="checkbox" name="option[]" value="3">
                 </th>
+                <td class="option-id column-option-id"
+                    data-colname="ID">
+                    3
+                </td>
                 <td class="option-name column-option-name column-primary"
                     data-colname="이름">
                     <strong>
-                        [#3]
                         <a class="row-title"
                            href="<?php echo esc_url( add_query_arg( 'noe', 'single' ) ); ?>"
                            aria-label="{option name} (편집하기)">
