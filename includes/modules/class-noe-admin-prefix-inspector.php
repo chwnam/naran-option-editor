@@ -8,45 +8,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'NOE_Admin_Module' ) ) {
-	class NOE_Admin_Prefix_Inspector implements NOE_Admin_Module {
+	class NOE_Admin_Prefix_Inspector implements NOE_Admin_Module, NOE_Submenu_Page {
 		use NOE_Template_Impl;
 
-		private string $page_hook = '';
-
 		public function __construct() {
-			add_action( 'admin_menu', [ $this, 'add_admin_menu' ] );
-
-			add_action( 'current_screen', [ $this, 'current_screen' ] );
-		}
-
-		public function add_admin_menu() {
-			$this->page_hook = add_submenu_page(
-				'tools.php',
-				__( 'Prefix Inspector', 'noe' ),
-				__( 'Prefix Inspector', 'noe' ),
-				'administrator',
-				'noe-pi',
-				[ $this, 'output_admin_menu' ]
-			);
 		}
 
 		public function current_screen( WP_Screen $screen ) {
-			if ( $this->page_hook === $screen->id ) {
-				wp_enqueue_script( 'noe-prefix-inspector' );
-				wp_localize_script(
-					'noe-prefix-inspector',
-					'noePrefixInspector',
-					[
-						'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-						'nonce'   => wp_create_nonce( 'noe-option-table' ),
-					]
-				);
+			wp_enqueue_script( 'noe-prefix-inspector' );
+			wp_localize_script(
+				'noe-prefix-inspector',
+				'noePrefixInspector',
+				[
+					'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+					'nonce'   => wp_create_nonce( 'noe-option-table' ),
+				]
+			);
 
-				wp_enqueue_style( 'noe-prefix-inspector' );
-			}
+			wp_enqueue_style( 'noe-prefix-inspector' );
 		}
 
-		public function output_admin_menu() {
+		public function output_submenu_page() {
 			$default_autoload_options = [
 				'yes' => __( 'Autoload: yes', 'noe' ),
 				'no'  => __( 'Autoload: no', 'noe' ),

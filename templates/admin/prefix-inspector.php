@@ -30,8 +30,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
     <hr class="wp-header-end">
 
+	<?php noe()->admin->menu->output_tabs(); ?>
+
     <form id="prefix-inspector" method="get">
         <input type="hidden" name="page" value="<?php echo esc_attr( $page ); ?>">
+	    <?php noe()->admin->menu->output_hidden_tab_values(); ?>
 
         <div class="tablenav top">
             <div class="alignleft actions">
@@ -98,7 +101,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         </div>
 
         <h2 class="screen-reader-text">
-			<?php esc_html( 'Prefixes list', 'noe' ); ?>
+			<?php esc_html_e( 'Prefixes list', 'noe' ); ?>
         </h2>
         <table class="wp-list-table widefat striped table-view-list"
                id="inspection-table">

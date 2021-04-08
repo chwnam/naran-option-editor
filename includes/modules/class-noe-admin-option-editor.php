@@ -8,71 +8,52 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
-	class NOE_Admin_Option_Editor implements NOE_Admin_Module {
+	class NOE_Admin_Option_Editor implements NOE_Admin_Module, NOE_Submenu_Page {
 		use NOE_Template_Impl;
-
-		private string $page_hook = '';
 
 		private NOE_Options_List_Table $table;
 
 		public function __construct() {
-			add_action( 'admin_menu', [ $this, 'add_admin_menu' ] );
-
-			add_action( 'current_screen', [ $this, 'current_screen' ] );
-
 			add_filter( 'set_screen_option_noe_option_per_page', [ $this, 'set_screen_option_per_page' ], 10, 3 );
 		}
 
 		public function current_screen( WP_Screen $screen ) {
-			if ( $this->page_hook === $screen->id ) {
-				$this->handle_action();
+			$this->handle_action();
 
-				if ( ! isset( $_GET['option_id'] ) ) {
-					$this->table = new NOE_Options_List_Table();
+			if ( ! isset( $_GET['option_id'] ) ) {
+				$this->table = new NOE_Options_List_Table();
 
-					$screen->add_option(
-						'per_page',
-						[
-							'default' => 20,
-							'option'  => 'noe_option_per_page',
-						]
-					);
+				$screen->add_option(
+					'per_page',
+					[
+						'default' => 20,
+						'option'  => 'noe_option_per_page',
+					]
+				);
 
-					$this->table->prepare_items();
+				$this->table->prepare_items();
 
-					wp_enqueue_script( 'noe-option-table' );
-					wp_localize_script(
-						'noe-option-table',
-						'noeOptionTable',
-						[
-							'ajaxUrl'                 => admin_url( 'admin-ajax.php' ),
-							'nonce'                   => wp_create_nonce( 'noe-option-table' ),
-							'textPrefixAlreadyExists' => __(
-								'The prefix is already added. Please choose another one.',
-								'noe'
-							),
-						]
-					);
-					wp_enqueue_style( 'noe-option-table' );
-				} else {
-					wp_enqueue_script( 'noe-option-edit' );
-					wp_enqueue_style( 'noe-option-edit' );
-				}
+				wp_enqueue_script( 'noe-option-table' );
+				wp_localize_script(
+					'noe-option-table',
+					'noeOptionTable',
+					[
+						'ajaxUrl'                 => admin_url( 'admin-ajax.php' ),
+						'nonce'                   => wp_create_nonce( 'noe-option-table' ),
+						'textPrefixAlreadyExists' => __(
+							'The prefix is already added. Please choose another one.',
+							'noe'
+						),
+					]
+				);
+				wp_enqueue_style( 'noe-option-table' );
+			} else {
+				wp_enqueue_script( 'noe-option-edit' );
+				wp_enqueue_style( 'noe-option-edit' );
 			}
 		}
 
-		public function add_admin_menu() {
-			$this->page_hook = add_submenu_page(
-				'tools.php',
-				__( 'Option Editor', 'noe' ),
-				__( 'Option Editor', 'noe' ),
-				'administrator',
-				'noe',
-				[ $this, 'output_admin_menu' ]
-			);
-		}
-
-		public function output_admin_menu() {
+		public function output_submenu_page() {
 			if ( isset( $_GET['option_id'] ) ) {
 				$this->output_single_page();
 			} else {

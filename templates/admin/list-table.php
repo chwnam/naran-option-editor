@@ -38,12 +38,15 @@ if ( ! current_user_can( 'administrator' ) ) {
 
     <hr class="wp-header-end">
 
+    <?php noe()->admin->menu->output_tabs(); ?>
+
 	<?php $table->views(); ?>
 
     <form id="options-filter" method="get">
 		<?php $table->search_box( __( 'Search', 'noe' ), 'option' ); ?>
         <input type="hidden" name="page" value="noe">
         <input type="hidden" name="o" value="<?php echo esc_attr( $o ); ?>">
+	    <?php noe()->admin->menu->output_hidden_tab_values(); ?>
 
 		<?php $table->display(); ?>
     </form>
