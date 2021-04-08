@@ -68,10 +68,18 @@ if ( ! defined( 'ABSPATH' ) || ! defined( 'NOE_MAIN' ) ) {
         display: none;
     }
 
+    .nav-tab-wrapper {
+        margin-bottom: 10px;
+    }
+
     @media screen and (max-width: 782px) {
         .tablenav-pages {
             margin: 0 0 5px !important;
             text-align: right !important;
+        }
+
+        .tablenav.top {
+            margin-top: 0;
         }
 
         .tablenav.top .displaying-num {
@@ -81,7 +89,11 @@ if ( ! defined( 'ABSPATH' ) || ! defined( 'NOE_MAIN' ) ) {
 
         .tablenav.top .actions {
             display: block !important;
-            margin: 10px 0;
+            margin: 5px 0;
+        }
+
+        .tablenav.top .actions > * {
+            margin-bottom: 5px;
         }
     }
 </style>
@@ -90,6 +102,14 @@ if ( ! defined( 'ABSPATH' ) || ! defined( 'NOE_MAIN' ) ) {
     <h1 class="wp-heading-inline">Prefix Inspector</h1>
 
     <hr class="wp-header-end">
+
+    <nav class="nav-tab-wrapper wp-clearfix" aria-label="2차 메뉴">
+        <a class="nav-tab"
+           href="<?php echo esc_url( add_query_arg( 'tab', 'option-editor' ) ); ?>">옵션 편집기</a>
+        <a class="nav-tab nav-tab-active"
+           href="<?php echo esc_url( add_query_arg( 'tab', 'prefix-inspector' ) ); ?>"
+           aria-current="page">접두어 분석기</a>
+    </nav>
 
     <form id="prefix-inspector" method="get">
         <div class="tablenav top">

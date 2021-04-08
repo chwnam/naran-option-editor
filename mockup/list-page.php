@@ -67,6 +67,27 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
     .column-option-size {
         width: 9em;
     }
+
+    .nav-tab-wrapper {
+        margin-bottom: 10px;
+    }
+
+    .subsubsub {
+        margin-top: 2px;
+    }
+
+    @media screen and (max-width: 782px) {
+        .tablenav.top .actions.prefix-filter-setup {
+            display: block;
+            margin-bottom: 14px;
+        }
+    }
+
+    @media screen and (max-width: 488px) {
+        .prefix-filter-setup .horizontal-spacer {
+            display: block;
+        }
+    }
 </style>
 
 <script>
@@ -118,6 +139,15 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
     <a href="<?php echo esc_url( add_query_arg( 'noe', 'single-new' ) ); ?>"
        class="page-title-action">새 옵션 추가</a>
     <hr class="wp-header-end">
+
+    <nav class="nav-tab-wrapper wp-clearfix" aria-label="2차 메뉴">
+        <a class="nav-tab nav-tab-active"
+           href="<?php echo esc_url( add_query_arg( 'tab', 'option-editor' ) ); ?>"
+           aria-current="page">옵션 편집기</a>
+        <a class="nav-tab"
+           href="<?php echo esc_url( add_query_arg( 'tab', 'prefix-inspector' ) ); ?>">접두어 분석기</a>
+    </nav>
+
     <h2 class="screen-reader-text">옵션 목록 필터하기</h2>
     <ul class="subsubsub">
         <li class="all">
@@ -156,7 +186,7 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
                 </select>
                 <input id="doaction" class="button action" type="submit" value="적용하기">
             </div>
-            <div class="alignleft actions">
+            <div class="alignleft actions prefix-filter-setup">
                 <input id="prefix-setup-top" class="alignleft button action" type="button" value="접두 필터...">
                 <label class="screen-reader-text" for="filter-by-autoload">자동로드 필터</label>
                 <select id="filter-by-autoload" name="autoload">

@@ -16,24 +16,24 @@ if ( ! class_exists( 'NOE_Mockup' ) ) {
 		public function add_menu_page() {
 			add_submenu_page(
 				'tools.php',
-				'Editor Mockup',
-				'Editor Mockup',
+				'NOE Mockup',
+				'NOE Mockup',
 				'administrator',
-				'noe-editor-mockup',
-				[ $this, 'output_editor_mockup' ]
-			);
-
-			add_submenu_page(
-				'tools.php',
-				'Inspector Mockup',
-				'Inspector Mockup',
-				'administrator',
-				'noe-inspector-mockup',
-				[ $this, 'output_prefix_inspector' ]
+				'noe-mockup',
+				[ $this, 'output_mockup' ]
 			);
 		}
 
-		public function output_editor_mockup() {
+		public function output_mockup() {
+			$tab = $_GET['tab'] ?? 'option-editor';
+			if ( 'option-editor' === $tab ) {
+				$this->output_option_mockup();
+			} elseif ( 'prefix-inspector' ) {
+				$this->output_prefix_inspector();
+			}
+		}
+
+		private function output_option_mockup() {
 			$page = $_GET['noe'] ?? 'list';
 			if ( 'list' === $page ) {
 				include dirname( NOE_MAIN ) . '/mockup/list-page.php';
@@ -44,7 +44,7 @@ if ( ! class_exists( 'NOE_Mockup' ) ) {
 			}
 		}
 
-		public function output_prefix_inspector() {
+		private function output_prefix_inspector() {
 			include dirname( NOE_MAIN ) . '/mockup/prefix-inspector.php';
 		}
 	}
