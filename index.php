@@ -18,8 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'NOE_MAIN', __FILE__ );
-define( 'NOE_VERSION', '1.5.2' );
+const NOE_MAIN = __FILE__;
+const NOE_VERSION = '1.5.2';
 
 require_once __DIR__ . '/vendor/autoload.php';
 
