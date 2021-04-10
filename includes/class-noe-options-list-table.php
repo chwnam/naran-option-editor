@@ -90,6 +90,17 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			}
 
 			$pf = array_filter( array_map( 'sanitize_key', array_unique( (array) ( $_GET['pf'] ?? [] ) ) ) );
+
+			if ( empty( $pf ) ) {
+				$field = noe_meta()->user_prefix_filters;
+				$value = $field->get_value( get_current_user_id() );
+				foreach ( $value as $prefix => $enabled ) {
+					if ( $enabled ) {
+						$pf[] = $prefix;
+					}
+				}
+			}
+
 			if ( $pf ) {
 				$buf = [];
 				foreach ( $pf as $v ) {

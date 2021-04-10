@@ -1,3 +1,10 @@
+1.6.1
+=====
+Apr. 10th, 2021.
+
+* Checked prefix filter items are applied by default in option editor.
+
+
 1.6.0
 =====
 Apr. 10th, 2021.
