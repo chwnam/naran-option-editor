@@ -73,6 +73,7 @@ if ( ! class_exists( 'NOE_Container' ) ) {
 
 		protected function force_activate_dynamic_modules() {
 			$noe = noe();
+			/** @noinspection PhpExpressionResultUnusedInspection */
 			$noe->desc_table;
 		}
 
