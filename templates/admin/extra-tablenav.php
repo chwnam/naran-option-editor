@@ -16,7 +16,7 @@ $which = esc_attr( $which );
 ?>
 
 <?php if ( 'top' === $which ) : ?>
-    <div class="alignleft actions">
+    <div class="alignleft actions prefix-filter-setup">
         <input id="prefix-setup-<?= $which ?>"
                class="alignleft button action"
                type="button"

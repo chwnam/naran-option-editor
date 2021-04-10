@@ -56,7 +56,7 @@ if ( ! class_exists( 'NOE_Admin_Menu' ) ) {
 		}
 
 		public function output_hidden_tab_values() {
-			printf( '<input type="hidden" name="tab" value="%s"', esc_attr( $this->get_current_tab() ) );
+			printf( '<input type="hidden" name="tab" value="%s">', esc_attr( $this->get_current_tab() ) );
 		}
 
 		public function get_page_hook(): string {

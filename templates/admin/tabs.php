@@ -24,7 +24,7 @@ if ( empty( $tabs ) || empty( $current ) || 1 === count( $tabs ) ) {
 	foreach ( $tabs as $key => $label ) {
 		printf(
 			'<a href="%s" class="nav-tab%s"%s>%s</a>',
-			esc_url( add_query_arg( 'tab', $key ), $base_url ), // url
+			esc_url( add_query_arg( 'tab', $key, $base_url ) ), // url
 			( $current === $key ) ? ' nav-tab-active' : '', // class
 			( $current === $key ) ? ' aria-current="page"' : '', // aria-current
 			esc_html( $label ) // label

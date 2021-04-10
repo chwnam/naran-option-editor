@@ -64,6 +64,10 @@
         text-align: right !important;
     }
 
+    .tablenav.top {
+        margin-top: 0;
+    }
+
     .tablenav.top .displaying-num {
         display: block !important;
         font-size: 14px;
@@ -71,6 +75,10 @@
 
     .tablenav.top .actions {
         display: block !important;
-        margin: 10px 0;
+        margin: 5px 0;
+    }
+
+    .tablenav.top .actions > * {
+        margin-bottom: 5px;
     }
 }

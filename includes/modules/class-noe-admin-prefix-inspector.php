@@ -120,7 +120,7 @@ if ( ! class_exists( 'NOE_Admin_Module' ) ) {
 			$this->template(
 				'admin/prefix-inspector.php',
 				[
-					'page'             => 'noe-pi',
+					'page'             => 'noe',
 					'autoload'         => $autoload,
 					'orderby'          => $orderby,
 					'delimiter'        => $delimiter,

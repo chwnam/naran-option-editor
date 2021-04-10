@@ -1,15 +1,3 @@
-.column-option_id {
-    width: 5em;
-}
-
-.column-autoload {
-    width: 5em;
-}
-
-.column-option_size {
-    width: 9em;
-}
-
 .horizontal-spacer {
     display: inline-block;
     width: 0.85em;
@@ -65,4 +53,37 @@
 .horizontal-spacer {
     display: inline-block;
     width: 0.85em;
+}
+
+.column-option_id {
+    width: 5em;
+}
+
+.column-autoload {
+    width: 5em;
+}
+
+.column-option_size {
+    width: 9em;
+}
+
+.nav-tab-wrapper {
+    margin-bottom: 10px;
+}
+
+.subsubsub {
+    margin-top: 2px;
+}
+
+@media screen and (max-width: 782px) {
+    .tablenav.top .actions.prefix-filter-setup {
+        display: block;
+        margin-bottom: 14px;
+    }
+}
+
+@media screen and (max-width: 488px) {
+    .prefix-filter-setup .horizontal-spacer {
+        display: block;
+    }
 }

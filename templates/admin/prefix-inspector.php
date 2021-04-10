@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
         <div class="tablenav top">
             <div class="alignleft actions">
                 <label for="delimiter" class="screen-reader-text"><?php esc_html_e( 'Delimiter', 'noe' ); ?></label>
-                <select id="delimiter" name="delimiter">
+                <select id="delimiter" name="delimiter" autocomplete="off">
 					<?php foreach ( $delimiters as $value => $label ) : ?>
                         <option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $delimiter ); ?>>
 							<?php echo esc_html( $label ); ?>
@@ -50,7 +50,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <label for="autoload" class="screen-reader-text">
 					<?php esc_html_e( 'Filter by autoload', 'noe' ); ?>
                 </label>
-                <select id="autoload" name="autoload">
+                <select id="autoload" name="autoload" autocomplete="off">
 					<?php foreach ( $autoload_options as $value => $label ) : ?>
                         <option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $autoload ); ?>>
 							<?php echo esc_html( $label ); ?>
@@ -61,7 +61,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <label for="core" class="screen-reader-text">
 					<?php esc_html_e( 'Filter by core options', 'noe' ); ?>
                 </label>
-                <select id="core" name="core">
+                <select id="core" name="core" autocomplete="off">
 					<?php foreach ( $core_options as $value => $label ) : ?>
                         <option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $core ); ?>>
 							<?php echo esc_html( $label ); ?>
@@ -72,7 +72,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                 <label for="orderby" class="screen-reader-text">
 					<?php esc_html_e( 'Ordering', 'noe' ); ?>
                 </label>
-                <select id="orderby" name="orderby">
+                <select id="orderby" name="orderby" autocomplete="off">
 					<?php foreach ( $orders as $value => $label ) : ?>
                         <option value="<?php echo esc_attr( $value ); ?>" <?php selected( $value, $orderby ); ?>>
 							<?php echo esc_html( $label ); ?>
