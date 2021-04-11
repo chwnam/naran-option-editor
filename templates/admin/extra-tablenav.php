@@ -51,5 +51,15 @@ $which = esc_attr( $which );
         <a id="backup-option-<?= $which ?>"
            href="<?php echo esc_url( $backup_options_url ); ?>"
            class="button action"><?php esc_html_e( 'Backup Options', 'noe' ); ?></a>
+
+        <input id="restore-option-<?= $which ?>"
+               class="button action"
+               type="button"
+               value="<?php esc_attr_e('Restore Options', 'noe'); ?>">
+
+        <input id="backup-file-upload-<?= $which ?>"
+               type="file"
+               accept=".sql.gz,.sql"
+               style="display: none;">
     </div>
 <?php endif; ?>

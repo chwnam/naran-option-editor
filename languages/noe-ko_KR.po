@@ -3,9 +3,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Naran Option Editor 1.5.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/noe\n"
-"POT-Creation-Date: 2021-04-06T17:57:57+09:00\n"
-"PO-Revision-Date: 2021-04-06 18:24+0900\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/naran-option-"
+"editor\n"
+"POT-Creation-Date: 2021-04-11T16:28:43+09:00\n"
+"PO-Revision-Date: 2021-04-11 16:32+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -17,6 +18,8 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. Plugin Name of the plugin
+#: includes/modules/class-noe-admin-menu.php:27
+#: includes/modules/class-noe-admin-menu.php:28
 msgid "Naran Option Editor"
 msgstr "나란 옵션 편집기"
 
@@ -59,142 +62,178 @@ msgid "Autoload"
 msgstr "자동로드"
 
 #: includes/class-noe-options-list-table.php:41
-#: templates/admin/prefix-inspector.php:109
+#: templates/admin/prefix-inspector.php:115
 msgid "Size"
 msgstr "크기"
 
-#: includes/class-noe-options-list-table.php:176
+#: includes/class-noe-options-list-table.php:187
 msgid "[Serialized]"
 msgstr "[직렬화됨]"
 
-#: includes/class-noe-options-list-table.php:189
+#: includes/class-noe-options-list-table.php:200
 msgid "Yes"
 msgstr "예"
 
-#: includes/class-noe-options-list-table.php:189
+#: includes/class-noe-options-list-table.php:200
 msgid "No"
 msgstr "아니오"
 
 #. translators: "option name"
-#: includes/class-noe-options-list-table.php:210
+#: includes/class-noe-options-list-table.php:221
 msgid "Edit &#8220;%s&#8221;"
 msgstr "&#8220;%s&#8221; 편집"
 
-#: includes/class-noe-options-list-table.php:211
+#: includes/class-noe-options-list-table.php:222
 msgid "Edit"
 msgstr "편집"
 
 #. translators: "option name"
-#: includes/class-noe-options-list-table.php:217
+#: includes/class-noe-options-list-table.php:228
 msgid "Remove &#8220;%s&#8221;"
 msgstr "&#8220;%s&#8221; 제거"
 
-#: includes/class-noe-options-list-table.php:218
+#: includes/class-noe-options-list-table.php:229
 msgid "Remove"
 msgstr "제거"
 
-#: includes/class-noe-options-list-table.php:227
+#: includes/class-noe-options-list-table.php:238
 msgid "Delete Selected"
 msgstr "선택한 항목 삭제"
 
-#: includes/class-noe-options-list-table.php:298
+#: includes/class-noe-options-list-table.php:309
 msgid "All"
 msgstr "전부"
 
-#: includes/class-noe-options-list-table.php:306
+#: includes/class-noe-options-list-table.php:317
 msgid "Core Options"
 msgstr "코어 옵션"
 
-#: includes/class-noe-options-list-table.php:314
+#: includes/class-noe-options-list-table.php:325
 msgid "Custom Options"
 msgstr "커스텀 옵션"
 
-#: includes/modules/class-noe-admin-option-editor.php:50
-msgid "The prefix is already added. Please choose another one."
-msgstr "접두어가 이미 추가되어 있습니다. 다른 접두어를 선택하세요."
-
-#: includes/modules/class-noe-admin-option-editor.php:67
-#: includes/modules/class-noe-admin-option-editor.php:68
+#: includes/modules/class-noe-admin-menu.php:97
 msgid "Option Editor"
 msgstr "옵션 편집기"
 
-#: includes/modules/class-noe-admin-option-editor.php:94
-msgid "Error: empty option id"
-msgstr "에러: option_id 가 없음"
-
-#. translators: option name
-#: includes/modules/class-noe-admin-option-editor.php:111
-msgid "Error: option name `%s` is already exists."
-msgstr "에러: 옵션 이름 '%s'가 이미 존재함."
-
-#: includes/modules/class-noe-admin-option-editor.php:127
-msgid "Option is successfully added."
-msgstr "옵션이 성공적으로 추가되었습니다."
-
-#. translators: option name
-#: includes/modules/class-noe-admin-option-editor.php:145
-msgid "Error: option `%s` is already exists."
-msgstr "에러: 옵션 '%s' 항목은 이미 존재합니다."
-
-#: includes/modules/class-noe-admin-option-editor.php:175
-msgid "Option is successfully updated."
-msgstr "옵션이 성공적으로 갱신되었습니다."
-
-#: includes/modules/class-noe-admin-prefix-inspector.php:25
-#: includes/modules/class-noe-admin-prefix-inspector.php:26
+#: includes/modules/class-noe-admin-menu.php:98
 #: templates/admin/prefix-inspector.php:29
 msgid "Prefix Inspector"
 msgstr "옵션 접두어 분석기"
 
-#: includes/modules/class-noe-admin-prefix-inspector.php:51
+#: includes/modules/class-noe-admin-option-editor.php:43
+msgid "Add"
+msgstr "추가"
+
+#: includes/modules/class-noe-admin-option-editor.php:44
+msgid "Cancel"
+msgstr "취소"
+
+#: includes/modules/class-noe-admin-option-editor.php:45
+msgid "The prefix is already added. Please choose another one."
+msgstr "접두어가 이미 추가되어 있습니다. 다른 접두어를 선택하세요."
+
+#: includes/modules/class-noe-admin-option-editor.php:49
+msgid "Are you sure you want to restore option table with the file?"
+msgstr "정말로 이 파일로 옵션 테이블을 복구할까요?"
+
+#: includes/modules/class-noe-admin-option-editor.php:53
+msgid "The option table is restored. The page is now reloaded."
+msgstr "옵션 테이블이 복구되었습니다. 페이지를 다시 로드합니다."
+
+#: includes/modules/class-noe-admin-option-editor.php:85
+msgid "Error: empty option id"
+msgstr "에러: option_id 가 없음"
+
+#. translators: option name
+#: includes/modules/class-noe-admin-option-editor.php:102
+msgid "Error: option name `%s` is already exists."
+msgstr "에러: 옵션 이름 '%s'가 이미 존재함."
+
+#: includes/modules/class-noe-admin-option-editor.php:118
+msgid "Option is successfully added."
+msgstr "옵션이 성공적으로 추가되었습니다."
+
+#. translators: option name
+#: includes/modules/class-noe-admin-option-editor.php:136
+msgid "Error: option `%s` is already exists."
+msgstr "에러: 옵션 '%s' 항목은 이미 존재합니다."
+
+#: includes/modules/class-noe-admin-option-editor.php:166
+msgid "Option is successfully updated."
+msgstr "옵션이 성공적으로 갱신되었습니다."
+
+#: includes/modules/class-noe-admin-option-editor.php:353
+msgid "Use mysqli to restore option table with this plugin."
+msgstr "이 플러그인으로 테이블을 복원하려면 mysqli를 사용하세요."
+
+#: includes/modules/class-noe-admin-option-editor.php:357
+msgid "You are not allowed to do this task"
+msgstr "당신을 이 작업을 실행할 권한이 없습니다."
+
+#: includes/modules/class-noe-admin-option-editor.php:361
+msgid "Backup file not found."
+msgstr "백업 파일을 찾을 수 없습니다."
+
+#: includes/modules/class-noe-admin-option-editor.php:379
+msgid "The file uploaded is not allowed."
+msgstr "업로드된 파일은 허용되지 않습니다."
+
+#: includes/modules/class-noe-admin-option-editor.php:387
+msgid "A gzipped file is uploaded, but the server cannot decode the file."
+msgstr ""
+"Gzip 압축된 파일이 업로드되었지만, 서버가 이 파일의 압축을 해제할 수 없습니"
+"다."
+
+#: includes/modules/class-noe-admin-prefix-inspector.php:33
 msgid "Autoload: yes"
 msgstr "자동로드: 예"
 
-#: includes/modules/class-noe-admin-prefix-inspector.php:52
+#: includes/modules/class-noe-admin-prefix-inspector.php:34
 msgid "Autoload: no"
 msgstr "자동로드: 아니오"
 
-#: includes/modules/class-noe-admin-prefix-inspector.php:53
+#: includes/modules/class-noe-admin-prefix-inspector.php:35
 msgid "Autoload: all"
 msgstr "자동로드: 모두"
 
-#: includes/modules/class-noe-admin-prefix-inspector.php:59
+#: includes/modules/class-noe-admin-prefix-inspector.php:41
 msgid "Prefix Asc."
 msgstr "접두어 오름차순"
 
-#: includes/modules/class-noe-admin-prefix-inspector.php:60
+#: includes/modules/class-noe-admin-prefix-inspector.php:42
 msgid "Prefix Desc."
 msgstr "접두어 내림차순"
 
-#: includes/modules/class-noe-admin-prefix-inspector.php:61
+#: includes/modules/class-noe-admin-prefix-inspector.php:43
 msgid "Count Asc."
 msgstr "갯수 오름차순"
 
-#: includes/modules/class-noe-admin-prefix-inspector.php:62
+#: includes/modules/class-noe-admin-prefix-inspector.php:44
 msgid "Count Desc."
 msgstr "갯수 내림차순"
 
-#: includes/modules/class-noe-admin-prefix-inspector.php:63
+#: includes/modules/class-noe-admin-prefix-inspector.php:45
 msgid "Size Asc."
 msgstr "크기 오름차순"
 
-#: includes/modules/class-noe-admin-prefix-inspector.php:64
+#: includes/modules/class-noe-admin-prefix-inspector.php:46
 msgid "Size Desc."
 msgstr "크기 내림차순"
 
-#: includes/modules/class-noe-admin-prefix-inspector.php:70
+#: includes/modules/class-noe-admin-prefix-inspector.php:52
 msgid "Delimiter: _ (underscore)"
 msgstr "구분자: _ (밑줄)"
 
-#: includes/modules/class-noe-admin-prefix-inspector.php:71
+#: includes/modules/class-noe-admin-prefix-inspector.php:53
 msgid "Delimiter: - (hyphen)"
 msgstr "구분자: - (하이픈)"
 
-#: includes/modules/class-noe-admin-prefix-inspector.php:77
+#: includes/modules/class-noe-admin-prefix-inspector.php:59
 msgid "Include Core Options"
 msgstr "코어 옵션 포함"
 
-#: includes/modules/class-noe-admin-prefix-inspector.php:78
+#: includes/modules/class-noe-admin-prefix-inspector.php:60
 msgid "Exclude Core Options"
 msgstr "코어 옵션 제외"
 
@@ -254,6 +293,10 @@ msgstr "필터"
 msgid "Backup Options"
 msgstr "옵션을 백업"
 
+#: templates/admin/extra-tablenav.php:58
+msgid "Restore Options"
+msgstr "옵션 복원하기"
+
 #: templates/admin/list-table.php:22
 msgid "Options List"
 msgstr "옵션 목록"
@@ -267,7 +310,7 @@ msgstr "새로 추가"
 msgid "Search results for: <strong>%s</strong>"
 msgstr "다음 검색 결과: <strong>%s</strong>"
 
-#: templates/admin/list-table.php:44
+#: templates/admin/list-table.php:46
 msgid "Search"
 msgstr "검색"
 
@@ -276,7 +319,7 @@ msgid "Toggle All"
 msgstr "모두 토글"
 
 #: templates/admin/prefix-filter.php:58
-#: templates/admin/prefix-inspector.php:107
+#: templates/admin/prefix-inspector.php:113
 msgid "Prefix"
 msgstr "접두어"
 
@@ -284,59 +327,64 @@ msgstr "접두어"
 msgid "Remove all prefixes"
 msgstr "모든 접두어 제거"
 
-#: templates/admin/prefix-inspector.php:38
+#: templates/admin/prefix-inspector.php:41
 msgid "Delimiter"
 msgstr "구분자"
 
-#: templates/admin/prefix-inspector.php:48
+#: templates/admin/prefix-inspector.php:51
 msgid "Filter by autoload"
 msgstr "자동로드로 필터"
 
-#: templates/admin/prefix-inspector.php:59
+#: templates/admin/prefix-inspector.php:62
 msgid "Filter by core options"
 msgstr "코어 옵션으로 필터"
 
-#: templates/admin/prefix-inspector.php:70
+#: templates/admin/prefix-inspector.php:73
 msgid "Ordering"
 msgstr "정렬 방법"
 
-#: templates/admin/prefix-inspector.php:83
+#: templates/admin/prefix-inspector.php:86
 msgid "Min. Count"
 msgstr "죄소 갯수"
 
-#: templates/admin/prefix-inspector.php:90
+#: templates/admin/prefix-inspector.php:93
 msgid "Inspect"
 msgstr "분석"
 
-#: templates/admin/prefix-inspector.php:95
+#. translators: The number of options.
+#: templates/admin/prefix-inspector.php:100
 msgid "%d item"
 msgid_plural "%d items"
 msgstr[0] "%d개의 옵션"
 
-#: templates/admin/prefix-inspector.php:108
+#: templates/admin/prefix-inspector.php:107
+msgid "Prefixes list"
+msgstr "접두어 목록"
+
+#: templates/admin/prefix-inspector.php:114
 msgid "Count"
 msgstr "갯수"
 
-#: templates/admin/prefix-inspector.php:110
+#: templates/admin/prefix-inspector.php:116
 msgid "Action"
 msgstr "동작"
 
-#: templates/admin/prefix-inspector.php:130
+#: templates/admin/prefix-inspector.php:136
 msgid "Add to Filter List"
 msgstr "필터 목록에 추가"
 
-#: templates/admin/prefix-inspector.php:133
+#: templates/admin/prefix-inspector.php:139
 msgid "Removed from the prefixes list."
 msgstr "접두어 목록에서 제거됨."
 
-#: templates/admin/prefix-inspector.php:139
+#: templates/admin/prefix-inspector.php:145
 msgid "Remove from Filter List"
 msgstr "접두어 목록에서 제거"
 
-#: templates/admin/prefix-inspector.php:142
+#: templates/admin/prefix-inspector.php:148
 msgid "Added to the prefixes list."
 msgstr "접두어 목록에 추가됨."
 
-#: templates/admin/prefix-inspector.php:149
+#: templates/admin/prefix-inspector.php:155
 msgid "No results."
 msgstr "결과 없음."

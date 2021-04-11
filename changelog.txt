@@ -1,3 +1,11 @@
+1.7.0
+=====
+Apr. 11th, 2021.
+
+* Restoring back-up option table is available (only mysqli supports).
+* Minor style fix.
+
+
 1.6.1
 =====
 Apr. 10th, 2021.

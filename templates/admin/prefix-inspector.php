@@ -95,7 +95,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
             <div class="tablenav-pages">
                 <span class="displaying-num">
-                    <?php printf( _n( '%d item', '%d items', count( $items ), 'noe' ), count( $items ) ); ?></span>
+                    <?php printf(
+                            /* translators: The number of options. */
+                            _n( '%d item', '%d items', count( $items ), 'noe' ), count( $items ) );
+                    ?></span>
             </div>
             <br class="clear">
         </div>

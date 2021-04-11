@@ -3,7 +3,11 @@
         var opt = window.hasOwnProperty('noeOptionTable') ? window.noeOptionTable : {
             ajaxUrl: '',
             nonce: '',
+            textAdd: 'Add',
+            textCancel: 'Cancel',
             textPrefixAlreadyExists: 'The prefix is already added. Please choose another one.',
+            textRestoreOptionAlert: 'Are you sure you want to restore option table with the file?',
+            textRestoreComplete: 'The option table is restored.',
         };
 
         var prefixManager = {
@@ -72,31 +76,30 @@
             tmpl = wp.template('filter-item');
 
         // Dialog declaration
-        $('#prefix-filter-dialog').dialog({
+        var dialogOpts = {
             modal: true,
-            buttons: {
-                'Add': function () {
-                    var newPrefix = $('#new-prefix'),
-                        newValue = newPrefix.val().trim();
-
-                    if (newValue.length) {
-                        if (hasPrefix(newValue)) {
-                            alert(opt.textPrefixAlreadyExists);
-                        } else {
-                            prefixManager.add(newValue, function () {
-                                theList.trigger('prefixAdded', newValue);
-                                newPrefix.val('');
-                            });
-                            $(this).dialog('close');
-                        }
-                    }
-                },
-                'Cancel': function () {
-                    $(this).dialog('close');
-                },
-            },
+            buttons: {},
             autoOpen: false,
-        });
+        };
+        dialogOpts.buttons[opt.textAdd] = function () {
+            var newPrefix = $('#new-prefix'),
+                newValue = newPrefix.val().trim();
+            if (newValue.length) {
+                if (hasPrefix(newValue)) {
+                    alert(opt.textPrefixAlreadyExists);
+                } else {
+                    prefixManager.add(newValue, function () {
+                        theList.trigger('prefixAdded', newValue);
+                        newPrefix.val('');
+                    });
+                    $(this).dialog('close');
+                }
+            }
+        };
+        dialogOpts.buttons[opt.textCancel] = function () {
+            $(this).dialog('close');
+        };
+        $('#prefix-filter-dialog').dialog(dialogOpts);
 
         // Open the prefix filter dialog.
         $('#prefix-setup-top, #prefix-setup-bottom').on('click', function () {
@@ -186,6 +189,57 @@
             if (countPrefixes() < 2) {
                 toggleAllWrap.delay(500).fadeOut();
             }
+        });
+
+        // Option table restoration
+        $('#restore-option-top').on('click', function () {
+            $('#backup-file-upload-top').trigger('click');
+        });
+
+        $('#backup-file-upload-top').on('change', function (e) {
+            var formData = new FormData(),
+                button = $('#restore-option-top');
+
+            e.preventDefault();
+
+            if (!confirm(opt.textRestoreOptionAlert)) {
+                e.currentTarget.value = '';
+                return false;
+            }
+
+            formData.append('action', 'noe_restore_options');
+            formData.append('_noe_nonce', opt.nonce);
+            formData.append('backup_file', e.currentTarget.files[0]);
+
+            $.ajax(opt.ajaxUrl, {
+                method: 'post',
+                data: formData,
+                contentType: false,
+                processData: false,
+                beforeSend: function () {
+                    button.attr('disabled', 'disabled');
+                },
+                success: function (response) {
+                    if (response.success) {
+                        alert(opt.textRestoreComplete);
+                        location.reload();
+                    } else if (response.hasOwnProperty('data') && Array.isArray(response.data)) {
+                        var message = [];
+                        response.data.forEach(function (error) {
+                            message.push('[' + error.code + '] ' + error.message);
+                        });
+                        alert(message.join('\n'));
+                    } else {
+                        console.error('Error', response);
+                    }
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+                    alert(jqXhr.status + ': ' + errorThrown);
+                },
+                complete: function () {
+                    button.removeAttr('disabled');
+                }
+            });
         });
 
         function getPrefixWraps() {

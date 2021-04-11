@@ -40,8 +40,18 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 					[
 						'ajaxUrl'                 => admin_url( 'admin-ajax.php' ),
 						'nonce'                   => wp_create_nonce( 'noe-option-table' ),
+						'textAdd'                 => __( 'Add', 'noe' ),
+						'textCancel'              => __( 'Cancel', 'noe' ),
 						'textPrefixAlreadyExists' => __(
 							'The prefix is already added. Please choose another one.',
+							'noe'
+						),
+						'textRestoreOptionAlert'  => __(
+							'Are you sure you want to restore option table with the file?',
+							'noe'
+						),
+						'textRestoreComplete'     => __(
+							'The option table is restored. The page is now reloaded.',
 							'noe'
 						),
 					]
@@ -185,7 +195,7 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 				noe()->desc_table->delete_description( $option_id );
 
 				$return_url = remove_query_arg(
-					['_wp_http_referer'],
+					[ '_wp_http_referer' ],
 					wp_unslash( $_GET['return_url'] ?? '' )
 				);
 				if ( empty( $return_url ) ) {
@@ -328,6 +338,70 @@ PHP_EOL;
 				echo $content;
 				exit;
 			}
+		}
+
+		/**
+		 * Ajax Callback restore option
+		 */
+		public function restore_options() {
+			check_ajax_referer( 'noe-option-table', '_noe_nonce' );
+
+			global $wpdb;
+
+			try {
+				if ( ! $wpdb->use_mysqli ) {
+					throw new Exception( __( 'Use mysqli to restore option table with this plugin.', 'noe' ) );
+				}
+
+				if ( ! current_user_can( 'administrator' ) ) {
+					throw new Exception( __( 'You are not allowed to do this task', 'noe' ) );
+				}
+
+				if ( ! isset( $_FILES['backup_file'] ) ) {
+					throw new Exception( __( 'Backup file not found.', 'noe' ) );
+				}
+
+				$file  = &$_FILES['backup_file'];
+				$mimes = [
+					'gz'  => 'application/gzip',
+					'sql' => 'text/plain',
+				];
+
+				$mimes_filter = function ( array $mimes ) use ( &$mimes_filter ): array {
+					remove_filter( 'upload_mimes', $mimes_filter );
+					$mimes['noe-gz'] = 'application/gzip';
+
+					return $mimes;
+				};
+				add_action( 'upload_mimes', $mimes_filter );
+				$checked = wp_check_filetype_and_ext( $file['tmp_name'], $file['name'], $mimes );
+				if ( ! $checked['ext'] && ! $checked['type'] && ! $checked['proper_filename'] ) {
+					throw new Exception( __( 'The file uploaded is not allowed.', 'noe' ) );
+				}
+
+				$ext   = pathinfo( $file['name'], PATHINFO_EXTENSION );
+				$query = file_get_contents( $file['tmp_name'] );
+				if ( $ext === 'gz' ) {
+					if ( ! function_exists( 'gzdecode' ) ) {
+						throw new Exception(
+							__( 'A gzipped file is uploaded, but the server cannot decode the file.', 'noe' )
+						);
+					}
+					$query = gzdecode( $query );
+				}
+
+				$dbh = $wpdb->dbh;
+				if ( mysqli_multi_query( $dbh, $query ) ) {
+					wp_send_json_success();
+				} else {
+					$error = mysqli_error( $dbh );
+					throw new Exception( $error );
+				}
+			} catch ( Exception $e ) {
+				wp_send_json_error( new WP_Error( 'Error', $e->getMessage() ) );
+			}
+
+			wp_send_json_success();
 		}
 
 		/**

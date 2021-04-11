@@ -65,6 +65,12 @@ if ( ! class_exists( 'NOE_Registerer_Admin_Ajax' ) ) {
 						noe()->admin->option_editor->disable_all_prefixes();
 					},
 				),
+				new NOE_Ajax(
+					'noe_restore_options',
+					function () {
+						noe()->admin->option_editor->restore_options();
+					}
+				),
 			];
 		}
 	}
