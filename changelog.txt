@@ -1,4 +1,6 @@
+* Prefix inspector query handles heading delimiter characters.
 * Moved some files.
+
 
 1.7.0
 =====

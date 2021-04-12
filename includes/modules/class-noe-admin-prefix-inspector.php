@@ -88,7 +88,16 @@ if ( ! class_exists( 'NOE_Admin_Module' ) ) {
 
 			global $wpdb;
 
-			$sub_query = "SELECT LEFT(option_name, POSITION('{$delimiter}' in option_name)) AS prefix, LENGTH(option_value) AS option_size FROM {$wpdb->options}";
+			$sub_query = <<< PHP_EOL
+SELECT
+    IF (
+        LEFT(option_name, 1) = '{$delimiter}',
+        LEFT(option_name, LOCATE('{$delimiter}', option_name, 2)),
+        LEFT(option_name, LOCATE('{$delimiter}', option_name, 1))
+    ) As prefix,
+    LENGTH(option_value) AS option_size
+FROM {$wpdb->options}
+PHP_EOL;
 
 			if ( 'yes' === $autoload ) {
 				$sub_query .= " WHERE autoload='yes'";
