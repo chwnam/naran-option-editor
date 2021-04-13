@@ -1,3 +1,6 @@
+1.8.0
+=====
+* Total queried option size is displayed at option list table pagination.
 * Prefix inspector query handles heading delimiter characters.
 * Moved some files.
 

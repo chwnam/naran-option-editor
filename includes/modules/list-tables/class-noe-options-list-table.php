@@ -15,6 +15,12 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 	class NOE_Options_List_Table extends WP_List_Table {
 		use NOE_Template_Impl;
 
+		/**
+		 * @var int
+		 * @see NOE_Options_List_Table::prepare_items()
+		 */
+		private int $total_option_size = 0;
+
 		public function __construct() {
 			parent::__construct(
 				[
@@ -143,6 +149,13 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 
 			$rows        = $wpdb->get_results( $query );
 			$total_items = intval( $wpdb->get_var( 'SELECT FOUND_ROWS()' ) );
+
+			/* Total option size is calculated here */
+			$this->total_option_size = intval(
+				$wpdb->get_var(
+					"SELECT SUM(LENGTH(option_value)) FROM {$wpdb->options} AS o {$where}"
+				)
+			);
 
 			$this->set_pagination_args(
 				[
@@ -330,6 +343,40 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			);
 
 			return $status_links;
+		}
+
+		protected function pagination( $which ) {
+			if ( 'top' === $which ) {
+				ob_start();
+				parent::pagination( $which );
+				$pagination = ob_get_clean();
+
+				$title = sprintf(
+				/* translators: option size */
+					_n( 'Total option size: %d byte', 'Total option size: %d bytes', $this->total_option_size, 'noe' ),
+					$this->total_option_size
+				);
+
+				$text = sprintf(
+				/* translators: option size in human-friendly style */
+					__( 'Total: %s, ', 'noe' ),
+					size_format( $this->total_option_size, 1 )
+				);
+
+				$pagination = preg_replace(
+					';<span class="displaying-num">(.+?)</span>;ms',
+					sprintf(
+						'<span class="displaying-num" title="%s">%s</span>',
+						esc_attr( $title ),
+						esc_html( $text ) . '$1'
+					),
+					$pagination
+				);
+
+				echo $pagination;
+			} else {
+				parent::pagination( $which );
+			}
 		}
 	}
 }

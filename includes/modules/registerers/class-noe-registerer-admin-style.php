@@ -29,7 +29,10 @@ if ( ! class_exists( 'NOE_Registerer_Admin_Style' ) ) {
 				new NOE_Style(
 					'noe-option-table',
 					'option-table.css',
-					[ 'wp-jquery-ui-dialog' ]
+					[
+						'list-tables',
+						'wp-jquery-ui-dialog'
+					]
 				),
 				new NOE_Style( 'noe-prefix-inspector', 'prefix-inspector.css' ),
 			];

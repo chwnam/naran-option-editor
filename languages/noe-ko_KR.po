@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Naran Option Editor 1.5.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/naran-option-"
 "editor\n"
-"POT-Creation-Date: 2021-04-11T16:28:43+09:00\n"
-"PO-Revision-Date: 2021-04-11 16:32+0900\n"
+"POT-Creation-Date: 2021-04-13T11:13:21+09:00\n"
+"PO-Revision-Date: 2021-04-13 11:14+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -38,79 +38,6 @@ msgstr "changwoo"
 #. Author URI of the plugin
 msgid "https://blog.changwoo.pe.kr"
 msgstr "https://blog.changwoo.pe.kr"
-
-#: includes/class-noe-options-list-table.php:36
-msgid "ID"
-msgstr "ID"
-
-#: includes/class-noe-options-list-table.php:37
-msgid "Name"
-msgstr "이름"
-
-#: includes/class-noe-options-list-table.php:38
-msgid "Value"
-msgstr "값"
-
-#: includes/class-noe-options-list-table.php:39
-#: templates/admin/edit-option.php:71
-msgid "Description"
-msgstr "설명"
-
-#: includes/class-noe-options-list-table.php:40
-#: templates/admin/edit-option.php:86
-msgid "Autoload"
-msgstr "자동로드"
-
-#: includes/class-noe-options-list-table.php:41
-#: templates/admin/prefix-inspector.php:115
-msgid "Size"
-msgstr "크기"
-
-#: includes/class-noe-options-list-table.php:187
-msgid "[Serialized]"
-msgstr "[직렬화됨]"
-
-#: includes/class-noe-options-list-table.php:200
-msgid "Yes"
-msgstr "예"
-
-#: includes/class-noe-options-list-table.php:200
-msgid "No"
-msgstr "아니오"
-
-#. translators: "option name"
-#: includes/class-noe-options-list-table.php:221
-msgid "Edit &#8220;%s&#8221;"
-msgstr "&#8220;%s&#8221; 편집"
-
-#: includes/class-noe-options-list-table.php:222
-msgid "Edit"
-msgstr "편집"
-
-#. translators: "option name"
-#: includes/class-noe-options-list-table.php:228
-msgid "Remove &#8220;%s&#8221;"
-msgstr "&#8220;%s&#8221; 제거"
-
-#: includes/class-noe-options-list-table.php:229
-msgid "Remove"
-msgstr "제거"
-
-#: includes/class-noe-options-list-table.php:238
-msgid "Delete Selected"
-msgstr "선택한 항목 삭제"
-
-#: includes/class-noe-options-list-table.php:309
-msgid "All"
-msgstr "전부"
-
-#: includes/class-noe-options-list-table.php:317
-msgid "Core Options"
-msgstr "코어 옵션"
-
-#: includes/class-noe-options-list-table.php:325
-msgid "Custom Options"
-msgstr "커스텀 옵션"
 
 #: includes/modules/class-noe-admin-menu.php:97
 msgid "Option Editor"
@@ -236,6 +163,90 @@ msgstr "코어 옵션 포함"
 #: includes/modules/class-noe-admin-prefix-inspector.php:60
 msgid "Exclude Core Options"
 msgstr "코어 옵션 제외"
+
+#: includes/modules/list-tables/class-noe-options-list-table.php:42
+msgid "ID"
+msgstr "ID"
+
+#: includes/modules/list-tables/class-noe-options-list-table.php:43
+msgid "Name"
+msgstr "이름"
+
+#: includes/modules/list-tables/class-noe-options-list-table.php:44
+msgid "Value"
+msgstr "값"
+
+#: includes/modules/list-tables/class-noe-options-list-table.php:45
+#: templates/admin/edit-option.php:71
+msgid "Description"
+msgstr "설명"
+
+#: includes/modules/list-tables/class-noe-options-list-table.php:46
+#: templates/admin/edit-option.php:86
+msgid "Autoload"
+msgstr "자동로드"
+
+#: includes/modules/list-tables/class-noe-options-list-table.php:47
+#: templates/admin/prefix-inspector.php:115
+msgid "Size"
+msgstr "크기"
+
+#: includes/modules/list-tables/class-noe-options-list-table.php:200
+msgid "[Serialized]"
+msgstr "[직렬화됨]"
+
+#: includes/modules/list-tables/class-noe-options-list-table.php:213
+msgid "Yes"
+msgstr "예"
+
+#: includes/modules/list-tables/class-noe-options-list-table.php:213
+msgid "No"
+msgstr "아니오"
+
+#. translators: "option name"
+#: includes/modules/list-tables/class-noe-options-list-table.php:234
+msgid "Edit &#8220;%s&#8221;"
+msgstr "&#8220;%s&#8221; 편집"
+
+#: includes/modules/list-tables/class-noe-options-list-table.php:235
+msgid "Edit"
+msgstr "편집"
+
+#. translators: "option name"
+#: includes/modules/list-tables/class-noe-options-list-table.php:241
+msgid "Remove &#8220;%s&#8221;"
+msgstr "&#8220;%s&#8221; 제거"
+
+#: includes/modules/list-tables/class-noe-options-list-table.php:242
+msgid "Remove"
+msgstr "제거"
+
+#: includes/modules/list-tables/class-noe-options-list-table.php:251
+msgid "Delete Selected"
+msgstr "선택한 항목 삭제"
+
+#: includes/modules/list-tables/class-noe-options-list-table.php:322
+msgid "All"
+msgstr "전부"
+
+#: includes/modules/list-tables/class-noe-options-list-table.php:330
+msgid "Core Options"
+msgstr "코어 옵션"
+
+#: includes/modules/list-tables/class-noe-options-list-table.php:338
+msgid "Custom Options"
+msgstr "커스텀 옵션"
+
+#. translators: option size
+#: includes/modules/list-tables/class-noe-options-list-table.php:356
+msgid "Total option size: %d byte"
+msgid_plural "Total option size: %d bytes"
+msgstr[0] "총 옵션 크기: %d 바이트"
+
+#. translators: option size in human-friendly style
+#: includes/modules/list-tables/class-noe-options-list-table.php:362
+msgid "Total: %s, "
+msgstr "총 크기: %s, "
 
 #: includes/modules/registerers/class-noe-registerer-meta.php:45
 msgid "Each user's prefix filters list."
