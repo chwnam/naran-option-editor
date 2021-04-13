@@ -1,5 +1,13 @@
+1.8.1
+=====
+Apr. 13th, 2021.
+
+* Bug fix: order by option size.
+
+
 1.8.0
 =====
+Apr. 13th, 2021.
 * Total queried option size is displayed at option list table pagination.
 * Prefix inspector query handles heading delimiter characters.
 * Moved some files.

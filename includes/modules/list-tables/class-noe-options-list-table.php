@@ -131,7 +131,7 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			if ( 'option_name' === $ob ) {
 				$orderby = "ORDER BY o.option_name {$order}";
 			} elseif ( 'option_size' === $ob ) {
-				$orderby = "ORDER BY o.option_size {$order}";
+				$orderby = "ORDER BY option_size {$order}";
 			} elseif ( 'option_id' === $ob ) {
 				$orderby = "ORDER BY o.option_id {$order}";
 			}
