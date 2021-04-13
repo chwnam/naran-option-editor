@@ -8,6 +8,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'NOE_Registerer_Admin_Style' ) ) {
+	/**
+	 * Class NOE_Registerer_Admin_Style
+	 *
+	 * Define and register CSS stylesheet handles.
+	 */
 	class NOE_Registerer_Admin_Style implements NOE_Registerer {
 		public function __construct() {
 			if ( is_admin() ) {

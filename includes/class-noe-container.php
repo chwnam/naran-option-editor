@@ -21,6 +21,11 @@ if ( ! class_exists( 'NOE_Container' ) ) {
 
 		private static ?NOE_Container $instance = null;
 
+		/**
+		 * Get the single instance.
+		 *
+		 * @return static
+		 */
 		public static function get_instance(): self {
 			if ( is_null( self::$instance ) ) {
 				self::$instance = new self();
@@ -29,7 +34,18 @@ if ( ! class_exists( 'NOE_Container' ) ) {
 			return self::$instance;
 		}
 
+		/**
+		 * NOE_Container constructor.
+		 */
 		private function __construct() {
+			/**
+			 * Load main modules:
+			 *
+			 * - admin:         Modules for admin screen.
+			 * - desc_table:    Description table management module.
+			 * - prefix_filter: Prefix filter management module.
+			 * - registerer:    Registerer module.
+			 */
 			$this->load_modules(
 				[
 					'admin'         => NOE_Admin::class,
@@ -57,26 +73,48 @@ if ( ! class_exists( 'NOE_Container' ) ) {
 			throw new RuntimeException( __CLASS__ . ' cannot be serialized.' );
 		}
 
+		/**
+		 * Activation callback.
+		 *
+		 * @callback
+		 */
 		public function activation() {
 			$this->force_activate_dynamic_modules();
 			do_action( 'noe_activation' );
 		}
 
+		/**
+		 * Deactivation callback.
+		 *
+		 * @callback
+		 */
 		public function deactivation() {
 			$this->force_activate_dynamic_modules();
 			do_action( 'noe_deactivation' );
 		}
 
+		/**
+		 * Load the plugin translation .mo file.
+		 */
 		public function load_textdomain() {
 			load_plugin_textdomain( 'noe', false, wp_basename( dirname( NOE_MAIN ) ) . '/languages' );
 		}
 
+		/**
+		 * Load dynamic modules on purpose.
+		 *
+		 * @used-by NOE_Container::activation()
+		 * @used-by NOE_Container::deactivation()
+		 */
 		protected function force_activate_dynamic_modules() {
 			$noe = noe();
 			/** @noinspection PhpExpressionResultUnusedInspection */
 			$noe->desc_table;
 		}
 
+		/**
+		 * Load mockup page for development.
+		 */
 		protected function mockup() {
 			if ( in_array( wp_get_environment_type(), [ 'local', 'development' ], true ) ) {
 				$this->modules[] = new NOE_Mockup();

@@ -8,6 +8,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'NOE_Registerer_Admin_Post' ) ) {
+	/**
+	 * Class NOE_Registerer_Admin_Post
+	 *
+	 * Register and handle admin-post.php callbacks.
+	 */
 	class NOE_Registerer_Admin_Post implements NOE_Registerer {
 		public function __construct() {
 			if ( is_admin() ) {

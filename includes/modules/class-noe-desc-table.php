@@ -8,6 +8,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'NOE_Desc_Table' ) ) {
+	/**
+	 * Class NOE_Desc_Table
+	 *
+	 * Description table management module.
+	 */
 	class NOE_Desc_Table implements NOE_Module {
 		public function __construct() {
 			add_action( 'noe_activation', [ $this, 'activation' ] );

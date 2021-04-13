@@ -2,18 +2,18 @@
 /**
  * Prefix Inspector template
  *
- * @var string                $page
- * @var string                $autoload
- * @var string                $orderby
- * @var string                $delimiter
- * @var string                $core
- * @var int                   $min_count
- * @var array<string, string> $orders
- * @var array<string, string> $autoload_options
- * @var array<string, string> $delimiters
- * @var array<string, string> $core_options
- * @var array<stdClass>       $items
- * @var array<string, bool>   $prefix_filters
+ * @var string                $page             Page slug string.
+ * @var string                $autoload         Current 'autoload' value.
+ * @var string                $orderby          Current 'orderby' value.
+ * @var string                $delimiter        Current 'delimiter' value.
+ * @var string                $core             Current 'core option' value.
+ * @var int                   $min_count        Current 'minimum count' value.
+ * @var array<string, string> $orders           Available orders.
+ * @var array<string, string> $autoload_options Available autoload options.
+ * @var array<string, string> $delimiters       Available delimiters
+ * @var array<string, string> $core_options     Available core options.
+ * @var array<stdClass>       $items            Inspection items.
+ * @var array<string, bool>   $prefix_filters   Prefix filters.
  */
 
 /**
@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
     <form id="prefix-inspector" method="get">
         <input type="hidden" name="page" value="<?php echo esc_attr( $page ); ?>">
-	    <?php noe()->admin->menu->output_hidden_tab_values(); ?>
+		<?php noe()->admin->menu->output_hidden_tab_values(); ?>
 
         <div class="tablenav top">
             <div class="alignleft actions">
@@ -96,8 +96,8 @@ if ( ! defined( 'ABSPATH' ) ) {
             <div class="tablenav-pages">
                 <span class="displaying-num">
                     <?php printf(
-                            /* translators: The number of options. */
-                            _n( '%d item', '%d items', count( $items ), 'noe' ), count( $items ) );
+                    /* translators: The number of options. */
+	                    _n( '%d item', '%d items', count( $items ), 'noe' ), count( $items ) );
                     ?></span>
             </div>
             <br class="clear">

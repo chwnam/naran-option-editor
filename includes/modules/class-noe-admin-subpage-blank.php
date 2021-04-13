@@ -18,7 +18,6 @@ if ( ! class_exists( 'NOE_Admin_Subpage_Blank' ) ) {
 		}
 
 		public function output_submenu_page() {
-			echo 'this is blank page.';
 		}
 	}
 }

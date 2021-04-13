@@ -8,6 +8,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'NOE_Ajax' ) ) {
+	/**
+	 * Class NOE_Ajax
+	 *
+	 * AJAX registrable.
+	 */
 	class NOE_Ajax implements NOE_Registrable {
 		public string $action = '';
 
@@ -16,6 +21,13 @@ if ( ! class_exists( 'NOE_Ajax' ) ) {
 
 		public int $priority;
 
+		/**
+		 * NOE_Ajax constructor.
+		 *
+		 * @param string          $action
+		 * @param callable|string $callback
+		 * @param int             $priority
+		 */
 		public function __construct( string $action, $callback, int $priority = 10 ) {
 			$this->action   = $action;
 			$this->callback = $callback;

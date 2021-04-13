@@ -12,15 +12,26 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 }
 
 if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
+	/**
+	 * Class NOE_Options_List_Table
+	 *
+	 * Option list table class.
+	 */
 	class NOE_Options_List_Table extends WP_List_Table {
 		use NOE_Template_Impl;
 
 		/**
+		 * Total option size.
+		 *
 		 * @var int
+		 *
 		 * @see NOE_Options_List_Table::prepare_items()
 		 */
 		private int $total_option_size = 0;
 
+		/**
+		 * NOE_Options_List_Table constructor.
+		 */
 		public function __construct() {
 			parent::__construct(
 				[
@@ -36,6 +47,11 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			return current_user_can( 'administrator' );
 		}
 
+		/**
+		 * Return table's columns.
+		 *
+		 * @return array
+		 */
 		public function get_columns(): array {
 			return [
 				'cb'           => '<input type="checkbox">',
@@ -48,10 +64,20 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			];
 		}
 
+		/**
+		 * Get primary column name.
+		 *
+		 * @return string
+		 */
 		protected function get_default_primary_column_name(): string {
 			return 'option_name';
 		}
 
+		/**
+		 * Get sortable columns.
+		 *
+		 * @return array
+		 */
 		protected function get_sortable_columns(): array {
 			return [
 				'option_id'   => 'option_id',
@@ -60,6 +86,9 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			];
 		}
 
+		/**
+		 * Prepare table items.
+		 */
 		public function prepare_items() {
 			global $wpdb;
 
@@ -167,6 +196,11 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			$this->items = $rows;
 		}
 
+		/**
+		 * Print checkbox column.
+		 *
+		 * @param stdClass $item
+		 */
 		protected function column_cb( $item ) {
 			printf(
 				'<label class="screen-reader-text" for="cb-select-%1$d">%2$s</label>' .
@@ -176,10 +210,24 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			);
 		}
 
+		/**
+		 * Print option id column.
+		 *
+		 * @noinspection PhpUnused
+		 *
+		 * @param stdClass $item
+		 */
 		protected function column_option_id( $item ) {
 			echo intval( $item->option_id );
 		}
 
+		/**
+		 * Print option name column.
+		 *
+		 * @noinspection PhpUnused
+		 *
+		 * @param stdClass $item
+		 */
 		protected function column_option_name( $item ) {
 			if ( strlen( $item->option_name ) > 30 ) {
 				$option_name = substr( $item->option_name, 0, 27 ) . ' [&hellip;]';
@@ -195,6 +243,13 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			);
 		}
 
+		/**
+		 * Print option value column.
+		 *
+		 * @noinspection PhpUnused
+		 *
+		 * @param stdClass $item
+		 */
 		protected function column_option_value( $item ) {
 			if ( is_serialized( $item->option_value ) ) {
 				echo '<span>' . esc_html__( '[Serialized]', 'noe' ) . '</span> ';
@@ -209,18 +264,48 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			echo esc_html( $value );
 		}
 
+		/**
+		 * Print autoload column.
+		 *
+		 * @noinspection PhpUnused
+		 *
+		 * @param $item
+		 */
 		protected function column_autoload( $item ) {
 			echo $item->autoload === 'yes' ? __( 'Yes', 'noe' ) : __( 'No', 'noe' );
 		}
 
+		/**
+		 * Print option description column.
+		 *
+		 * @noinspection PhpUnused
+		 *
+		 * @param $item
+		 */
 		protected function column_option_desc( $item ) {
 			echo esc_html( $item->description ?? '' );
 		}
 
+		/**
+		 * Print option size column.
+		 *
+		 * @noinspection PhpUnused
+		 *
+		 * @param $item
+		 */
 		protected function column_option_size( $item ) {
 			echo $item->option_size;
 		}
 
+		/**
+		 * Prepare and return row actions.
+		 *
+		 * @param stdClass $item        Option record.
+		 * @param string   $column_name Current column name.
+		 * @param string   $primary     Primary column or not.
+		 *
+		 * @return string
+		 */
 		protected function handle_row_actions( $item, $column_name, $primary ): string {
 			if ( $primary !== $column_name ) {
 				return '';
@@ -246,12 +331,25 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			return $this->row_actions( $actions );
 		}
 
+		/**
+		 * Get bulk actions.
+		 *
+		 * @return array<string, string>
+		 */
 		protected function get_bulk_actions(): array {
 			return [
 				'delete' => __( 'Delete Selected', 'noe' ),
 			];
 		}
 
+		/**
+		 * Override the default display_tablenav() method.
+		 *
+		 * - Print parent::display_tablenav().
+		 * - Print prefix filter area.
+		 *
+		 * @param string $which 'top', or 'bottom'.
+		 */
 		protected function display_tablenav( $which ) {
 			parent::display_tablenav( $which );
 
@@ -271,6 +369,10 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 		}
 
 		/**
+		 * Echo extra tablenav.
+		 *
+		 * Print action buttons, and filter dropdowns.
+		 *
 		 * @param string $which
 		 */
 		protected function extra_tablenav( $which ) {
@@ -291,7 +393,12 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 		}
 
 		/**
+		 * Print views.
+		 *
+		 * Text links under the tab area.
+		 *
 		 * @return string[]
+		 *
 		 * @see populate_options()
 		 */
 		protected function get_views(): array {
@@ -345,6 +452,13 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			return $status_links;
 		}
 
+		/**
+		 * Override pagination method.
+		 *
+		 * Add total size data.
+		 *
+		 * @param string $which
+		 */
 		protected function pagination( $which ) {
 			if ( 'top' === $which ) {
 				ob_start();

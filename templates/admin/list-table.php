@@ -1,8 +1,8 @@
 <?php
 /**
  *
- * @var NOE_Options_List_Table $table
- * @var string                 $o 'core', 'custom'
+ * @var NOE_Options_List_Table $table List table instance.
+ * @var string                 $o     'core', 'custom'
  */
 
 /**
@@ -38,7 +38,7 @@ if ( ! current_user_can( 'administrator' ) ) {
 
     <hr class="wp-header-end">
 
-    <?php noe()->admin->menu->output_tabs(); ?>
+	<?php noe()->admin->menu->output_tabs(); ?>
 
 	<?php $table->views(); ?>
 
@@ -46,7 +46,7 @@ if ( ! current_user_can( 'administrator' ) ) {
 		<?php $table->search_box( __( 'Search', 'noe' ), 'option' ); ?>
         <input type="hidden" name="page" value="noe">
         <input type="hidden" name="o" value="<?php echo esc_attr( $o ); ?>">
-	    <?php noe()->admin->menu->output_hidden_tab_values(); ?>
+		<?php noe()->admin->menu->output_hidden_tab_values(); ?>
 
 		<?php $table->display(); ?>
     </form>

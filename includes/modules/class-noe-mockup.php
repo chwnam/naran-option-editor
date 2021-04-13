@@ -8,7 +8,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'NOE_Mockup' ) ) {
-	class NOE_Mockup {
+	/**
+	 * Class NOE_Mockup
+	 *
+	 * Mockup menu module
+	 */
+	class NOE_Mockup implements NOE_Module {
 		public function __construct() {
 			add_action( 'admin_menu', [ $this, 'add_menu_page' ] );
 		}

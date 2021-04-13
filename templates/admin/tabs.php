@@ -2,9 +2,9 @@
 /**
  * Admin Tabs Template: displaying tabs.
  *
- * @var string                $base_url
- * @var array<string, string> $tabs
- * @var string                $current
+ * @var string                $base_url Base URL.
+ * @var array<string, string> $tabs     All tabs.
+ * @var string                $current  Current tab.
  */
 
 /**

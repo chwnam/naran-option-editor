@@ -2,7 +2,7 @@
 /**
  * Prefix filter area.
  *
- * @var array $prefix_filters
+ * @var array<string, bool> $prefix_filters Prefix filters array.
  */
 
 /**

@@ -12,6 +12,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 
 if ( ! function_exists( 'noe' ) ) {
+	/**
+	 * Get the NOE_Container instance.
+	 *
+	 * @return NOE_Container
+	 */
 	function noe(): NOE_Container {
 		return NOE_Container::get_instance();
 	}
@@ -19,6 +24,11 @@ if ( ! function_exists( 'noe' ) ) {
 
 
 if ( ! function_exists( 'noe_meta' ) ) {
+	/**
+	 * Get the Meta registerer module.
+	 *
+	 * @return NOE_Registerer_Meta
+	 */
 	function noe_meta(): NOE_Registerer_Meta {
 		return NOE_Container::get_instance()->registerer->meta;
 	}
@@ -137,6 +147,11 @@ if ( ! function_exists( 'noe_get_core_option_names' ) ) {
 
 
 if ( ! function_exists( 'noe_get_options_list_url' ) ) {
+	/**
+	 * Get option editor URL.
+	 *
+	 * @return string
+	 */
 	function noe_get_options_list_url(): string {
 		return add_query_arg( 'page', 'noe', admin_url( 'tools.php' ) );
 	}
@@ -144,6 +159,14 @@ if ( ! function_exists( 'noe_get_options_list_url' ) ) {
 
 
 if ( ! function_exists( 'noe_get_option_remove_url' ) ) {
+	/**
+	 * Get option remove request URL.
+	 *
+	 * @param int    $option_id  Option ID to remove.
+	 * @param string $return_url Return URL after removal.
+	 *
+	 * @return string
+	 */
 	function noe_get_option_remove_url( int $option_id, string $return_url = '' ): string {
 		if ( $option_id < 1 ) {
 			return '';

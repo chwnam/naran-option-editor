@@ -1,6 +1,6 @@
 <?php
 /**
- * @var stdClass|null $option 새로 입력시 null.
+ * @var stdClass|null $option null if add new.
  */
 
 /**

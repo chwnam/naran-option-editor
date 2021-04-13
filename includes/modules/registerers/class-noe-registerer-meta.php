@@ -11,6 +11,8 @@ if ( ! class_exists( 'NOE_Registerer_Meta' ) ) {
 	/**
 	 * Class NOE_Registerer_Meta
 	 *
+	 * Manage all meta fields.
+	 *
 	 * @property-read NOE_Meta $user_prefix_filters
 	 */
 	class NOE_Registerer_Meta implements NOE_Registerer {

@@ -8,6 +8,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'NOE_Prefix_Filter' ) ) {
+	/**
+	 * Class NOE_Prefix_Filter
+	 *
+	 * Prefix filter management module.
+	 */
 	class NOE_Prefix_Filter implements NOE_Module {
 		protected NOE_Meta $field;
 

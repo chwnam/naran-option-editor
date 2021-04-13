@@ -8,6 +8,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'NOE_Registerer_Admin_Script' ) ) {
+	/**
+	 * Class NOE_Registerer_Admin_Script
+	 *
+	 * Define and register JS script handles.
+	 */
 	class NOE_Registerer_Admin_Script implements NOE_Registerer {
 		public function __construct() {
 			if ( is_admin() ) {

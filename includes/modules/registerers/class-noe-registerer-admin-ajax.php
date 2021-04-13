@@ -8,6 +8,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'NOE_Registerer_Admin_Ajax' ) ) {
+	/**
+	 * Class NOE_Registerer_Admin_Ajax
+	 *
+	 * Define and register AJAX callback items.
+	 */
 	class NOE_Registerer_Admin_Ajax implements NOE_Registerer {
 		public function __construct() {
 			$this->register_items();

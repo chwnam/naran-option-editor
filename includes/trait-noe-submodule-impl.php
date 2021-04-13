@@ -8,9 +8,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'NOE_Submodule_Impl' ) ) {
+	/**
+	 * Trait for submodule
+	 *
+	 * Trait NOE_Submodule_Impl
+	 */
 	trait NOE_Submodule_Impl {
 		protected array $modules = [];
 
+		/**
+		 * Get submodule by name.
+		 *
+		 * @param string $name
+		 *
+		 * @return mixed|null
+		 */
 		public function __get( string $name ) {
 			if ( ! is_numeric( $name ) && isset( $this->modules[ $name ] ) ) {
 				if ( $this->modules[ $name ] instanceof Closure ) {

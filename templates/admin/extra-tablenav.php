@@ -1,8 +1,8 @@
 <?php
 /**
- * @var string $which    'top', or 'bottom'.
- * @var string $autoload 'yes', or 'no'.
- * @var string $backup_options_url
+ * @var string $which              'top', or 'bottom'.
+ * @var string $autoload           'yes', or 'no'.
+ * @var string $backup_options_url URL to backup request URL.
  */
 
 /**
@@ -55,7 +55,7 @@ $which = esc_attr( $which );
         <input id="restore-option-<?= $which ?>"
                class="button action"
                type="button"
-               value="<?php esc_attr_e('Restore Options', 'noe'); ?>">
+               value="<?php esc_attr_e( 'Restore Options', 'noe' ); ?>">
 
         <input id="backup-file-upload-<?= $which ?>"
                type="file"

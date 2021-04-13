@@ -8,6 +8,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! class_exists( 'NOE_Admin_Menu' ) ) {
+	/**
+	 * Class NOE_Admin_Menu
+	 *
+	 * Admin menu page module.
+	 */
 	class NOE_Admin_Menu implements NOE_Admin_Module {
 		use NOE_Template_Impl;
 
@@ -21,6 +26,9 @@ if ( ! class_exists( 'NOE_Admin_Menu' ) ) {
 			add_action( 'current_screen', [ $this, 'current_screen' ] );
 		}
 
+		/**
+		 * Add menu page.
+		 */
 		public function add_admin_menu() {
 			$this->page_hook = add_submenu_page(
 				'tools.php',
@@ -32,18 +40,29 @@ if ( ! class_exists( 'NOE_Admin_Menu' ) ) {
 			);
 		}
 
+		/**
+		 * Output menu page.
+		 */
 		public function output_admin_menu_page() {
 			if ( ( $module = $this->get_menu_page_module() ) ) {
 				$module->output_submenu_page();
 			}
 		}
 
+		/**
+		 * Current screen handler.
+		 *
+		 * @param WP_Screen $screen
+		 */
 		public function current_screen( WP_Screen $screen ) {
 			if ( $this->page_hook === $screen->id && ( $module = $this->get_menu_page_module() ) ) {
 				$module->current_screen( $screen );
 			}
 		}
 
+		/**
+		 * Print tabs.
+		 */
 		public function output_tabs() {
 			$this->template(
 				'admin/tabs.php',
@@ -55,15 +74,28 @@ if ( ! class_exists( 'NOE_Admin_Menu' ) ) {
 			);
 		}
 
+		/**
+		 * Print hidden form values for tabs.
+		 */
 		public function output_hidden_tab_values() {
 			printf( '<input type="hidden" name="tab" value="%s">', esc_attr( $this->get_current_tab() ) );
 		}
 
+		/**
+		 * Get the page hook.
+		 *
+		 * @return string
+		 */
 		public function get_page_hook(): string {
 			return $this->page_hook;
 		}
 
-		protected function get_menu_page_module(): ?NOE_Submenu_Page {
+		/**
+		 * Get the current page submodule.
+		 *
+		 * @return NOE_Submenu_Page
+		 */
+		protected function get_menu_page_module(): NOE_Submenu_Page {
 			if ( is_null( $this->page_module ) ) {
 				switch ( $this->get_current_tab() ) {
 					case 'option-editor':
@@ -82,6 +114,11 @@ if ( ! class_exists( 'NOE_Admin_Menu' ) ) {
 			return $this->page_module;
 		}
 
+		/**
+		 * Get the current tab slug.
+		 *
+		 * @return string
+		 */
 		protected function get_current_tab(): string {
 			$tab = sanitize_key( $_GET['tab'] ?? '' );
 
@@ -92,6 +129,11 @@ if ( ! class_exists( 'NOE_Admin_Menu' ) ) {
 			return $tab;
 		}
 
+		/**
+		 * Get available tabs data.
+		 *
+		 * @return array<string, string>
+		 */
 		protected function get_tabs(): array {
 			return [
 				'option-editor'    => __( 'Option Editor', 'noe' ),
@@ -99,9 +141,13 @@ if ( ! class_exists( 'NOE_Admin_Menu' ) ) {
 			];
 		}
 
+		/**
+		 * Get the default tab slug.
+		 *
+		 * @return string
+		 */
 		protected function get_default_tab(): string {
 			return 'option-editor';
 		}
 	}
 }
-
