@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Naran Option Editor plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Naran Option Editor 1.7.0\n"
+"Project-Id-Version: Naran Option Editor 1.8.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/naran-option-editor\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-04-13T11:13:21+09:00\n"
+"POT-Creation-Date: 2021-04-13T11:33:22+09:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: noe\n"
@@ -172,12 +172,12 @@ msgid "Value"
 msgstr ""
 
 #: includes/modules/list-tables/class-noe-options-list-table.php:45
-#: templates/admin/edit-option.php:71
+#: templates/admin/edit-option.php:75
 msgid "Description"
 msgstr ""
 
 #: includes/modules/list-tables/class-noe-options-list-table.php:46
-#: templates/admin/edit-option.php:86
+#: templates/admin/edit-option.php:90
 msgid "Autoload"
 msgstr ""
 
@@ -252,27 +252,31 @@ msgstr ""
 msgid "Option name is required."
 msgstr ""
 
-#: templates/admin/edit-option.php:64
+#: templates/admin/edit-option.php:65
+msgid "Edit serialized value"
+msgstr ""
+
+#: templates/admin/edit-option.php:68
 msgid "Option size"
 msgstr ""
 
-#: templates/admin/edit-option.php:80
+#: templates/admin/edit-option.php:84
 msgid "Some description about this option."
 msgstr ""
 
-#: templates/admin/edit-option.php:94
+#: templates/admin/edit-option.php:98
 msgid "Autoload this option."
 msgstr ""
 
-#: templates/admin/edit-option.php:100
+#: templates/admin/edit-option.php:104
 msgid "Save Option"
 msgstr ""
 
-#: templates/admin/edit-option.php:102
+#: templates/admin/edit-option.php:106
 msgid "Back to List"
 msgstr ""
 
-#: templates/admin/edit-option.php:110
+#: templates/admin/edit-option.php:114
 msgid "Remove this option."
 msgstr ""
 

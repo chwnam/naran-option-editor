@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Naran Option Editor 1.5.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/naran-option-"
 "editor\n"
-"POT-Creation-Date: 2021-04-13T11:13:21+09:00\n"
-"PO-Revision-Date: 2021-04-13 11:14+0900\n"
+"POT-Creation-Date: 2021-04-13T11:33:22+09:00\n"
+"PO-Revision-Date: 2021-04-13 11:34+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -177,12 +177,12 @@ msgid "Value"
 msgstr "값"
 
 #: includes/modules/list-tables/class-noe-options-list-table.php:45
-#: templates/admin/edit-option.php:71
+#: templates/admin/edit-option.php:75
 msgid "Description"
 msgstr "설명"
 
 #: includes/modules/list-tables/class-noe-options-list-table.php:46
-#: templates/admin/edit-option.php:86
+#: templates/admin/edit-option.php:90
 msgid "Autoload"
 msgstr "자동로드"
 
@@ -256,27 +256,31 @@ msgstr "각 사용자의 접두어 필터 목록."
 msgid "Option name is required."
 msgstr "옵션 이름은 필수입니다."
 
-#: templates/admin/edit-option.php:64
+#: templates/admin/edit-option.php:65
+msgid "Edit serialized value"
+msgstr "직렬화된 값 편집"
+
+#: templates/admin/edit-option.php:68
 msgid "Option size"
 msgstr "옵션 사이즈"
 
-#: templates/admin/edit-option.php:80
+#: templates/admin/edit-option.php:84
 msgid "Some description about this option."
 msgstr "이 옵션에 대한 설명란."
 
-#: templates/admin/edit-option.php:94
+#: templates/admin/edit-option.php:98
 msgid "Autoload this option."
 msgstr "이 옵션은 자동로드 됩니다."
 
-#: templates/admin/edit-option.php:100
+#: templates/admin/edit-option.php:104
 msgid "Save Option"
 msgstr "옵션 저장"
 
-#: templates/admin/edit-option.php:102
+#: templates/admin/edit-option.php:106
 msgid "Back to List"
 msgstr "목록으로"
 
-#: templates/admin/edit-option.php:110
+#: templates/admin/edit-option.php:114
 msgid "Remove this option."
 msgstr "이 옵션 삭제."
 

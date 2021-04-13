@@ -5,7 +5,7 @@
  * Author:            Changwoo
  * Author URI:        https://blog.changwoo.pe.kr
  * Plugin URI:        https://github.com/chwnam/naran-option-editor
- * Version:           1.8.1
+ * Version:           1.8.2
  * Requires PHP:      7.4
  * Requires at least: 5.0
  * Text Domain:       noe
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 const NOE_MAIN    = __FILE__;
-const NOE_VERSION = '1.8.1';
+const NOE_VERSION = '1.8.2';
 
 require_once __DIR__ . '/vendor/autoload.php';
 

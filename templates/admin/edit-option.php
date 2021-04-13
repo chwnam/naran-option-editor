@@ -61,6 +61,10 @@ if ( ! defined( 'ABSPATH' ) ) {
                           cols="40"
                           autocomplete="off"><?php echo esc_textarea( $option->option_value ?? '' ); ?></textarea>
                     <p class="description">
+                        <a href="https://sciactive.com/phpserialeditor.php" target="_blank"><?php
+                            esc_html_e( 'Edit serialized value', 'noe' );
+                            ?></a>
+                        |
 						<?php esc_html_e( 'Option size', 'noe' ); ?>: <span id="option-size"><?php
 							echo intval( strlen( $option->option_value ?? '' ) ); ?></span>
                     </p>
