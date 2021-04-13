@@ -77,9 +77,23 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
     }
 
     @media screen and (max-width: 782px) {
+        .wp-list-table .column-option_id {
+            display: none;
+        }
+
+        .wp-list-table .is-expanded .column-option_id {
+            padding: 3px 8px 3px 35% !important;
+        }
+
         .tablenav.top .actions.prefix-filter-setup {
             display: block;
             margin-bottom: 14px;
+        }
+
+        .tablenav.top .displaying-num {
+            display: block !important;
+            margin: 5px 0 20px;
+            font-size: 16px;
         }
     }
 
@@ -202,7 +216,7 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
                 <input id="sql-file-upload" type="file" accept=".sql.gz,.sql" style="display: none;">
             </div>
             <div class="tablenav-pages"> <!-- one-page 추가하면 페이지네이션 출력되지 않음 -->
-                <span class="displaying-num">10개의 항목</span>
+                <span class="displaying-num" title="총 크기: 81234580">총 크기 8.2MB, 10개의 항목</span>
                 <span class="pagination-links">
                     <span aria-hidden="true" class="tablenav-pages-navspan button">&laquo;</span>
                     <span aria-hidden="true" class="tablenav-pages-navspan button">&lsaquo;</span>
@@ -222,6 +236,9 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
                     <span class="tablenav-pages-navspan button" aria-hidden="true">&raquo;</span>
                 </span>
             </div> <!-- .tablenav-pages -->
+            <div class="alignright total-option-size">
+
+            </div>
             <br class="clear">
         </div> <!-- .tablenav.top -->
 
