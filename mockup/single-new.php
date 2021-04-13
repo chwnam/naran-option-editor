@@ -35,6 +35,8 @@ if ( ! defined( 'ABSPATH' ) || ! defined( 'NOE_MAIN' ) ) {
                           rows="3"
                           cols="40"></textarea>
                     <p class="description">
+                        <a href="https://sciactive.com/phpserialeditor.php" target="_blank">직렬화된 값 편집</a>
+                        |
                         옵션 길이: <span id="option-size">22</span>
                     </p>
                 </td>
