@@ -9,14 +9,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-04-13T11:33:22+09:00\n"
+"POT-Creation-Date: 2021-04-13T16:00:16+09:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: noe\n"
 
 #. Plugin Name of the plugin
-#: includes/modules/class-noe-admin-menu.php:27
-#: includes/modules/class-noe-admin-menu.php:28
+#: includes/modules/class-noe-admin-menu.php:35
+#: includes/modules/class-noe-admin-menu.php:36
 msgid "Naran Option Editor"
 msgstr ""
 
@@ -36,11 +36,11 @@ msgstr ""
 msgid "https://blog.changwoo.pe.kr"
 msgstr ""
 
-#: includes/modules/class-noe-admin-menu.php:97
+#: includes/modules/class-noe-admin-menu.php:139
 msgid "Option Editor"
 msgstr ""
 
-#: includes/modules/class-noe-admin-menu.php:98
+#: includes/modules/class-noe-admin-menu.php:140
 #: templates/admin/prefix-inspector.php:29
 msgid "Prefix Inspector"
 msgstr ""
@@ -159,92 +159,92 @@ msgstr ""
 msgid "Exclude Core Options"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:42
+#: includes/modules/list-tables/class-noe-options-list-table.php:58
 msgid "ID"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:43
+#: includes/modules/list-tables/class-noe-options-list-table.php:59
 msgid "Name"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:44
+#: includes/modules/list-tables/class-noe-options-list-table.php:60
 msgid "Value"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:45
+#: includes/modules/list-tables/class-noe-options-list-table.php:61
 #: templates/admin/edit-option.php:75
 msgid "Description"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:46
+#: includes/modules/list-tables/class-noe-options-list-table.php:62
 #: templates/admin/edit-option.php:90
 msgid "Autoload"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:47
+#: includes/modules/list-tables/class-noe-options-list-table.php:63
 #: templates/admin/prefix-inspector.php:115
 msgid "Size"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:200
+#: includes/modules/list-tables/class-noe-options-list-table.php:255
 msgid "[Serialized]"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:213
+#: includes/modules/list-tables/class-noe-options-list-table.php:275
 msgid "Yes"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:213
+#: includes/modules/list-tables/class-noe-options-list-table.php:275
 msgid "No"
 msgstr ""
 
 #. translators: "option name"
-#: includes/modules/list-tables/class-noe-options-list-table.php:234
+#: includes/modules/list-tables/class-noe-options-list-table.php:319
 msgid "Edit &#8220;%s&#8221;"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:235
+#: includes/modules/list-tables/class-noe-options-list-table.php:320
 msgid "Edit"
 msgstr ""
 
 #. translators: "option name"
-#: includes/modules/list-tables/class-noe-options-list-table.php:241
+#: includes/modules/list-tables/class-noe-options-list-table.php:326
 msgid "Remove &#8220;%s&#8221;"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:242
+#: includes/modules/list-tables/class-noe-options-list-table.php:327
 msgid "Remove"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:251
+#: includes/modules/list-tables/class-noe-options-list-table.php:341
 msgid "Delete Selected"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:322
+#: includes/modules/list-tables/class-noe-options-list-table.php:429
 msgid "All"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:330
+#: includes/modules/list-tables/class-noe-options-list-table.php:437
 msgid "Core Options"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:338
+#: includes/modules/list-tables/class-noe-options-list-table.php:445
 msgid "Custom Options"
 msgstr ""
 
 #. translators: option size
-#: includes/modules/list-tables/class-noe-options-list-table.php:356
+#: includes/modules/list-tables/class-noe-options-list-table.php:470
 msgid "Total option size: %d byte"
 msgid_plural "Total option size: %d bytes"
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: option size in human-friendly style
-#: includes/modules/list-tables/class-noe-options-list-table.php:362
+#: includes/modules/list-tables/class-noe-options-list-table.php:476
 msgid "Total: %s, "
 msgstr ""
 
-#: includes/modules/registerers/class-noe-registerer-meta.php:45
+#: includes/modules/registerers/class-noe-registerer-meta.php:47
 msgid "Each user's prefix filters list."
 msgstr ""
 
@@ -383,19 +383,19 @@ msgid "Action"
 msgstr ""
 
 #: templates/admin/prefix-inspector.php:136
-msgid "Add to Filter List"
+msgid "Add to prefixes list"
 msgstr ""
 
 #: templates/admin/prefix-inspector.php:139
-msgid "Removed from the prefixes list."
+msgid "Removed from prefixes list."
 msgstr ""
 
 #: templates/admin/prefix-inspector.php:145
-msgid "Remove from Filter List"
+msgid "Remove from prefixes list"
 msgstr ""
 
 #: templates/admin/prefix-inspector.php:148
-msgid "Added to the prefixes list."
+msgid "Added to prefixes list."
 msgstr ""
 
 #: templates/admin/prefix-inspector.php:155

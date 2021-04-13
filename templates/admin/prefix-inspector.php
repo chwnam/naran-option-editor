@@ -133,19 +133,19 @@ if ( ! defined( 'ABSPATH' ) ) {
                             <div class="add <?php echo isset( $prefix_filters[ $item->prefix ] ) ? 'hidden' : ''; ?>">
                                 <a href="#"
                                    data-prefix="<?php echo esc_attr( $item->prefix ?? '' ); ?>">
-									<?php esc_html_e( 'Add to Filter List', 'noe' ); ?>
+									<?php esc_html_e( 'Add to prefixes list', 'noe' ); ?>
                                 </a>
                                 <span class="message"><?php
-									esc_html_e( 'Removed from the prefixes list.', 'noe' ); ?></span>
+									esc_html_e( 'Removed from prefixes list.', 'noe' ); ?></span>
                             </div>
                             <div class="remove <?php echo isset( $prefix_filters[ $item->prefix ] ) ? '' : 'hidden'; ?>">
                                 <a href="#"
                                    class="submitdelete"
                                    data-prefix="<?php echo esc_attr( $item->prefix ?? '' ); ?>">
-									<?php esc_html_e( 'Remove from Filter List', 'noe' ); ?>
+									<?php esc_html_e( 'Remove from prefixes list', 'noe' ); ?>
                                 </a>
                                 <span class="message"><?php
-									esc_html_e( 'Added to the prefixes list.', 'noe' ); ?></span>
+									esc_html_e( 'Added to prefixes list.', 'noe' ); ?></span>
                             </div>
                         </td>
                     </tr>
