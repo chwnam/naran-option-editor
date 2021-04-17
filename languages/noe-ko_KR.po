@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/naran-option-"
 "editor\n"
 "POT-Creation-Date: 2021-04-13T16:00:16+09:00\n"
-"PO-Revision-Date: 2021-04-13 16:00+0900\n"
+"PO-Revision-Date: 2021-04-13 18:01+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -33,7 +33,7 @@ msgstr "관리자 화면에서 옵션을 편집하세요."
 
 #. Author of the plugin
 msgid "Changwoo"
-msgstr "changwoo"
+msgstr "Changwoo"
 
 #. Author URI of the plugin
 msgid "https://blog.changwoo.pe.kr"
@@ -96,7 +96,7 @@ msgstr "이 플러그인으로 테이블을 복원하려면 mysqli를 사용하�
 
 #: includes/modules/class-noe-admin-option-editor.php:357
 msgid "You are not allowed to do this task"
-msgstr "당신을 이 작업을 실행할 권한이 없습니다."
+msgstr "당신을 이 작업을 실행할 권한이 없습니다"
 
 #: includes/modules/class-noe-admin-option-editor.php:361
 msgid "Backup file not found."
