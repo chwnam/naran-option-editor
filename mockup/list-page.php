@@ -13,7 +13,8 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
         margin-right: 6px;
     }
 
-    #prefix-filter > li {
+    #prefix-filter > li,
+    #bulk-desc-edit-dialog li {
         float: left;
         padding: 3px 6px;
         margin: 3px 4px;
@@ -37,13 +38,18 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
         clear: both;
     }
 
-    #prefix-filter-dialog label {
+    .edit-dialog fieldset {
+        margin-bottom: 15px;
+    }
+
+    .edit-dialog label {
         display: block;
         font-weight: bold;
         margin-bottom: 5px;
     }
 
-    #prefix-filter-dialog input {
+    .edit-dialog input,
+    .edit-dialog textarea {
         width: 100%;
     }
 
@@ -76,6 +82,14 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
         margin-top: 2px;
     }
 
+    .edit-description {
+        display: none;
+    }
+
+    .column-option-desc:hover .edit-description {
+        display: inline;
+    }
+
     @media screen and (max-width: 782px) {
         .wp-list-table .column-option_id {
             display: none;
@@ -106,8 +120,12 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
 
 <script>
     jQuery(function ($) {
+        // Prefix filter dialog.
         $('#prefix-filter-dialog').dialog({
             modal: true,
+            autoOpen: false,
+            draggable: false,
+            resizable: false,
             buttons: {
                 "추가": function () {
                     $(this).dialog('close');
@@ -116,13 +134,54 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
                     $(this).dialog('close');
                 },
             },
-            autoOpen: false,
         });
 
         $('#prefix-setup-top').on('click', function () {
             $('#prefix-filter-dialog').dialog('open');
         });
 
+        // Description edit dialog.
+        $('#desc-edit-dialog').dialog({
+            modal: true,
+            autoOpen: false,
+            draggable: false,
+            resizable: false,
+            buttons: {
+                "확인": function () {
+                    $(this).dialog('close');
+                },
+                "취소": function () {
+                    $(this).dialog('close');
+                },
+            }
+        });
+
+        $('.edit-description').on('click', function (e) {
+            e.preventDefault();
+            $('#desc-edit-dialog').dialog('open');
+        });
+
+        // Bulk description edit dialog.
+        $('#bulk-desc-edit-dialog').dialog({
+            modal: true,
+            autoOpen: false,
+            draggable: false,
+            resizable: false,
+            buttons: {
+                "확인": function () {
+                    $(this).dialog('close');
+                },
+                "취소": function () {
+                    $(this).dialog('close');
+                },
+            }
+        });
+
+        $('#mockup-only-open-bulk-edit-desc').on('click', function () {
+            $('#bulk-desc-edit-dialog').dialog('open');
+        });
+
+        // Option backup / restore
         $('#restore-option-1').on('click', function () {
             $('#sql-file-upload').trigger('click');
         });
@@ -131,10 +190,14 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
             alert('The file is uploaded.');
             e.currentTarget.value = '';
         });
+
+
     });
 </script>
 
+<!-- Prefix filter dialog -->
 <div id="prefix-filter-dialog"
+     class="edit-dialog"
      title="접두어 필터"
      style="display: none;">
     <form>
@@ -146,6 +209,44 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
     <p id="remove-all-filters">
         <a href="#">현재 모든 접두어 제거</a>
     </p>
+</div>
+
+<!-- Desc edit dialog -->
+<div id="desc-edit-dialog"
+     class="edit-dialog"
+     title="Edit Description"
+     style="display:none;">
+    <form>
+        <fieldset>
+            <label for="edit-desc-option-name">Option Name</label>
+            <span>blogname</span>
+        </fieldset>
+        <fieldset>
+            <label for="edit-desc">Description</label>
+            <textarea id="edit-desc" name="edit_desc" rows="8">코어 옵션. 이 사이트의 제목</textarea>
+        </fieldset>
+    </form>
+</div>
+
+<!-- Bulk desc edit dialog -->
+<div id="bulk-desc-edit-dialog"
+     class="edit-dialog"
+     title="Descriptions Bulk Edit"
+     style="display: none;">
+    <form>
+        <fieldset>
+            <label for="bulk-edit-desc-option-names">Option Name(s)</label>
+            <ul>
+                <li>siteurl</li>
+                <li>home</li>
+                <li>blog_name</li>
+            </ul>
+        </fieldset>
+        <fieldset>
+            <label for="bulk-edit-desc">Description</label>
+            <textarea id="bulk-edit-desc" name="bulk_edit_desc" rows="8">벌크 옵션 설명 수정</textarea>
+        </fieldset>
+    </form>
 </div>
 
 <div class="wrap">
@@ -296,6 +397,7 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
                 <th id="autoload"
                     class="manage-column column-autoload" scope="col">
                     자동로드
+
                 </th>
                 <th id="option-size"
                     class="manage-column column-option-size sortable desc" scope="col">
@@ -343,6 +445,7 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
                 </td>
                 <td class="option-desc column-option-desc" data-colname="설명">
                     코어 옵션. 사이트 대표 URL.
+                    <a href="#" class="edit-description">[수정...]</a>
                 </td>
                 <td class="autoload column-autoload" data-colname="자동로드">
                     yes
@@ -387,6 +490,7 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
                 </td>
                 <td class="option-desc column-option-desc" data-colname="설명">
                     코어 옵션. 홈 주소 URL.
+                    <a href="#" class="edit-description">[수정...]</a>
                 </td>
                 <td class="autoload column-autoload" data-colname="자동로드">
                     yes
@@ -431,6 +535,7 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
                 </td>
                 <td class="option-desc column-option-desc" data-colname="설명">
                     코어 옵션. 이 사이트의 제목
+                    <a href="#" class="edit-description">[수정...]</a>
                 </td>
                 <td class="autoload column-autoload" data-colname="자동로드">
                     yes
@@ -476,3 +581,5 @@ wp_enqueue_style( 'wp-jquery-ui-dialog' );
     <div id="ajax-response"></div>
     <div class="clear"></div>
 </div>
+
+<button id="mockup-only-open-bulk-edit-desc" class="button">(목업 전용) 벌크 옵션 설명 편집...</button>
