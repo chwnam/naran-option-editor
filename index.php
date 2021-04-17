@@ -7,7 +7,7 @@
  * Plugin URI:        https://github.com/chwnam/naran-option-editor
  * Version:           1.8.2
  * Requires PHP:      7.4
- * Requires at least: 5.0
+ * Requires at least: 5.5.0
  * Text Domain:       noe
  * Domain Path:       /languages
  * License:           GPLv2 or later
