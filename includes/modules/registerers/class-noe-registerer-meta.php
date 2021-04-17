@@ -60,6 +60,8 @@ if ( ! class_exists( 'NOE_Registerer_Meta' ) ) {
 								}
 							}
 
+							ksort( $sanitized );
+
 							return $sanitized;
 						},
 					]
