@@ -283,7 +283,11 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 		 * @param $item
 		 */
 		protected function column_option_desc( $item ) {
-			echo esc_html( $item->description ?? '' );
+			printf(
+				'<span class="option-desc-text">%s</span> <a href="#" class="edit-option_desc">%s</a>',
+				esc_html( $item->description ?? '' ),
+				__( '[Edit...]', 'noe' )
+			);
 		}
 
 		/**
@@ -354,17 +358,18 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 			parent::display_tablenav( $which );
 
 			if ( 'top' === $which ) {
-				$meta = noe_meta()->user_prefix_filters;
-
-				$prefix_filters = $meta->get_value( get_current_user_id() );
+				// Prefix filter, and dialog.
+				$prefix_filters = noe_meta()->user_prefix_filters->get_value( get_current_user_id() );
 				if ( ! is_array( $prefix_filters ) ) {
 					$prefix_filters = [];
 				}
-
 				$this->template(
 					'admin/prefix-filter.php',
 					[ 'prefix_filters' => &$prefix_filters ]
 				);
+
+				// Description editor dialog.
+				$this->template( 'admin/edit-desc-dialog.php' );
 			}
 		}
 

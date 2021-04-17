@@ -8,6 +8,7 @@
             textPrefixAlreadyExists: 'The prefix is already added. Please choose another one.',
             textRestoreOptionAlert: 'Are you sure you want to restore option table with the file?',
             textRestoreComplete: 'The option table is restored.',
+            textSubmit: 'Submit',
         };
 
         var prefixManager = {
@@ -75,13 +76,15 @@
             toggleAllWrap = $('#noe-toggle-all-prefixes-wrap'),
             tmpl = wp.template('filter-item');
 
-        // Dialog declaration
-        var dialogOpts = {
-            modal: true,
-            buttons: {},
+        // Prefix filer dialog declaration
+        var prefixDialogOpts = {
             autoOpen: false,
+            buttons: {},
+            draggable: false,
+            modal: true,
+            resizable: false,
         };
-        dialogOpts.buttons[opt.textAdd] = function () {
+        prefixDialogOpts.buttons[opt.textAdd] = function () {
             var newPrefix = $('#new-prefix'),
                 newValue = newPrefix.val().trim();
             if (newValue.length) {
@@ -96,14 +99,84 @@
                 }
             }
         };
-        dialogOpts.buttons[opt.textCancel] = function () {
+        prefixDialogOpts.buttons[opt.textCancel] = function () {
             $(this).dialog('close');
         };
-        $('#prefix-filter-dialog').dialog(dialogOpts);
+        $('#prefix-filter-dialog').dialog(prefixDialogOpts);
 
         // Open the prefix filter dialog.
         $('#prefix-setup-top, #prefix-setup-bottom').on('click', function () {
             $('#prefix-filter-dialog').dialog('open');
+        });
+
+        var editDescDialogOpts = {
+            autoOpen: false,
+            buttons: {},
+            draggable: false,
+            modal: true,
+            resizable: false,
+        }
+        editDescDialogOpts.buttons[opt.textSubmit] = function () {
+            var optionId = $('#edit-desc-option_id').val(),
+                optionDesc = $('#edit-desc-textarea').val(),
+                self = $(this);
+
+            $.ajax(opt.ajaxUrl, {
+                method: 'post',
+                data: {
+                    action: 'noe_edit_option_desc',
+                    nonce: opt.nonce,
+                    option_id: optionId,
+                    option_desc: optionDesc,
+                },
+                beforeSend: function () {
+                    var anchor = self.data('noeCurrentEdit'),
+                        columnText = anchor.siblings('.option-desc-text');
+                    columnText.text(optionDesc);
+                    self.dialog('close');
+                },
+                success: function (response) {
+                    if (!response.success && response.hasOwnProperty('data') && Array.isArray(response.data)) {
+                        alert('[' + response.data[0].code + '] ' + response.data[0].message);
+                    } else {
+                        console.error('Error', response);
+                    }
+                },
+                error: function (jqXhr, textStatus, errorThrown) {
+                    alert(jqXhr.status + ': ' + errorThrown);
+                }
+            });
+        };
+        editDescDialogOpts.buttons[opt.textCancel] = function () {
+            $(this).dialog('close');
+        };
+        $('#edit-desc-dialog').dialog(editDescDialogOpts);
+
+        // Open edit-desc-dialog
+        $('.edit-option_desc').on('click', function (e) {
+            var tr,
+                optionId,
+                optionName,
+                optionValue,
+                optionDesc,
+                self = $(e.currentTarget),
+                dialog = $('#edit-desc-dialog');
+
+            e.preventDefault();
+
+            tr = self.closest('tr');
+            optionId = tr.find('td.column-option_id').text().trim();
+            optionName = tr.find('td.column-option_name a.row-title').attr('title');
+            optionValue = tr.find('td.column-option_value').text().trim();
+            optionDesc = tr.find('.option-desc-text').text().trim();
+
+            // Dialog text update.
+            dialog.find('#edit-desc-option_id').val(optionId);
+            dialog.find('#edit-desc-option_name').text(optionName);
+            dialog.find('#edit-desc-option_value').text(optionValue);
+            dialog.find('#edit-desc-textarea').val(optionDesc);
+            dialog.data('noeCurrentEdit', self);
+            dialog.dialog('open');
         });
 
         // Delete option.

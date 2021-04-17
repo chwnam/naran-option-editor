@@ -54,6 +54,7 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 							'The option table is restored. The page is now reloaded.',
 							'noe'
 						),
+						'textSubmit'              => __( 'Submit', 'noe' ),
 					]
 				);
 				wp_enqueue_style( 'noe-option-table' );
@@ -78,7 +79,7 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 				$option_id    = $_POST['option_id'] ?? false;
 				$option_name  = sanitize_text_field( $_POST['option_name'] ?? '' );
 				$option_value = wp_unslash( $_POST['option_value'] ?? '' );
-				$description  = sanitize_text_field( $_POST['description'] ?? '' );
+				$description  = sanitize_textarea_field( $_POST['description'] ?? '' );
 				$autoload     = 'yes' === ( $_POST['autoload'] ?? 'no' );
 
 				if ( empty( $option_id ) || ( ! is_numeric( $option_id ) && 'new' !== $option_id ) ) {
@@ -482,6 +483,21 @@ PHP_EOL;
 			if ( current_user_can( 'administrator' ) ) {
 				noe()->prefix_filter->set_all_prefixes( get_current_user_id(), false );
 				wp_send_json_success();
+			}
+		}
+
+		/**
+		 * AJAX Callback: edit option description.
+		 */
+		public function edit_option_desc() {
+			check_ajax_referer( 'noe-option-table', 'nonce' );
+			if ( current_user_can( 'administrator' ) ) {
+				$option_id   = absint( $_REQUEST['option_id'] ?? '0' );
+				$option_desc = sanitize_textarea_field( $_REQUEST['option_desc'] ?? '' );
+				if ( $option_id ) {
+					noe()->desc_table->update_description( $option_id, $option_desc );
+					wp_send_json_success();
+				}
 			}
 		}
 

@@ -76,6 +76,12 @@ if ( ! class_exists( 'NOE_Registerer_Admin_Ajax' ) ) {
 						noe()->admin->option_editor->restore_options();
 					}
 				),
+				new NOE_Ajax(
+					'noe_edit_option_desc',
+					function () {
+						noe()->admin->option_editor->edit_option_desc();
+					}
+				),
 			];
 		}
 	}

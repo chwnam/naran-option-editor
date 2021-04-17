@@ -1,3 +1,13 @@
+1.9.0
+=====
+Apr. 18th, 2021.
+
+* Add: Quick option description edit.
+* Edit: Sort prefix filter items before update.
+* Edit: Minimum WP version bump to 5.5.0.
+* Fix: Saving option description removes line breaks.
+
+
 1.8.2
 =====
 Apr. 13th, 2021.

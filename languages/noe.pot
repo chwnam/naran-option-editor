@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the Naran Option Editor plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Naran Option Editor 1.8.2\n"
+"Project-Id-Version: Naran Option Editor 1.9.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/naran-option-editor\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-04-13T16:00:16+09:00\n"
+"POT-Creation-Date: 2021-04-17T22:48:15+09:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: noe\n"
@@ -65,45 +65,49 @@ msgstr ""
 msgid "The option table is restored. The page is now reloaded."
 msgstr ""
 
-#: includes/modules/class-noe-admin-option-editor.php:85
+#: includes/modules/class-noe-admin-option-editor.php:57
+msgid "Submit"
+msgstr ""
+
+#: includes/modules/class-noe-admin-option-editor.php:86
 msgid "Error: empty option id"
 msgstr ""
 
 #. translators: option name
-#: includes/modules/class-noe-admin-option-editor.php:102
+#: includes/modules/class-noe-admin-option-editor.php:103
 msgid "Error: option name `%s` is already exists."
 msgstr ""
 
-#: includes/modules/class-noe-admin-option-editor.php:118
+#: includes/modules/class-noe-admin-option-editor.php:119
 msgid "Option is successfully added."
 msgstr ""
 
 #. translators: option name
-#: includes/modules/class-noe-admin-option-editor.php:136
+#: includes/modules/class-noe-admin-option-editor.php:137
 msgid "Error: option `%s` is already exists."
 msgstr ""
 
-#: includes/modules/class-noe-admin-option-editor.php:166
+#: includes/modules/class-noe-admin-option-editor.php:167
 msgid "Option is successfully updated."
 msgstr ""
 
-#: includes/modules/class-noe-admin-option-editor.php:353
+#: includes/modules/class-noe-admin-option-editor.php:354
 msgid "Use mysqli to restore option table with this plugin."
 msgstr ""
 
-#: includes/modules/class-noe-admin-option-editor.php:357
+#: includes/modules/class-noe-admin-option-editor.php:358
 msgid "You are not allowed to do this task"
 msgstr ""
 
-#: includes/modules/class-noe-admin-option-editor.php:361
+#: includes/modules/class-noe-admin-option-editor.php:362
 msgid "Backup file not found."
 msgstr ""
 
-#: includes/modules/class-noe-admin-option-editor.php:379
+#: includes/modules/class-noe-admin-option-editor.php:380
 msgid "The file uploaded is not allowed."
 msgstr ""
 
-#: includes/modules/class-noe-admin-option-editor.php:387
+#: includes/modules/class-noe-admin-option-editor.php:388
 msgid "A gzipped file is uploaded, but the server cannot decode the file."
 msgstr ""
 
@@ -172,6 +176,7 @@ msgid "Value"
 msgstr ""
 
 #: includes/modules/list-tables/class-noe-options-list-table.php:61
+#: templates/admin/edit-desc-dialog.php:29
 #: templates/admin/edit-option.php:75
 msgid "Description"
 msgstr ""
@@ -198,54 +203,70 @@ msgstr ""
 msgid "No"
 msgstr ""
 
+#: includes/modules/list-tables/class-noe-options-list-table.php:289
+msgid "[Edit...]"
+msgstr ""
+
 #. translators: "option name"
-#: includes/modules/list-tables/class-noe-options-list-table.php:319
+#: includes/modules/list-tables/class-noe-options-list-table.php:323
 msgid "Edit &#8220;%s&#8221;"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:320
+#: includes/modules/list-tables/class-noe-options-list-table.php:324
 msgid "Edit"
 msgstr ""
 
 #. translators: "option name"
-#: includes/modules/list-tables/class-noe-options-list-table.php:326
+#: includes/modules/list-tables/class-noe-options-list-table.php:330
 msgid "Remove &#8220;%s&#8221;"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:327
+#: includes/modules/list-tables/class-noe-options-list-table.php:331
 msgid "Remove"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:341
+#: includes/modules/list-tables/class-noe-options-list-table.php:345
 msgid "Delete Selected"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:429
+#: includes/modules/list-tables/class-noe-options-list-table.php:434
 msgid "All"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:437
+#: includes/modules/list-tables/class-noe-options-list-table.php:442
 msgid "Core Options"
 msgstr ""
 
-#: includes/modules/list-tables/class-noe-options-list-table.php:445
+#: includes/modules/list-tables/class-noe-options-list-table.php:450
 msgid "Custom Options"
 msgstr ""
 
 #. translators: option size
-#: includes/modules/list-tables/class-noe-options-list-table.php:470
+#: includes/modules/list-tables/class-noe-options-list-table.php:475
 msgid "Total option size: %d byte"
 msgid_plural "Total option size: %d bytes"
 msgstr[0] ""
 msgstr[1] ""
 
 #. translators: option size in human-friendly style
-#: includes/modules/list-tables/class-noe-options-list-table.php:476
+#: includes/modules/list-tables/class-noe-options-list-table.php:481
 msgid "Total: %s, "
 msgstr ""
 
 #: includes/modules/registerers/class-noe-registerer-meta.php:47
 msgid "Each user's prefix filters list."
+msgstr ""
+
+#: templates/admin/edit-desc-dialog.php:14
+msgid "Edit Description"
+msgstr ""
+
+#: templates/admin/edit-desc-dialog.php:21
+msgid "Option Name"
+msgstr ""
+
+#: templates/admin/edit-desc-dialog.php:25
+msgid "Option Value"
 msgstr ""
 
 #: templates/admin/edit-option.php:49
@@ -330,12 +351,12 @@ msgstr ""
 msgid "Toggle All"
 msgstr ""
 
-#: templates/admin/prefix-filter.php:58
+#: templates/admin/prefix-filter.php:59
 #: templates/admin/prefix-inspector.php:113
 msgid "Prefix"
 msgstr ""
 
-#: templates/admin/prefix-filter.php:64
+#: templates/admin/prefix-filter.php:65
 msgid "Remove all prefixes"
 msgstr ""
 

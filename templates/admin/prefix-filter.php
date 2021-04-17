@@ -52,6 +52,7 @@ $all_checked = array_reduce(
 </script>
 
 <div id="prefix-filter-dialog"
+     class="edit-dialog"
      title="Prefix Filter"
      style="display: none;">
     <p>

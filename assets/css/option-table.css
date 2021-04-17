@@ -35,14 +35,18 @@
     clear: both;
 }
 
-/* Filter Dialog */
-#prefix-filter-dialog label {
+.edit-dialog fieldset {
+    margin-bottom: 15px;
+}
+
+.edit-dialog label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-#prefix-filter-dialog input {
+.edit-dialog input[type="text"],
+.edit-dialog textarea {
     width: 100%;
 }
 
@@ -73,6 +77,14 @@
 
 .subsubsub {
     margin-top: 2px !important;
+}
+
+.edit-option_desc {
+    display: none;
+}
+
+.column-option_desc:hover .edit-option_desc {
+    display: inline;
 }
 
 @media screen and (max-width: 782px) {

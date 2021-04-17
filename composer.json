@@ -10,6 +10,7 @@
     ]
   },
   "scripts": {
-    "daa": "@composer dump-autoload -a"
+    "daa": "@composer dump-autoload -a",
+    "make-pot": "wp i18n make-pot . ./languages/noe.pot --domain=noe"
   }
 }
