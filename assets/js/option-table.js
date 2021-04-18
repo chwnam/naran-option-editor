@@ -1,6 +1,6 @@
 (function ($) {
     $(document).ready(function () {
-        var opt = window.hasOwnProperty('noeOptionTable') ? window.noeOptionTable : {
+        var opts = window.hasOwnProperty('noeOptionTable') ? window.noeOptionTable : {
             ajaxUrl: '',
             nonce: '',
             textAdd: 'Add',
@@ -13,7 +13,7 @@
 
         var prefixManager = {
             _callAjax: function (data, callback) {
-                $.ajax(opt.ajaxUrl, {
+                $.ajax(opts.ajaxUrl, {
                     method: 'post',
                     data: data,
                     beforeSend: function () {
@@ -26,47 +26,47 @@
             add: function (prefix, callback) {
                 this._callAjax({
                     action: 'noe_add_prefix',
-                    nonce: opt.nonce,
+                    nonce: opts.nonce,
                     prefix: prefix,
                 }, callback);
             },
             remove: function (prefix, callback) {
                 this._callAjax({
                     action: 'noe_remove_prefix',
-                    nonce: opt.nonce,
+                    nonce: opts.nonce,
                     prefix: prefix,
                 }, callback);
             },
             clear: function (callback) {
                 this._callAjax({
                     action: 'noe_clear_prefixes',
-                    nonce: opt.nonce,
+                    nonce: opts.nonce,
                 }, callback);
             },
             enable: function (prefix, callback) {
                 this._callAjax({
                     action: 'noe_enable_prefix',
-                    nonce: opt.nonce,
+                    nonce: opts.nonce,
                     prefix: prefix,
                 }, callback);
             },
             enableAll: function (callback) {
                 this._callAjax({
                     action: 'noe_enable_all_prefixes',
-                    nonce: opt.nonce,
+                    nonce: opts.nonce,
                 }, callback);
             },
             disable: function (prefix, callback) {
                 this._callAjax({
                     action: 'noe_disable_prefix',
-                    nonce: opt.nonce,
+                    nonce: opts.nonce,
                     prefix: prefix
                 }, callback);
             },
             disableAll: function (callback) {
                 this._callAjax({
                     action: 'noe_disable_all_prefixes',
-                    nonce: opt.nonce,
+                    nonce: opts.nonce,
                 }, callback);
             },
         };
@@ -76,81 +76,48 @@
             toggleAllWrap = $('#noe-toggle-all-prefixes-wrap'),
             tmpl = wp.template('filter-item');
 
-        // Prefix filer dialog declaration
-        var prefixDialogOpts = {
-            autoOpen: false,
-            buttons: {},
-            draggable: false,
-            modal: true,
-            resizable: false,
-        };
-        prefixDialogOpts.buttons[opt.textAdd] = function () {
-            var newPrefix = $('#new-prefix'),
-                newValue = newPrefix.val().trim();
-            if (newValue.length) {
-                if (hasPrefix(newValue)) {
-                    alert(opt.textPrefixAlreadyExists);
-                } else {
-                    prefixManager.add(newValue, function () {
-                        theList.trigger('prefixAdded', newValue);
-                        newPrefix.val('');
-                    });
-                    $(this).dialog('close');
-                }
-            }
-        };
-        prefixDialogOpts.buttons[opt.textCancel] = function () {
-            $(this).dialog('close');
-        };
-        $('#prefix-filter-dialog').dialog(prefixDialogOpts);
+        // Prefix filer dialog.
+        var prefixDialog = null;
 
         // Open the prefix filter dialog.
         $('#prefix-setup-top, #prefix-setup-bottom').on('click', function () {
-            $('#prefix-filter-dialog').dialog('open');
+            if (!prefixDialog) {
+                var prefixDialogOpts = {
+                    autoOpen: false,
+                    buttons: {},
+                    draggable: false,
+                    modal: true,
+                    resizable: false,
+                };
+
+                prefixDialogOpts.buttons[opts.textAdd] = function () {
+                    var newPrefix = $('#new-prefix'),
+                        newValue = newPrefix.val().trim();
+                    if (newValue.length) {
+                        if (hasPrefix(newValue)) {
+                            alert(opts.textPrefixAlreadyExists);
+                        } else {
+                            prefixManager.add(newValue, function () {
+                                theList.trigger('prefixAdded', newValue);
+                                newPrefix.val('');
+                            });
+                            prefixDialog.dialog('close');
+                        }
+                    }
+                };
+
+                prefixDialogOpts.buttons[opts.textCancel] = function () {
+                    prefixDialog.dialog('close');
+                };
+
+                prefixDialog = $('#prefix-filter-dialog').dialog(prefixDialogOpts);
+            }
+
+            prefixDialog.dialog('open');
         });
 
-        var editDescDialogOpts = {
-            autoOpen: false,
-            buttons: {},
-            draggable: false,
-            modal: true,
-            resizable: false,
-        }
-        editDescDialogOpts.buttons[opt.textSubmit] = function () {
-            var optionId = $('#edit-desc-option_id').val(),
-                optionDesc = $('#edit-desc-textarea').val(),
-                self = $(this);
-
-            $.ajax(opt.ajaxUrl, {
-                method: 'post',
-                data: {
-                    action: 'noe_edit_option_desc',
-                    nonce: opt.nonce,
-                    option_id: optionId,
-                    option_desc: optionDesc,
-                },
-                beforeSend: function () {
-                    var anchor = self.data('noeCurrentEdit'),
-                        columnText = anchor.siblings('.option-desc-text');
-                    columnText.text(optionDesc);
-                    self.dialog('close');
-                },
-                success: function (response) {
-                    if (!response.success && response.hasOwnProperty('data') && Array.isArray(response.data)) {
-                        alert('[' + response.data[0].code + '] ' + response.data[0].message);
-                    } else {
-                        console.error('Error', response);
-                    }
-                },
-                error: function (jqXhr, textStatus, errorThrown) {
-                    alert(jqXhr.status + ': ' + errorThrown);
-                }
-            });
-        };
-        editDescDialogOpts.buttons[opt.textCancel] = function () {
-            $(this).dialog('close');
-        };
-        $('#edit-desc-dialog').dialog(editDescDialogOpts);
+        // Edit desc dialog.
+        var editDescDialog = null;
 
         // Open edit-desc-dialog
         $('.edit-option_desc').on('click', function (e) {
@@ -159,10 +126,57 @@
                 optionName,
                 optionValue,
                 optionDesc,
-                self = $(e.currentTarget),
-                dialog = $('#edit-desc-dialog');
+                self = $(e.currentTarget);
 
             e.preventDefault();
+
+            if (!editDescDialog) {
+                var editDescDialogOpts = {
+                    autoOpen: false,
+                    buttons: {},
+                    draggable: false,
+                    modal: true,
+                    resizable: false,
+                }
+
+                // Submit edit desc.
+                editDescDialogOpts.buttons[opts.textSubmit] = function () {
+                    var optionId = $('#edit-desc-option_id').val(),
+                        optionDesc = $('#edit-desc-textarea').val();
+
+                    $.ajax(opts.ajaxUrl, {
+                        method: 'post',
+                        data: {
+                            action: 'noe_edit_option_desc',
+                            nonce: opts.nonce,
+                            option_id: optionId,
+                            option_desc: optionDesc,
+                        },
+                        beforeSend: function () {
+                            var anchor = editDescDialog.data('noeCurrentEdit'),
+                                columnText = anchor.siblings('.option-desc-text');
+                            columnText.text(optionDesc);
+                            editDescDialog.dialog('close');
+                        },
+                        success: function (response) {
+                            if (!response.success && response.hasOwnProperty('data') && Array.isArray(response.data)) {
+                                alert('[' + response.data[0].code + '] ' + response.data[0].message);
+                            } else {
+                                console.error('Error', response);
+                            }
+                        },
+                        error: function (jqXhr, textStatus, errorThrown) {
+                            alert(jqXhr.status + ': ' + errorThrown);
+                        }
+                    });
+                };
+
+                editDescDialogOpts.buttons[opts.textCancel] = function () {
+                    editDescDialog.dialog('close');
+                };
+
+                editDescDialog = $('#edit-desc-dialog').dialog(editDescDialogOpts);
+            }
 
             tr = self.closest('tr');
             optionId = tr.find('td.column-option_id').text().trim();
@@ -171,12 +185,108 @@
             optionDesc = tr.find('.option-desc-text').text().trim();
 
             // Dialog text update.
-            dialog.find('#edit-desc-option_id').val(optionId);
-            dialog.find('#edit-desc-option_name').text(optionName);
-            dialog.find('#edit-desc-option_value').text(optionValue);
-            dialog.find('#edit-desc-textarea').val(optionDesc);
-            dialog.data('noeCurrentEdit', self);
-            dialog.dialog('open');
+            editDescDialog.find('#edit-desc-option_id').val(optionId);
+            editDescDialog.find('#edit-desc-option_name').text(optionName);
+            editDescDialog.find('#edit-desc-option_value').text(optionValue);
+            editDescDialog.find('#edit-desc-textarea').val(optionDesc);
+            editDescDialog.data('noeCurrentEdit', self);
+            editDescDialog.dialog('open');
+        });
+
+        // Bulk edit desc dialog.
+        var bulkEditDescDialog = null,
+            bulkEditDescTmpl = null;
+
+        // Open the bulk desc edit dialog
+        $('#doaction').on('click', function (e) {
+            if ('bulk_edit_desc' === $('#bulk-action-selector-top').val()) {
+                e.preventDefault();
+
+                if (!bulkEditDescDialog) {
+                    var bulkEditDescDialogOpts = {
+                        autoOpen: false,
+                        buttons: {},
+                        draggable: false,
+                        modal: true,
+                        resizable: false,
+                    }
+
+                    // Submit bulk option desc.
+                    bulkEditDescDialogOpts.buttons[opts.textSubmit] = function () {
+                        var optionIds = [],
+                            optionDesc = $('#bulk-edit-desc-textarea');
+
+                        $('#bulk-edit-desc-option-names')
+                            .find('input[type="hidden"][name="bulk_edit_option_id\\[\\]"]')
+                            .each(function (idx, elem) {
+                                optionIds.push(elem.value);
+                            });
+
+                        $.ajax(opts.ajaxUrl, {
+                            method: 'post',
+                            data: {
+                                action: 'noe_bulk_edit_option_desc',
+                                nonce: opts.nonce,
+                                option_ids: optionIds,
+                                option_desc: optionDesc.val().trim()
+                            },
+                            beforeSend: function () {
+                                var currentEdit = bulkEditDescDialog.data('noeCurrentEdit'),
+                                    text = optionDesc.val();
+                                $(currentEdit).each(function (idx, elem) {
+                                    $(elem).text(text);
+                                });
+                                optionDesc.val('');
+                                bulkEditDescDialog.dialog('close');
+                            },
+                            success: function (response) {
+                                if (!response.success && response.hasOwnProperty('data') && Array.isArray(response.data)) {
+                                    alert('[' + response.data[0].code + '] ' + response.data[0].message);
+                                } else {
+                                    console.error('Error', response);
+                                }
+                            },
+                            error: function (jqXhr, textStatus, errorThrown) {
+                                alert(jqXhr.status + ': ' + errorThrown);
+                            }
+                        });
+                    };
+
+                    bulkEditDescDialogOpts.buttons[opts.textCancel] = function () {
+                        bulkEditDescDialog.dialog('close');
+                    }
+
+                    bulkEditDescDialog = $('#bulk-edit-desc-dialog').dialog(bulkEditDescDialogOpts);
+                    bulkEditDescTmpl = wp.template('bulk-edit-option-name');
+                }
+
+                var checked = $('input[type="checkbox"][name="option\\[\\]"]:checked'),
+                    items = [],
+                    currentEdit = [];
+
+                if (!checked.length) {
+                    alert('Check one or more options');
+                }
+
+                items = $(checked).map(function (idx, elem) {
+                    var tr = $(elem).closest('tr'),
+                        optionId = tr.find('.column-option_id').text().trim(),
+                        optionName = tr.find('.column-option_name a.row-title').attr('title'),
+                        optionDesc = tr.find('.column-option_desc');
+
+                    currentEdit.push(optionDesc);
+
+                    return {
+                        option_id: optionId,
+                        option_name: optionName
+                    }
+                });
+
+                // fill values.
+                $('#bulk-edit-desc-option-names').html(bulkEditDescTmpl(items));
+                bulkEditDescDialog.data('noeCurrentEdit', currentEdit);
+                bulkEditDescDialog.dialog('open');
+            }
         });
 
         // Delete option.
@@ -275,16 +385,16 @@
 
             e.preventDefault();
 
-            if (!confirm(opt.textRestoreOptionAlert)) {
+            if (!confirm(opts.textRestoreOptionAlert)) {
                 e.currentTarget.value = '';
                 return false;
             }
 
             formData.append('action', 'noe_restore_options');
-            formData.append('_noe_nonce', opt.nonce);
+            formData.append('_noe_nonce', opts.nonce);
             formData.append('backup_file', e.currentTarget.files[0]);
 
-            $.ajax(opt.ajaxUrl, {
+            $.ajax(opts.ajaxUrl, {
                 method: 'post',
                 data: formData,
                 contentType: false,
@@ -294,7 +404,7 @@
                 },
                 success: function (response) {
                     if (response.success) {
-                        alert(opt.textRestoreComplete);
+                        alert(opts.textRestoreComplete);
                         location.reload();
                     } else if (response.hasOwnProperty('data') && Array.isArray(response.data)) {
                         var message = [];

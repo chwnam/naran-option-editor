@@ -1,3 +1,10 @@
+1.10.0
+======
+Apr. 18th, 2021.
+
+* Add: Bulk option description.
+
+
 1.9.0
 =====
 Apr. 18th, 2021.

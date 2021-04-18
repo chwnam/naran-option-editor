@@ -61,6 +61,28 @@ if ( ! class_exists( 'NOE_Desc_Table' ) ) {
 			return (bool) $wpdb->query( $query );
 		}
 
+		/**
+		 * @param array<int> $option_ids
+		 * @param string     $description
+		 *
+		 * @return int
+		 */
+		public function bulk_update_description( array $option_ids, string $description ): int {
+			global $wpdb;
+
+			$table  = static::get_table();
+			$buffer = [];
+			foreach ( $option_ids as $option_id ) {
+				$buffer[] = $wpdb->prepare( '(%d, %s)', $option_id, $description );
+			}
+			$placeholder = implode( ', ', $buffer );
+
+			$query = "INSERT INTO {$table} (option_id, description) VALUES {$placeholder}" .
+			         " ON DUPLICATE KEY UPDATE description = VALUES(description)";
+
+			return intval( $wpdb->query( $query ) );
+		}
+
 		public function delete_description( int $option_id ) {
 			global $wpdb;
 

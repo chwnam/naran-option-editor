@@ -342,7 +342,8 @@ if ( ! class_exists( 'NOE_Options_List_Table' ) ) {
 		 */
 		protected function get_bulk_actions(): array {
 			return [
-				'delete' => __( 'Delete Selected', 'noe' ),
+				'delete'         => __( 'Delete Selected', 'noe' ),
+				'bulk_edit_desc' => __( 'Edit Descriptions Selected', 'noe' ),
 			];
 		}
 

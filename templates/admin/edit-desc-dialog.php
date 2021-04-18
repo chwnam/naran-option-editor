@@ -33,3 +33,30 @@ if ( ! defined( 'ABSPATH' ) ) {
         </fieldset>
     </form>
 </div>
+
+<div id="bulk-edit-desc-dialog"
+     class="edit-dialog"
+     title="<?php esc_attr_e( 'Bulk Edit Description', 'noe' ); ?>"
+     style="display: none;">
+    <form>
+        <fieldset>
+            <label><?php _e( 'Option Name(s)', 'noe' ); ?></label>
+            <ul id="bulk-edit-desc-option-names"></ul>
+        </fieldset>
+        <fieldset>
+            <label for="bulk-edit-desc-textarea"><?php _e( 'Description', 'noe' ); ?></label>
+            <textarea id="bulk-edit-desc-textarea"
+                      name="bulk_edit_option_desc"
+                      rows="8"></textarea>
+        </fieldset>
+    </form>
+</div>
+
+<script type="text/template" id="tmpl-bulk-edit-option-name">
+    <# data.map(function (idx, elem) { #>
+    <li>
+        {{ elem.option_name }}
+        <input type="hidden" name="bulk_edit_option_id[]" value="{{ elem.option_id}}">
+    </li>
+    <# }); #>
+</script>

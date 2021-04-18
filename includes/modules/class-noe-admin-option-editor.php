@@ -495,8 +495,31 @@ PHP_EOL;
 				$option_id   = absint( $_REQUEST['option_id'] ?? '0' );
 				$option_desc = sanitize_textarea_field( $_REQUEST['option_desc'] ?? '' );
 				if ( $option_id ) {
-					noe()->desc_table->update_description( $option_id, $option_desc );
-					wp_send_json_success();
+					$success = noe()->desc_table->update_description( $option_id, $option_desc );
+					if ( $success ) {
+						wp_send_json_success();
+					} else {
+						wp_send_json_error( new WP_Error( 'Error', 'Error updating description.' ) );
+					}
+				}
+			}
+		}
+
+		/**
+		 * AJAX Callback: bulk edit option description.
+		 */
+		public function bulk_edit_option_desc() {
+			check_ajax_referer( 'noe-option-table', 'nonce' );
+			if ( current_user_can( 'administrator' ) ) {
+				$option_ids  = array_unique( array_filter( array_map( 'absint', $_REQUEST['option_ids'] ?? [] ) ) );
+				$option_desc = sanitize_textarea_field( $_REQUEST['option_desc'] ?? '' );
+				if ( $option_ids ) {
+					$success = noe()->desc_table->bulk_update_description( $option_ids, $option_desc );
+					if ( $success ) {
+						wp_send_json_success();
+					} else {
+						wp_send_json_error( new WP_Error( 'Error', 'Error updating description.' ) );
+					}
 				}
 			}
 		}
