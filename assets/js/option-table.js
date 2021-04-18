@@ -5,6 +5,9 @@
             nonce: '',
             textAdd: 'Add',
             textCancel: 'Cancel',
+            textCheckedIsZeroLength: 'Check one or more options.',
+            textConfirmDeleteOption: 'Are you sure you want to delete this option?',
+            textConfirmRemoveAllFilters: 'Are you sure you want to remove all prefixes?',
             textPrefixAlreadyExists: 'The prefix is already added. Please choose another one.',
             textRestoreOptionAlert: 'Are you sure you want to restore option table with the file?',
             textRestoreComplete: 'The option table is restored.',
@@ -265,7 +268,7 @@
                     currentEdit = [];
 
                 if (!checked.length) {
-                    alert('Check one or more options');
+                    alert(opts.textCheckedZeroLength);
                 }
 
                 items = $(checked).map(function (idx, elem) {
@@ -291,7 +294,7 @@
 
         // Delete option.
         $('a.submitdelete').on('click', function (e) {
-            if (!confirm('Are you sure you want to delete this option?')) {
+            if (!confirm(opts.textConfirmDeleteOption)) {
                 e.preventDefault();
                 return false;
             }
@@ -310,7 +313,7 @@
         // Clear all prefixes.
         $('#remove-all-filters').on('click', function (e) {
             e.preventDefault();
-            if (confirm('Are you sure you want to remove all prefixes?')) {
+            if (confirm(opts.textConfirmRemoveAllFilters)) {
                 prefixManager.clear(function () {
                     theList.trigger('removeAllPrefixes');
                 });

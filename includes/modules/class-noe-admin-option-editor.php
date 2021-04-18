@@ -38,23 +38,17 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 					'noe-option-table',
 					'noeOptionTable',
 					[
-						'ajaxUrl'                 => admin_url( 'admin-ajax.php' ),
-						'nonce'                   => wp_create_nonce( 'noe-option-table' ),
-						'textAdd'                 => __( 'Add', 'noe' ),
-						'textCancel'              => __( 'Cancel', 'noe' ),
-						'textPrefixAlreadyExists' => __(
-							'The prefix is already added. Please choose another one.',
-							'noe'
-						),
-						'textRestoreOptionAlert'  => __(
-							'Are you sure you want to restore option table with the file?',
-							'noe'
-						),
-						'textRestoreComplete'     => __(
-							'The option table is restored. The page is now reloaded.',
-							'noe'
-						),
-						'textSubmit'              => __( 'Submit', 'noe' ),
+						'ajaxUrl'                     => admin_url( 'admin-ajax.php' ),
+						'nonce'                       => wp_create_nonce( 'noe-option-table' ),
+						'textAdd'                     => __( 'Add', 'noe' ),
+						'textCancel'                  => __( 'Cancel', 'noe' ),
+						'textCheckedIsZeroLength'     => __( 'Check one or more options.', 'noe' ),
+						'textConfirmDeleteOption'     => __( 'Are you sure you want to delete this option?', 'noe' ),
+						'textConfirmRemoveAllFilters' => __( 'Are you sure you want to remove all prefixes?', 'noe' ),
+						'textPrefixAlreadyExists'     => __( 'The prefix is already added. Please choose another one.', 'noe' ),
+						'textRestoreOptionAlert'      => __( 'Are you sure you want to restore option table with the file?', 'noe' ),
+						'textRestoreComplete'         => __( 'The option table is restored. The page is now reloaded.', 'noe' ),
+						'textSubmit'                  => __( 'Submit', 'noe' ),
 					]
 				);
 				wp_enqueue_style( 'noe-option-table' );

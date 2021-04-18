@@ -11,6 +11,6 @@
   },
   "scripts": {
     "daa": "@composer dump-autoload -a",
-    "make-pot": "wp i18n make-pot . ./languages/noe.pot --domain=noe"
+    "make-pot": "php -d xdebug.max_nesting_level=512 $(which wp) i18n make-pot . ./languages/noe.pot --domain=noe"
   }
 }
