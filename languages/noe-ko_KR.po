@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/naran-option-"
 "editor\n"
 "POT-Creation-Date: 2021-04-18T11:27:06+09:00\n"
-"PO-Revision-Date: 2021-04-18 11:28+0900\n"
+"PO-Revision-Date: 2021-04-18 11:39+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -415,7 +415,7 @@ msgstr "분석"
 #: templates/admin/prefix-inspector.php:100
 msgid "%d item"
 msgid_plural "%d items"
-msgstr[0] "%d개의 옵션"
+msgstr[0] "%d개의 항목"
 
 #: templates/admin/prefix-inspector.php:107
 msgid "Prefixes list"

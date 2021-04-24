@@ -518,6 +518,130 @@ PHP_EOL;
 			}
 		}
 
+		/**
+		 * AJAX Callback: option name search.
+		 */
+		public function option_name_search() {
+			check_ajax_referer( 'noe_edit_option', 'nonce' );
+
+			if ( current_user_can( 'administrator' ) ) {
+				$errors = new WP_Error();
+
+				$default_span = [ 'wp-core', 'themes', 'plugins' ];
+
+				$code_span = array_unique(
+					array_filter( array_map( 'sanitize_key', (array) ( $_REQUEST['span'] ?? [] ) ) )
+				);
+
+				// Span check.
+				if ( empty( $code_span ) ) {
+					$errors->add( 'Error', __( 'Empty code span', 'noe' ) );
+				} elseif ( ! empty( array_diff( $code_span, $default_span ) ) ) {
+					$errors->add(
+						'Error',
+						sprintf(
+						/* translators: code span text */
+							__( 'Unsupported code span: %s', 'noe' ),
+							implode( ', ', array_diff( $code_span, $default_span ) )
+						)
+					);
+				}
+
+				$option_name = sanitize_text_field( $_REQUEST['option_name'] ?? '' );
+
+				global $wpdb;
+
+				// Option name check.
+				$has_option_name = boolval(
+					$wpdb->get_var(
+						$wpdb->prepare(
+							"SELECT COUNT(*) FROM {$wpdb->options} WHERE option_name = %s LIMIT 0, 1",
+							$option_name
+						)
+					)
+				);
+
+				if ( ! $has_option_name ) {
+					$errors->add(
+						'Error',
+						/* translators: undefined option name */
+						__( 'Unknown option name: %s', 'noe' ),
+						$option_name
+					);
+				}
+
+				// Check if the server can run 'egrep'.
+				exec( 'which egrep', $output, $result );
+
+				if ( 0 === $result ) {
+					$egrep = escapeshellcmd( $output[0] );
+				} else {
+					$egrep = '/usr/bin/egrep';
+				}
+
+				if ( ! is_executable( $egrep ) ) {
+					$errors->add( 'Error', 'Cannot find, or cannot execute \'egrep\' on the server.', 'noe' );
+				}
+
+				if ( $errors->has_errors() ) {
+					wp_send_json_error( $errors );
+				}
+
+				// create egrep command
+				$command = "{$egrep} --color=never -rn \"('|\\\"){$option_name}('|\\\")\" ";
+				$args    = [];
+
+				if ( in_array( 'wp-core', $code_span, true ) ) {
+					$args[] = escapeshellarg( ABSPATH ) . '*\'.php\'';
+					$args[] = escapeshellarg( ABSPATH . 'wp-admin' );
+					$args[] = escapeshellarg( ABSPATH . 'wp-includes' );
+				}
+
+				if ( in_array( 'themes', $code_span, true ) ) {
+					$args[] = escapeshellarg( WP_CONTENT_DIR . '/themes' );
+				}
+
+				if ( in_array( 'plugins', $code_span, true ) ) {
+					$args[] = escapeshellarg( WP_CONTENT_DIR . '/plugins' );
+				}
+
+				$command .= implode( ' ', $args );
+
+				exec( $command, $output, $result );
+
+				// 1: nothing matched.
+				if ( 0 !== $result && 1 !== $result) {
+					$errors->add(
+						'Error',
+						sprintf(
+							'Error running egrep. command: %s, code: %d, message: %s',
+							$command,
+							$result,
+							implode( "\n", $output )
+						)
+					);
+				}
+
+				if ( $errors->has_errors() ) {
+					wp_send_json_error( $errors );
+				}
+
+				if ( $output && $output[0] === $egrep ) {
+					unset( $output[0] );
+				}
+
+				$trim_len = strlen( ABSPATH );
+				$response = array_map(
+					function ( $item ) use ( $trim_len ) {
+						return substr( $item, $trim_len );
+					},
+					$output,
+				);
+
+				wp_send_json_success( [ 'result' => array_values( $response ) ] );
+			}
+		}
+
 		private function output_single_page() {
 			global $wp_settings_errors;
 

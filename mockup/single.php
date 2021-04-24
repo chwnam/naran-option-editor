@@ -35,11 +35,11 @@ if ( ! defined( 'ABSPATH' ) || ! defined( 'NOE_MAIN' ) ) {
         clear: both;
     }
 
-    #search-result > h4 > .total-num:before {
+    #search-total-num:before {
         content: ': ';
     }
 
-    #search-result > h4 > .total-num {
+    #search-total-num {
         font-weight: normal;
     }
 
@@ -152,7 +152,7 @@ if ( ! defined( 'ABSPATH' ) || ! defined( 'NOE_MAIN' ) ) {
                     </div>
                     <div id="search-result"
                          class="search-option-name">
-                        <h4>검색 결과<span class="total-num">8건</span></h4>
+                        <h4>검색 결과<span id="search-total-num">8건</span></h4>
                         <pre>wp-login.php:409:	if ( get_option( 'siteurl' ) !== $url ) {
 wp-login.php:410:		update_option( 'siteurl', $url );
 1

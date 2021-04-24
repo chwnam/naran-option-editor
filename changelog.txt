@@ -1,3 +1,11 @@
+1.11.0
+======
+Apr. 24th, 2021.
+
+* Add: Option name searching.
+* Fix: Minor translation fix.
+
+
 1.10.0
 ======
 Apr. 18th, 2021.

@@ -6,3 +6,55 @@
 .submitdelete:hover {
     color: #b32d2e;
 }
+
+.search-option-name:not(.search-option-name:last-of-type) {
+    margin-bottom: 20px;
+}
+
+.search-option-name > h4 {
+    margin-top: 0;
+    margin-bottom: 6px;
+}
+
+#search-span-setup > ul {
+    margin: 3px;
+}
+
+#search-span-setup > ul > li {
+    float: left;
+    padding: 4px 0;
+    margin-right: 10px;
+}
+
+#search-span-setup:after {
+    clear: both;
+}
+
+#search-total-num:before {
+    content: ': ';
+}
+
+#search-total-num {
+    font-weight: normal;
+}
+
+#search-result > pre {
+    border: 1px solid #8a8a8a;
+    border-radius: 4px;
+    padding: 5px 8px;
+    overflow: auto;
+    height: 160px;
+    max-height: 300px;
+    width: 700px;
+}
+
+@media screen and (max-width: 782px) {
+    .search-option-name > h4 {
+        margin-top: 8px;
+        font-weight: normal;
+    }
+
+    #search-span-setup > ul > li {
+        padding: 10px 0;
+    }
+}

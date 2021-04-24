@@ -88,6 +88,12 @@ if ( ! class_exists( 'NOE_Registerer_Admin_Ajax' ) ) {
 						noe()->admin->option_editor->bulk_edit_option_desc();
 					}
 				),
+				new NOE_Ajax(
+					'noe_option_name_search',
+					function () {
+						noe()->admin->option_editor->option_name_search();
+					}
+				)
 			];
 		}
 	}
