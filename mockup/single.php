@@ -11,6 +11,56 @@ if ( ! defined( 'ABSPATH' ) || ! defined( 'NOE_MAIN' ) ) {
         color: #b32d2e;
         margin-left: 2em;
     }
+
+    .search-option-name:not(.search-option-name:last-of-type) {
+        margin-bottom: 20px;
+    }
+
+    .search-option-name > h4 {
+        margin-top: 0;
+        margin-bottom: 6px;
+    }
+
+    #search-span-setup > ul {
+        margin: 3px;
+    }
+
+    #search-span-setup > ul > li {
+        float: left;
+        padding: 4px 0;
+        margin-right: 10px;
+    }
+
+    #search-span-setup:after {
+        clear: both;
+    }
+
+    #search-result > h4 > .total-num:before {
+        content: ': ';
+    }
+
+    #search-result > h4 > .total-num {
+        font-weight: normal;
+    }
+
+    #search-result > pre {
+        border: 1px solid #8a8a8a;
+        border-radius: 4px;
+        padding: 5px 8px;
+        overflow: auto;
+        max-height: 100px
+    }
+
+    @media screen and (max-width: 782px) {
+        .search-option-name > h4 {
+            margin-top: 8px;
+            font-weight: normal;
+        }
+
+        #search-span-setup > ul > li {
+            padding: 10px 0;
+        }
+    }
 </style>
 
 <div class="wrap">
@@ -76,6 +126,55 @@ if ( ! defined( 'ABSPATH' ) || ! defined( 'NOE_MAIN' ) ) {
                            name="autoload"
                            checked="checked">
                     <label for="autoload">자동 로드되는 옵션입니다.</label>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">옵션 이름 검색</th>
+                <td>
+                    <div id="search-span-setup"
+                         class="search-option-name">
+                        <h4>검색 범위 지정</h4>
+                        <ul>
+                            <li>
+                                <input type="checkbox" id="search-wp-core" checked="checked">
+                                <label for="search-wp-core">WP 코어</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="search-themes" checked="checked">
+                                <label for="search-themes">테마</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="search-plugins" checked="checked">
+                                <label for="search-plugins">플러그인</label>
+                            </li>
+                        </ul>
+                        <button type="button" class="button">검색</button>
+                    </div>
+                    <div id="search-result"
+                         class="search-option-name">
+                        <h4>검색 결과<span class="total-num">8건</span></h4>
+                        <pre>wp-login.php:409:	if ( get_option( 'siteurl' ) !== $url ) {
+wp-login.php:410:		update_option( 'siteurl', $url );
+1
+2
+3
+4
+5
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20</pre>
+                    </div>
                 </td>
             </tr>
             </tbody>
