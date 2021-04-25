@@ -44,6 +44,8 @@ if ( ! class_exists( 'NOE_Admin_Option_Editor' ) ) {
 						'textCancel'                  => __( 'Cancel', 'noe' ),
 						'textCheckedIsZeroLength'     => __( 'Check one or more options.', 'noe' ),
 						'textConfirmDeleteOption'     => __( 'Are you sure you want to delete this option?', 'noe' ),
+						/* translators: DO NOT translate '##NUMBER##'. It is just a placeholder. */
+						'textConfirmDeleteOptions'    => __( 'Are you sure you want to delete ##NUMBER## option(s)?', 'noe' ),
 						'textConfirmRemoveAllFilters' => __( 'Are you sure you want to remove all prefixes?', 'noe' ),
 						'textPrefixAlreadyExists'     => __( 'The prefix is already added. Please choose another one.', 'noe' ),
 						'textRestoreOptionAlert'      => __( 'Are you sure you want to restore option table with the file?', 'noe' ),
@@ -610,7 +612,7 @@ PHP_EOL;
 				exec( $command, $output, $result );
 
 				// 1: nothing matched.
-				if ( 0 !== $result && 1 !== $result) {
+				if ( 0 !== $result && 1 !== $result ) {
 					$errors->add(
 						'Error',
 						sprintf(

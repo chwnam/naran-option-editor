@@ -1,3 +1,14 @@
+1.11.1
+======
+Apr. 25th, 2021.
+
+* Edit: Dialog initialization code.
+* Edit: Dialog's fist buttons have 'button-primary' class.
+* Edit: Dialog's position and size respond to screen size.
+* Fix:  Bulk edit does not delete option items.
+* Fix:  Minor fix of dialog style.
+
+
 1.11.0
 ======
 Apr. 24th, 2021.

@@ -40,7 +40,7 @@ if ( ! class_exists( 'NOE_Registerer_Admin_Script' ) ) {
 				new NOE_Script(
 					'noe-option-table',
 					'option-table.js',
-					[ 'jquery', 'jquery-ui-dialog', 'wp-util' ],
+					[ 'jquery', 'jquery-ui-dialog', 'wp-util', 'underscore' ],
 					NOE_VERSION,
 					true
 				),

@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
      class="edit-dialog"
      title="<?php esc_attr_e( 'Edit Description', 'noe' ); ?>"
      style="display:none;">
-    <form>
+    <div>
         <input type="hidden"
                id="edit-desc-option_id"
                value="">
@@ -31,14 +31,14 @@ if ( ! defined( 'ABSPATH' ) ) {
                       name="edit_option_desc"
                       rows="8"></textarea>
         </fieldset>
-    </form>
+    </div>
 </div>
 
 <div id="bulk-edit-desc-dialog"
      class="edit-dialog"
      title="<?php esc_attr_e( 'Bulk Edit Description', 'noe' ); ?>"
      style="display: none;">
-    <form>
+    <div>
         <fieldset>
             <label><?php _e( 'Option Name(s)', 'noe' ); ?></label>
             <ul id="bulk-edit-desc-option-names"></ul>
@@ -49,7 +49,7 @@ if ( ! defined( 'ABSPATH' ) ) {
                       name="bulk_edit_option_desc"
                       rows="8"></textarea>
         </fieldset>
-    </form>
+    </div>
 </div>
 
 <script type="text/template" id="tmpl-bulk-edit-option-name">

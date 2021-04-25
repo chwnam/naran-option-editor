@@ -7,6 +7,7 @@
             textCancel: 'Cancel',
             textCheckedIsZeroLength: 'Check one or more options.',
             textConfirmDeleteOption: 'Are you sure you want to delete this option?',
+            textConfirmDeleteOptions: 'Are you sure you want to delete ##NUMBER## option(s)?',
             textConfirmRemoveAllFilters: 'Are you sure you want to remove all prefixes?',
             textPrefixAlreadyExists: 'The prefix is already added. Please choose another one.',
             textRestoreOptionAlert: 'Are you sure you want to restore option table with the file?',
@@ -82,40 +83,83 @@
         // Prefix filer dialog.
         var prefixDialog = null;
 
+        var getDialogWidth = function () {
+            var ww = $(window).width(),
+                dw = Math.min(800, Math.max(420, ww - 100)),
+                l = (ww - dw) / 2;
+
+            return {
+                w: dw,
+                l: l
+            }
+        };
+
+        var addDialogProperties = function (dialogOptions) {
+            var dialogSize = getDialogWidth();
+
+            dialogOptions.create = function () {
+                $(this)
+                    .closest('.ui-dialog')
+                    .find('.ui-button:not(.ui-dialog-titlebar-close):first')
+                    .addClass('button-primary');
+            };
+
+            dialogOptions.width = dialogSize.w;
+            dialogOptions.left = dialogSize.l;
+
+            return dialogOptions;
+        };
+
+        var addDialogEvents = function (dialog) {
+            $(window).resize(_.throttle(function () {
+                var d = $(dialog).closest('.ui-dialog'),
+                    dialogSize = getDialogWidth(),
+                    dialogTop = Math.max($(window).height() - d.height()) / 2;
+
+                d
+                    .css('width', dialogSize.w + 'px')
+                    .css('left', dialogSize.l + 'px')
+                    .css('top', dialogTop);
+            }, 300));
+        };
+
         // Open the prefix filter dialog.
         $('#prefix-setup-top, #prefix-setup-bottom').on('click', function () {
             if (!prefixDialog) {
-                var prefixDialogOpts = {
+                prefixDialog = $('#prefix-filter-dialog').dialog(addDialogProperties({
                     autoOpen: false,
-                    buttons: {},
+                    buttons: [
+                        {
+                            text: opts.textAdd,
+                            click: function () {
+                                var newPrefix = $('#new-prefix'),
+                                    newValue = newPrefix.val().trim();
+                                if (newValue.length) {
+                                    if (hasPrefix(newValue)) {
+                                        alert(opts.textPrefixAlreadyExists);
+                                    } else {
+                                        prefixManager.add(newValue, function () {
+                                            theList.trigger('prefixAdded', newValue);
+                                            newPrefix.val('');
+                                        });
+                                        prefixDialog.dialog('close');
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            text: opts.textCancel,
+                            click: function () {
+                                prefixDialog.dialog('close');
+                            }
+                        }
+                    ],
                     draggable: false,
                     modal: true,
                     resizable: false,
-                };
-
-                prefixDialogOpts.buttons[opts.textAdd] = function () {
-                    var newPrefix = $('#new-prefix'),
-                        newValue = newPrefix.val().trim();
-                    if (newValue.length) {
-                        if (hasPrefix(newValue)) {
-                            alert(opts.textPrefixAlreadyExists);
-                        } else {
-                            prefixManager.add(newValue, function () {
-                                theList.trigger('prefixAdded', newValue);
-                                newPrefix.val('');
-                            });
-                            prefixDialog.dialog('close');
-                        }
-                    }
-                };
-
-                prefixDialogOpts.buttons[opts.textCancel] = function () {
-                    prefixDialog.dialog('close');
-                };
-
-                prefixDialog = $('#prefix-filter-dialog').dialog(prefixDialogOpts);
+                }));
+                addDialogEvents(prefixDialog);
             }
-
             prefixDialog.dialog('open');
         });
 
@@ -134,51 +178,54 @@
             e.preventDefault();
 
             if (!editDescDialog) {
-                var editDescDialogOpts = {
+                editDescDialog = $('#edit-desc-dialog').dialog(addDialogProperties({
                     autoOpen: false,
-                    buttons: {},
+                    buttons: [
+                        {
+                            text: opts.textSubmit,
+                            click: function () {
+                                var optionId = $('#edit-desc-option_id').val(),
+                                    optionDesc = $('#edit-desc-textarea').val();
+
+                                $.ajax(opts.ajaxUrl, {
+                                    method: 'post',
+                                    data: {
+                                        action: 'noe_edit_option_desc',
+                                        nonce: opts.nonce,
+                                        option_id: optionId,
+                                        option_desc: optionDesc,
+                                    },
+                                    beforeSend: function () {
+                                        var anchor = editDescDialog.data('noeCurrentEdit'),
+                                            columnText = anchor.siblings('.option-desc-text');
+                                        columnText.text(optionDesc);
+                                        editDescDialog.dialog('close');
+                                    },
+                                    success: function (response) {
+                                        if (!response.success && response.hasOwnProperty('data') && Array.isArray(response.data)) {
+                                            alert('[' + response.data[0].code + '] ' + response.data[0].message);
+                                        } else {
+                                            console.error('Error', response);
+                                        }
+                                    },
+                                    error: function (jqXhr, textStatus, errorThrown) {
+                                        alert(jqXhr.status + ': ' + errorThrown);
+                                    }
+                                });
+                            },
+                        },
+                        {
+                            text: opts.textCancel,
+                            click: function () {
+                                editDescDialog.dialog('close');
+                            },
+                        },
+                    ],
                     draggable: false,
                     modal: true,
                     resizable: false,
-                }
-
-                // Submit edit desc.
-                editDescDialogOpts.buttons[opts.textSubmit] = function () {
-                    var optionId = $('#edit-desc-option_id').val(),
-                        optionDesc = $('#edit-desc-textarea').val();
-
-                    $.ajax(opts.ajaxUrl, {
-                        method: 'post',
-                        data: {
-                            action: 'noe_edit_option_desc',
-                            nonce: opts.nonce,
-                            option_id: optionId,
-                            option_desc: optionDesc,
-                        },
-                        beforeSend: function () {
-                            var anchor = editDescDialog.data('noeCurrentEdit'),
-                                columnText = anchor.siblings('.option-desc-text');
-                            columnText.text(optionDesc);
-                            editDescDialog.dialog('close');
-                        },
-                        success: function (response) {
-                            if (!response.success && response.hasOwnProperty('data') && Array.isArray(response.data)) {
-                                alert('[' + response.data[0].code + '] ' + response.data[0].message);
-                            } else {
-                                console.error('Error', response);
-                            }
-                        },
-                        error: function (jqXhr, textStatus, errorThrown) {
-                            alert(jqXhr.status + ': ' + errorThrown);
-                        }
-                    });
-                };
-
-                editDescDialogOpts.buttons[opts.textCancel] = function () {
-                    editDescDialog.dialog('close');
-                };
-
-                editDescDialog = $('#edit-desc-dialog').dialog(editDescDialogOpts);
+                }));
+                addDialogEvents(editDescDialog);
             }
 
             tr = self.closest('tr');
@@ -202,73 +249,80 @@
 
         // Open the bulk desc edit dialog
         $('#doaction').on('click', function (e) {
-            if ('bulk_edit_desc' === $('#bulk-action-selector-top').val()) {
+            var bulkEditValue = $('#bulk-action-selector-top').val();
+
+            if ('bulk_edit_desc' === bulkEditValue) {
                 e.preventDefault();
 
                 if (!bulkEditDescDialog) {
-                    var bulkEditDescDialogOpts = {
+                    // Submit bulk option desc.
+                    bulkEditDescDialog = $('#bulk-edit-desc-dialog').dialog(addDialogProperties({
                         autoOpen: false,
-                        buttons: {},
+                        buttons: [
+                            {
+                                text: opts.textSubmit,
+                                click: function () {
+                                    var optionIds = [],
+                                        optionDesc = $('#bulk-edit-desc-textarea');
+
+                                    $('#bulk-edit-desc-option-names')
+                                        .find('input[type="hidden"][name="bulk_edit_option_id\\[\\]"]')
+                                        .each(function (idx, elem) {
+                                            optionIds.push(elem.value);
+                                        });
+
+                                    $.ajax(opts.ajaxUrl, {
+                                        method: 'post',
+                                        data: {
+                                            action: 'noe_bulk_edit_option_desc',
+                                            nonce: opts.nonce,
+                                            option_ids: optionIds,
+                                            option_desc: optionDesc.val().trim()
+                                        },
+                                        beforeSend: function () {
+                                            var currentEdit = bulkEditDescDialog.data('noeCurrentEdit'),
+                                                text = optionDesc.val();
+                                            $(currentEdit).each(function (idx, elem) {
+                                                $(elem).text(text);
+                                            });
+                                            optionDesc.val('');
+                                            bulkEditDescDialog.dialog('close');
+                                        },
+                                        success: function (response) {
+                                            if (!response.success && response.hasOwnProperty('data') && Array.isArray(response.data)) {
+                                                alert('[' + response.data[0].code + '] ' + response.data[0].message);
+                                            } else {
+                                                console.error('Error', response);
+                                            }
+                                        },
+                                        error: function (jqXhr, textStatus, errorThrown) {
+                                            alert(jqXhr.status + ': ' + errorThrown);
+                                        }
+                                    });
+                                }
+                            },
+                            {
+                                text: opts.textCancel,
+                                click: function () {
+                                    bulkEditDescDialog.dialog('close');
+                                }
+                            },
+                        ],
                         draggable: false,
                         modal: true,
                         resizable: false,
-                    }
-
-                    // Submit bulk option desc.
-                    bulkEditDescDialogOpts.buttons[opts.textSubmit] = function () {
-                        var optionIds = [],
-                            optionDesc = $('#bulk-edit-desc-textarea');
-
-                        $('#bulk-edit-desc-option-names')
-                            .find('input[type="hidden"][name="bulk_edit_option_id\\[\\]"]')
-                            .each(function (idx, elem) {
-                                optionIds.push(elem.value);
-                            });
-
-                        $.ajax(opts.ajaxUrl, {
-                            method: 'post',
-                            data: {
-                                action: 'noe_bulk_edit_option_desc',
-                                nonce: opts.nonce,
-                                option_ids: optionIds,
-                                option_desc: optionDesc.val().trim()
-                            },
-                            beforeSend: function () {
-                                var currentEdit = bulkEditDescDialog.data('noeCurrentEdit'),
-                                    text = optionDesc.val();
-                                $(currentEdit).each(function (idx, elem) {
-                                    $(elem).text(text);
-                                });
-                                optionDesc.val('');
-                                bulkEditDescDialog.dialog('close');
-                            },
-                            success: function (response) {
-                                if (!response.success && response.hasOwnProperty('data') && Array.isArray(response.data)) {
-                                    alert('[' + response.data[0].code + '] ' + response.data[0].message);
-                                } else {
-                                    console.error('Error', response);
-                                }
-                            },
-                            error: function (jqXhr, textStatus, errorThrown) {
-                                alert(jqXhr.status + ': ' + errorThrown);
-                            }
-                        });
-                    };
-
-                    bulkEditDescDialogOpts.buttons[opts.textCancel] = function () {
-                        bulkEditDescDialog.dialog('close');
-                    }
-
-                    bulkEditDescDialog = $('#bulk-edit-desc-dialog').dialog(bulkEditDescDialogOpts);
+                    }));
+                    addDialogEvents(bulkEditDescDialog);
+                    
                     bulkEditDescTmpl = wp.template('bulk-edit-option-name');
                 }
 
                 var checked = $('input[type="checkbox"][name="option\\[\\]"]:checked'),
-                    items = [],
+                    items,
                     currentEdit = [];
 
                 if (!checked.length) {
-                    alert(opts.textCheckedZeroLength);
+                    alert(opts.textCheckedIsZeroLength);
                 }
 
                 items = $(checked).map(function (idx, elem) {
@@ -289,6 +343,16 @@
                 $('#bulk-edit-desc-option-names').html(bulkEditDescTmpl(items));
                 bulkEditDescDialog.data('noeCurrentEdit', currentEdit);
                 bulkEditDescDialog.dialog('open');
+            } else if ('delete' === bulkEditValue) {
+                var numCheckedOptions = $('input[name="option\\[\\]"]:checked').length;
+                if (!numCheckedOptions) {
+                    e.preventDefault();
+                    alert(opts.textCheckedIsZeroLength);
+                    return false;
+                } else if (!confirm(opts.textConfirmDeleteOptions.replace('##NUMBER##', numCheckedOptions))) {
+                    e.preventDefault();
+                    return false;
+                }
             }
         });
 
