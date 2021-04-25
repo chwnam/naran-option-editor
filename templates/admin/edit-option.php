@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		if ( $option ) {
 			printf(
 			/* translators: option id and name */
-				__( 'Edit Option #%d &#8220;%s&#8221;', 'noe' ),
+				__( 'Edit Option #%1$d &#8220;%2$s&#8221;', 'noe' ),
 				intval( $option->option_id ),
 				esc_html( $option->option_name )
 			);
@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<?php if ( $option ) : ?>
         <a href="<?php echo esc_url( add_query_arg( 'option_id', 'new' ) ); ?>"
-           class="page-title-action">Add New</a>
+           class="page-title-action"><?php esc_html_e( 'Add New', 'noe' ); ?></a>
 	<?php endif; ?>
 
 	<?php settings_errors( 'noe' ); ?>

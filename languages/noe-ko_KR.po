@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: Naran Option Editor 1.5.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/naran-option-"
 "editor\n"
-"POT-Creation-Date: 2021-04-18T11:27:06+09:00\n"
-"PO-Revision-Date: 2021-04-18 11:39+0900\n"
+"POT-Creation-Date: 2021-04-25T12:21:17+09:00\n"
+"PO-Revision-Date: 2021-04-25 12:28+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -64,69 +64,88 @@ msgstr "하나 이상의 옵션을 체크하세요."
 msgid "Are you sure you want to delete this option?"
 msgstr "정말로 이 이 옵션을 삭제할까요?"
 
-#: includes/modules/class-noe-admin-option-editor.php:47
+#. translators: DO NOT translate '##NUMBER##'. It is just a placeholder.
+#: includes/modules/class-noe-admin-option-editor.php:48
+msgid "Are you sure you want to delete ##NUMBER## option(s)?"
+msgstr "정말로 ###NUMBER##개 옵션을 삭제할까요?"
+
+#: includes/modules/class-noe-admin-option-editor.php:49
 msgid "Are you sure you want to remove all prefixes?"
 msgstr "정말로 모든 접두어를 삭제할까요?"
 
-#: includes/modules/class-noe-admin-option-editor.php:48
+#: includes/modules/class-noe-admin-option-editor.php:50
 msgid "The prefix is already added. Please choose another one."
 msgstr "접두어가 이미 추가되어 있습니다. 다른 접두어를 선택하세요."
 
-#: includes/modules/class-noe-admin-option-editor.php:49
+#: includes/modules/class-noe-admin-option-editor.php:51
 msgid "Are you sure you want to restore option table with the file?"
 msgstr "정말로 이 파일로 옵션 테이블을 복구할까요?"
 
-#: includes/modules/class-noe-admin-option-editor.php:50
+#: includes/modules/class-noe-admin-option-editor.php:52
 msgid "The option table is restored. The page is now reloaded."
 msgstr "옵션 테이블이 복구되었습니다. 페이지를 다시 로드합니다."
 
-#: includes/modules/class-noe-admin-option-editor.php:51
+#: includes/modules/class-noe-admin-option-editor.php:53
 msgid "Submit"
 msgstr "제출"
 
-#: includes/modules/class-noe-admin-option-editor.php:80
+#: includes/modules/class-noe-admin-option-editor.php:82
 msgid "Error: empty option id"
 msgstr "에러: option_id 가 없음"
 
 #. translators: option name
-#: includes/modules/class-noe-admin-option-editor.php:97
+#: includes/modules/class-noe-admin-option-editor.php:99
 msgid "Error: option name `%s` is already exists."
 msgstr "에러: 옵션 이름 '%s'가 이미 존재함."
 
-#: includes/modules/class-noe-admin-option-editor.php:113
+#: includes/modules/class-noe-admin-option-editor.php:115
 msgid "Option is successfully added."
 msgstr "옵션이 성공적으로 추가되었습니다."
 
 #. translators: option name
-#: includes/modules/class-noe-admin-option-editor.php:131
+#: includes/modules/class-noe-admin-option-editor.php:133
 msgid "Error: option `%s` is already exists."
 msgstr "에러: 옵션 '%s' 항목은 이미 존재합니다."
 
-#: includes/modules/class-noe-admin-option-editor.php:161
+#: includes/modules/class-noe-admin-option-editor.php:163
 msgid "Option is successfully updated."
 msgstr "옵션이 성공적으로 갱신되었습니다."
 
-#: includes/modules/class-noe-admin-option-editor.php:348
+#: includes/modules/class-noe-admin-option-editor.php:350
 msgid "Use mysqli to restore option table with this plugin."
 msgstr "이 플러그인으로 테이블을 복원하려면 mysqli를 사용하세요."
 
-#: includes/modules/class-noe-admin-option-editor.php:352
+#: includes/modules/class-noe-admin-option-editor.php:354
 msgid "You are not allowed to do this task"
 msgstr "당신을 이 작업을 실행할 권한이 없습니다"
 
-#: includes/modules/class-noe-admin-option-editor.php:356
+#: includes/modules/class-noe-admin-option-editor.php:358
 msgid "Backup file not found."
 msgstr "백업 파일을 찾을 수 없습니다."
 
-#: includes/modules/class-noe-admin-option-editor.php:374
+#: includes/modules/class-noe-admin-option-editor.php:376
 msgid "The file uploaded is not allowed."
 msgstr "업로드된 파일은 허용되지 않습니다."
 
-#: includes/modules/class-noe-admin-option-editor.php:382
+#: includes/modules/class-noe-admin-option-editor.php:384
 msgid "A gzipped file is uploaded, but the server cannot decode the file."
 msgstr ""
 "Gzip 압축된 파일이 업로드되었지만, 서버가 이 파일의 압축을 해제할 수 없습니"
 "다."
+
+#: includes/modules/class-noe-admin-option-editor.php:540
+msgid "Empty code span"
+msgstr "코드 범위가 선택되지 않음"
+
+#. translators: code span text
+#: includes/modules/class-noe-admin-option-editor.php:546
+msgid "Unsupported code span: %s"
+msgstr "지원되지 않는 코드 범위: %s"
+
+#. translators: undefined option name
+#: includes/modules/class-noe-admin-option-editor.php:570
+msgid "Unknown option name: %s"
+msgstr "알 수 없는 옵션 이름: %s"
 
 #: includes/modules/class-noe-admin-prefix-inspector.php:33
 msgid "Autoload: yes"
@@ -185,21 +204,23 @@ msgid "ID"
 msgstr "ID"
 
 #: includes/modules/list-tables/class-noe-options-list-table.php:59
+#: templates/admin/edit-option.php:46
 msgid "Name"
 msgstr "이름"
 
 #: includes/modules/list-tables/class-noe-options-list-table.php:60
+#: templates/admin/edit-option.php:61
 msgid "Value"
 msgstr "값"
 
 #: includes/modules/list-tables/class-noe-options-list-table.php:61
 #: templates/admin/edit-desc-dialog.php:29
-#: templates/admin/edit-desc-dialog.php:47 templates/admin/edit-option.php:75
+#: templates/admin/edit-desc-dialog.php:47 templates/admin/edit-option.php:82
 msgid "Description"
 msgstr "설명"
 
 #: includes/modules/list-tables/class-noe-options-list-table.php:62
-#: templates/admin/edit-option.php:90
+#: templates/admin/edit-option.php:97
 msgid "Autoload"
 msgstr "자동로드"
 
@@ -227,7 +248,7 @@ msgstr "[편집...]"
 #. translators: "option name"
 #: includes/modules/list-tables/class-noe-options-list-table.php:323
 msgid "Edit &#8220;%s&#8221;"
-msgstr "&#8220;%s&#8221; 편집"
+msgstr "편집 &#8220;%s&#8221;"
 
 #: includes/modules/list-tables/class-noe-options-list-table.php:324
 msgid "Edit"
@@ -236,7 +257,7 @@ msgstr "편집"
 #. translators: "option name"
 #: includes/modules/list-tables/class-noe-options-list-table.php:330
 msgid "Remove &#8220;%s&#8221;"
-msgstr "&#8220;%s&#8221; 제거"
+msgstr "제거 &#8220;%s&#8221;"
 
 #: includes/modules/list-tables/class-noe-options-list-table.php:331
 msgid "Remove"
@@ -297,35 +318,76 @@ msgstr "일괄 설명 설명 편집하기"
 msgid "Option Name(s)"
 msgstr "옵션 이름"
 
-#: templates/admin/edit-option.php:49
+#. translators: option id and name
+#: templates/admin/edit-option.php:21
+msgid "Edit Option #%1$d &#8220;%2$s&#8221;"
+msgstr "옵션 편집 #%1$d &#8220;%2$s&#8221;"
+
+#: templates/admin/edit-option.php:26
+msgid "New Option"
+msgstr "새 옵션"
+
+#: templates/admin/edit-option.php:56
 msgid "Option name is required."
 msgstr "옵션 이름은 필수입니다."
 
-#: templates/admin/edit-option.php:65
+#: templates/admin/edit-option.php:72
 msgid "Edit serialized value"
 msgstr "직렬화된 값 편집"
 
-#: templates/admin/edit-option.php:68
+#: templates/admin/edit-option.php:75
 msgid "Option size"
 msgstr "옵션 사이즈"
 
-#: templates/admin/edit-option.php:84
+#: templates/admin/edit-option.php:91
 msgid "Some description about this option."
 msgstr "이 옵션에 대한 설명란."
 
-#: templates/admin/edit-option.php:98
+#: templates/admin/edit-option.php:105
 msgid "Autoload this option."
 msgstr "이 옵션은 자동로드 됩니다."
 
-#: templates/admin/edit-option.php:104
+#: templates/admin/edit-option.php:110
+msgid "Option Name Search"
+msgstr "옵션 이름 검색"
+
+#: templates/admin/edit-option.php:114
+msgid "Search Setup"
+msgstr "검색 설정"
+
+#: templates/admin/edit-option.php:122
+msgid "WP Core"
+msgstr "코어"
+
+#: templates/admin/edit-option.php:130
+msgid "Themes"
+msgstr "테마"
+
+#: templates/admin/edit-option.php:138
+msgid "Plugins"
+msgstr "플러그인"
+
+#: templates/admin/edit-option.php:142 templates/admin/list-table.php:46
+msgid "Search"
+msgstr "검색"
+
+#: templates/admin/edit-option.php:147
+msgid "Search Result"
+msgstr "검색 결과"
+
+#: templates/admin/edit-option.php:149
+msgid "Press 'Search' button to search code."
+msgstr "'검색' 버튼을 눌러 코드를 검색하세요."
+
+#: templates/admin/edit-option.php:157
 msgid "Save Option"
 msgstr "옵션 저장"
 
-#: templates/admin/edit-option.php:106
+#: templates/admin/edit-option.php:159
 msgid "Back to List"
 msgstr "목록으로"
 
-#: templates/admin/edit-option.php:114
+#: templates/admin/edit-option.php:162
 msgid "Remove this option."
 msgstr "이 옵션 삭제."
 
@@ -369,10 +431,6 @@ msgstr "새로 추가"
 #: templates/admin/list-table.php:32
 msgid "Search results for: <strong>%s</strong>"
 msgstr "다음 검색 결과: <strong>%s</strong>"
-
-#: templates/admin/list-table.php:46
-msgid "Search"
-msgstr "검색"
 
 #: templates/admin/prefix-filter.php:27
 msgid "Toggle All"
