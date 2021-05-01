@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/naran-option-"
 "editor\n"
 "POT-Creation-Date: 2021-04-25T12:21:17+09:00\n"
-"PO-Revision-Date: 2021-04-25 12:28+0900\n"
+"PO-Revision-Date: 2021-04-25 12:34+0900\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ko_KR\n"
@@ -67,7 +67,7 @@ msgstr "정말로 이 이 옵션을 삭제할까요?"
 #. translators: DO NOT translate '##NUMBER##'. It is just a placeholder.
 #: includes/modules/class-noe-admin-option-editor.php:48
 msgid "Are you sure you want to delete ##NUMBER## option(s)?"
-msgstr "정말로 ###NUMBER##개 옵션을 삭제할까요?"
+msgstr "정말로 ##NUMBER##개 옵션을 삭제할까요?"
 
 #: includes/modules/class-noe-admin-option-editor.php:49
 msgid "Are you sure you want to remove all prefixes?"
